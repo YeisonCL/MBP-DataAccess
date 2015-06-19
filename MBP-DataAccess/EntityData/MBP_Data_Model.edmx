@@ -1,0 +1,3026 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MyBattlePongModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ABILITY_CATALOG">
+          <Key>
+            <PropertyRef Name="abilityID" />
+          </Key>
+          <Property Name="abilityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adminID" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="versionAbility" Type="int" Nullable="false" />
+          <Property Name="points" Type="int" />
+          <Property Name="ranking" Type="int" />
+          <Property Name="experience" Type="int" />
+          <Property Name="wins" Type="int" />
+          <Property Name="defeats" Type="int" />
+        </EntityType>
+        <EntityType Name="ADMIN_USER">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nickAndPassID" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="secondName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="regDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BOARD_BOX">
+          <Key>
+            <PropertyRef Name="playerID" />
+            <PropertyRef Name="posX" />
+            <PropertyRef Name="posY" />
+          </Key>
+          <Property Name="playerID" Type="int" Nullable="false" />
+          <Property Name="posX" Type="int" Nullable="false" />
+          <Property Name="posY" Type="int" Nullable="false" />
+          <Property Name="alive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BOARD_SHIP">
+          <Key>
+            <PropertyRef Name="boardShipID" />
+          </Key>
+          <Property Name="boardShipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="playerID" Type="int" />
+          <Property Name="posX" Type="int" />
+          <Property Name="posY" Type="int" />
+          <Property Name="gameShipID" Type="int" />
+        </EntityType>
+        <EntityType Name="CHAT_MESSAGE">
+          <Key>
+            <PropertyRef Name="chatMessageID" />
+          </Key>
+          <Property Name="chatMessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gameID" Type="int" />
+          <Property Name="playerID" Type="int" />
+          <Property Name="message" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COUNTRY">
+          <Key>
+            <PropertyRef Name="countryID" />
+          </Key>
+          <Property Name="countryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="countryName" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GAME">
+          <Key>
+            <PropertyRef Name="gameID" />
+          </Key>
+          <Property Name="gameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="turnChangeTime" Type="datetime" />
+          <Property Name="shotsTurn" Type="int" Nullable="false" />
+          <Property Name="boardSize" Type="int" Nullable="false" />
+          <Property Name="profileAccess" Type="bit" Nullable="false" />
+          <Property Name="feed" Type="bit" Nullable="false" />
+          <Property Name="lock" Type="bit" Nullable="false" />
+          <Property Name="joined" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GAME_ABILITY">
+          <Key>
+            <PropertyRef Name="playerID" />
+            <PropertyRef Name="abilityID" />
+          </Key>
+          <Property Name="playerID" Type="int" Nullable="false" />
+          <Property Name="abilityID" Type="int" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="availableCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GAME_AND_PLAYER">
+          <Key>
+            <PropertyRef Name="gameAndPlayerID" />
+          </Key>
+          <Property Name="gameAndPlayerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gameID" Type="int" />
+          <Property Name="playerID" Type="int" />
+        </EntityType>
+        <EntityType Name="GAME_PLAYER">
+          <Key>
+            <PropertyRef Name="playerID" />
+          </Key>
+          <Property Name="playerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gameUserID" Type="int" />
+          <Property Name="lastFeed" Type="datetime" Nullable="false" />
+          <Property Name="availableShots" Type="int" Nullable="false" />
+          <Property Name="remainingShips" Type="int" Nullable="false" />
+          <Property Name="winFeedDelivered" Type="bit" Nullable="false" />
+          <Property Name="inTurn" Type="bit" Nullable="false" />
+          <Property Name="hitShots" Type="int" Nullable="false" />
+          <Property Name="missShots" Type="int" Nullable="false" />
+          <Property Name="points" Type="int" Nullable="false" />
+          <Property Name="lock" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GAME_SHIP">
+          <Key>
+            <PropertyRef Name="gameShipID" />
+          </Key>
+          <Property Name="gameShipID" Type="int" Nullable="false" />
+          <Property Name="shipID" Type="int" />
+          <Property Name="playerID" Type="int" />
+          <Property Name="integrity" Type="int" Nullable="false" />
+          <Property Name="posX" Type="int" Nullable="false" />
+          <Property Name="posY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GAME_SHIP_CATALOG">
+          <Key>
+            <PropertyRef Name="gameID" />
+            <PropertyRef Name="shipID" />
+          </Key>
+          <Property Name="gameID" Type="int" Nullable="false" />
+          <Property Name="shipID" Type="int" Nullable="false" />
+          <Property Name="shipCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GAME_USER">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nickAndPassID" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="secondName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="countryID" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="genre" Type="bit" Nullable="false" />
+          <Property Name="regDate" Type="datetime" Nullable="false" />
+          <Property Name="wins" Type="int" Nullable="false" />
+          <Property Name="defeats" Type="int" Nullable="false" />
+          <Property Name="hits" Type="int" Nullable="false" />
+          <Property Name="misses" Type="int" Nullable="false" />
+          <Property Name="totalPoints" Type="int" Nullable="false" />
+          <Property Name="points" Type="int" Nullable="false" />
+          <Property Name="birthdate" Type="date" />
+          <Property Name="personalDescription" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GAME_USER_ABILITY">
+          <Key>
+            <PropertyRef Name="gameUserAbilityID" />
+          </Key>
+          <Property Name="gameUserAbilityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gameUserID" Type="int" />
+          <Property Name="abilityID" Type="int" />
+        </EntityType>
+        <EntityType Name="LIVE_GAME">
+          <Key>
+            <PropertyRef Name="idLiveGame" />
+          </Key>
+          <Property Name="idLiveGame" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="modID" Type="int" Nullable="false" />
+          <Property Name="gameID" Type="int" Nullable="false" />
+          <Property Name="idTerminal" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LIVE_TERMINAL">
+          <Key>
+            <PropertyRef Name="idTerminal" />
+          </Key>
+          <Property Name="idTerminal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="keyTerminal" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MOD_USER">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nickAndPassID" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="secondName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="countryID" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="genre" Type="bit" Nullable="false" />
+          <Property Name="business" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="regDate" Type="datetime" Nullable="false" />
+          <Property Name="birthdate" Type="date" />
+          <Property Name="photo" Type="int" />
+        </EntityType>
+        <EntityType Name="ONE_PLUS_ABILITY">
+          <Key>
+            <PropertyRef Name="playerID" />
+            <PropertyRef Name="abilityID" />
+          </Key>
+          <Property Name="playerID" Type="int" Nullable="false" />
+          <Property Name="abilityID" Type="int" Nullable="false" />
+          <Property Name="direction" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PLAYED_GAME">
+          <Key>
+            <PropertyRef Name="playedGameID" />
+          </Key>
+          <Property Name="playedGameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="winnerID" Type="int" Nullable="false" />
+          <Property Name="loserID" Type="int" Nullable="false" />
+          <Property Name="winnerScore" Type="int" Nullable="false" />
+          <Property Name="looserScore" Type="int" Nullable="false" />
+          <Property Name="gameDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SHIELD">
+          <Key>
+            <PropertyRef Name="shieldID" />
+          </Key>
+          <Property Name="shieldID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="playerID" Type="int" />
+          <Property Name="abilityID" Type="int" />
+          <Property Name="gameShipID" Type="int" />
+        </EntityType>
+        <EntityType Name="SHIP_CATALOG">
+          <Key>
+            <PropertyRef Name="shipID" />
+          </Key>
+          <Property Name="uniqueID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="shipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adminID" Type="int" />
+          <Property Name="shipVersion" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="40" />
+          <Property Name="points" Type="int" Nullable="false" />
+          <Property Name="width" Type="int" Nullable="false" />
+          <Property Name="height" Type="int" Nullable="false" />
+          <Property Name="photo" Type="varbinary(max)" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SHOT_FEED">
+          <Key>
+            <PropertyRef Name="shotFeedID" />
+          </Key>
+          <Property Name="shotFeedID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="againstPlayerID" Type="int" Nullable="false" />
+          <Property Name="posX" Type="int" Nullable="false" />
+          <Property Name="posY" Type="int" Nullable="false" />
+          <Property Name="success" Type="bit" Nullable="false" />
+          <Property Name="bomb" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYSTEM_MESSAGE">
+          <Key>
+            <PropertyRef Name="messageID" />
+          </Key>
+          <Property Name="messageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codeMessage" Type="int" Nullable="false" />
+          <Property Name="textMessage" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_NICK_PASS">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_PHOTO">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="uniqueID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="photo" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_ADMIN_USER_EXT' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_ADMIN_USER_EXT">
+          <Key>
+            <PropertyRef Name="userID" />
+            <PropertyRef Name="nickAndPassID" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="secondName" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="regDate" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="nickAndPassID" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="secondName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="regDate" Type="datetime" Nullable="false" />
+          <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_BOARD_BOX_EXT' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_BOARD_BOX_EXT">
+          <Key>
+            <PropertyRef Name="gameShipID" />
+            <PropertyRef Name="integrity" />
+            <PropertyRef Name="posX" />
+            <PropertyRef Name="posY" />
+            <PropertyRef Name="nickname" />
+            <PropertyRef Name="posXBoardBox" />
+            <PropertyRef Name="posYBoardBox" />
+            <PropertyRef Name="alive" />
+          </Key>
+          <Property Name="gameShipID" Type="int" Nullable="false" />
+          <Property Name="shipID" Type="int" />
+          <Property Name="playerID" Type="int" />
+          <Property Name="integrity" Type="int" Nullable="false" />
+          <Property Name="posX" Type="int" Nullable="false" />
+          <Property Name="posY" Type="int" Nullable="false" />
+          <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="posXBoardBox" Type="int" Nullable="false" />
+          <Property Name="posYBoardBox" Type="int" Nullable="false" />
+          <Property Name="alive" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_CHAT_MESSAGE_EXT' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_CHAT_MESSAGE_EXT">
+          <Key>
+            <PropertyRef Name="chatMessageID" />
+            <PropertyRef Name="message" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="chatMessageID" Type="int" Nullable="false" />
+          <Property Name="gameID" Type="int" />
+          <Property Name="playerID" Type="int" />
+          <Property Name="message" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_GAME_ABILITY_EXT' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_GAME_ABILITY_EXT">
+          <Key>
+            <PropertyRef Name="nickname" />
+            <PropertyRef Name="playerID" />
+            <PropertyRef Name="abilityID" />
+            <PropertyRef Name="active" />
+            <PropertyRef Name="availableCount" />
+            <PropertyRef Name="direction" />
+          </Key>
+          <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="playerID" Type="int" Nullable="false" />
+          <Property Name="abilityID" Type="int" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="availableCount" Type="int" Nullable="false" />
+          <Property Name="direction" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_GAME_AND_PLAYER_INFO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_GAME_AND_PLAYER_INFO">
+          <Key>
+            <PropertyRef Name="gameID" />
+            <PropertyRef Name="nickname" />
+            <PropertyRef Name="shotsTurn" />
+            <PropertyRef Name="boardSize" />
+            <PropertyRef Name="profileAccess" />
+          </Key>
+          <Property Name="gameID" Type="int" Nullable="false" />
+          <Property Name="playerID" Type="int" />
+          <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="shotsTurn" Type="int" Nullable="false" />
+          <Property Name="boardSize" Type="int" Nullable="false" />
+          <Property Name="profileAccess" Type="bit" Nullable="false" />
+          <Property Name="ships" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_GAME_PLAYER_EXT' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_GAME_PLAYER_EXT">
+          <Key>
+            <PropertyRef Name="playerID" />
+            <PropertyRef Name="lastFeed" />
+            <PropertyRef Name="availableShots" />
+            <PropertyRef Name="remainingShips" />
+            <PropertyRef Name="winFeedDelivered" />
+            <PropertyRef Name="inTurn" />
+            <PropertyRef Name="hitShots" />
+            <PropertyRef Name="missShots" />
+            <PropertyRef Name="points" />
+            <PropertyRef Name="lock" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="playerID" Type="int" Nullable="false" />
+          <Property Name="gameUserID" Type="int" />
+          <Property Name="lastFeed" Type="datetime" Nullable="false" />
+          <Property Name="availableShots" Type="int" Nullable="false" />
+          <Property Name="remainingShips" Type="int" Nullable="false" />
+          <Property Name="winFeedDelivered" Type="bit" Nullable="false" />
+          <Property Name="inTurn" Type="bit" Nullable="false" />
+          <Property Name="hitShots" Type="int" Nullable="false" />
+          <Property Name="missShots" Type="int" Nullable="false" />
+          <Property Name="points" Type="int" Nullable="false" />
+          <Property Name="lock" Type="bit" Nullable="false" />
+          <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_GAME_SHIP_CATALOG' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_GAME_SHIP_CATALOG">
+          <Key>
+            <PropertyRef Name="gameID" />
+            <PropertyRef Name="shipCount" />
+            <PropertyRef Name="shipID" />
+            <PropertyRef Name="points" />
+            <PropertyRef Name="width" />
+            <PropertyRef Name="height" />
+            <PropertyRef Name="photo" />
+          </Key>
+          <Property Name="gameID" Type="int" Nullable="false" />
+          <Property Name="shipCount" Type="int" Nullable="false" />
+          <Property Name="shipID" Type="int" Nullable="false" />
+          <Property Name="shipVersion" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="40" />
+          <Property Name="points" Type="int" Nullable="false" />
+          <Property Name="width" Type="int" Nullable="false" />
+          <Property Name="height" Type="int" Nullable="false" />
+          <Property Name="photo" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_GAME_SHIP_EXT' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_GAME_SHIP_EXT">
+          <Key>
+            <PropertyRef Name="gameShipID" />
+            <PropertyRef Name="integrity" />
+            <PropertyRef Name="posX" />
+            <PropertyRef Name="posY" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="gameShipID" Type="int" Nullable="false" />
+          <Property Name="shipID" Type="int" />
+          <Property Name="playerID" Type="int" />
+          <Property Name="integrity" Type="int" Nullable="false" />
+          <Property Name="posX" Type="int" Nullable="false" />
+          <Property Name="posY" Type="int" Nullable="false" />
+          <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_GAME_USER_ABILITY_EXT' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_GAME_USER_ABILITY_EXT">
+          <Key>
+            <PropertyRef Name="abilityID" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="userID" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="abilityID" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_GAME_USER_EXT' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_GAME_USER_EXT">
+          <Key>
+            <PropertyRef Name="userID" />
+            <PropertyRef Name="nickAndPassID" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="secondName" />
+            <PropertyRef Name="countryID" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="genre" />
+            <PropertyRef Name="regDate" />
+            <PropertyRef Name="wins" />
+            <PropertyRef Name="defeats" />
+            <PropertyRef Name="hits" />
+            <PropertyRef Name="misses" />
+            <PropertyRef Name="totalPoints" />
+            <PropertyRef Name="points" />
+            <PropertyRef Name="personalDescription" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="nickAndPassID" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="secondName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="countryID" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="genre" Type="bit" Nullable="false" />
+          <Property Name="regDate" Type="datetime" Nullable="false" />
+          <Property Name="wins" Type="int" Nullable="false" />
+          <Property Name="defeats" Type="int" Nullable="false" />
+          <Property Name="hits" Type="int" Nullable="false" />
+          <Property Name="misses" Type="int" Nullable="false" />
+          <Property Name="totalPoints" Type="int" Nullable="false" />
+          <Property Name="points" Type="int" Nullable="false" />
+          <Property Name="birthdate" Type="date" />
+          <Property Name="personalDescription" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_LIVE_GAME' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_LIVE_GAME">
+          <Key>
+            <PropertyRef Name="idLiveGame" />
+            <PropertyRef Name="modID" />
+            <PropertyRef Name="gameID" />
+            <PropertyRef Name="idTerminal" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="idLiveGame" Type="int" Nullable="false" />
+          <Property Name="modID" Type="int" Nullable="false" />
+          <Property Name="gameID" Type="int" Nullable="false" />
+          <Property Name="idTerminal" Type="int" Nullable="false" />
+          <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_MOD_USER_EXT' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_MOD_USER_EXT">
+          <Key>
+            <PropertyRef Name="userID" />
+            <PropertyRef Name="nickAndPassID" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="secondName" />
+            <PropertyRef Name="countryID" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="genre" />
+            <PropertyRef Name="business" />
+            <PropertyRef Name="regDate" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="nickAndPassID" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="secondName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="countryID" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="genre" Type="bit" Nullable="false" />
+          <Property Name="business" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="regDate" Type="datetime" Nullable="false" />
+          <Property Name="birthdate" Type="date" />
+          <Property Name="photo" Type="int" />
+          <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_PLAYED_GAME_EXT' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_PLAYED_GAME_EXT">
+          <Key>
+            <PropertyRef Name="playedGameID" />
+            <PropertyRef Name="winnerID" />
+            <PropertyRef Name="loserID" />
+            <PropertyRef Name="winnerScore" />
+            <PropertyRef Name="looserScore" />
+            <PropertyRef Name="gameDate" />
+            <PropertyRef Name="winnerNick" />
+            <PropertyRef Name="loserNick" />
+          </Key>
+          <Property Name="playedGameID" Type="int" Nullable="false" />
+          <Property Name="winnerID" Type="int" Nullable="false" />
+          <Property Name="loserID" Type="int" Nullable="false" />
+          <Property Name="winnerScore" Type="int" Nullable="false" />
+          <Property Name="looserScore" Type="int" Nullable="false" />
+          <Property Name="gameDate" Type="datetime" Nullable="false" />
+          <Property Name="winnerNick" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="loserNick" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_SHOT_FEED_EXT">
+          <Key>
+            <PropertyRef Name="shotFeedID" />
+            <PropertyRef Name="againstPlayerID" />
+            <PropertyRef Name="posX" />
+            <PropertyRef Name="posY" />
+            <PropertyRef Name="success" />
+            <PropertyRef Name="bomb" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="shotFeedID" Type="int" Nullable="false" />
+          <Property Name="againstPlayerID" Type="int" Nullable="false" />
+          <Property Name="posX" Type="int" Nullable="false" />
+          <Property Name="posY" Type="int" Nullable="false" />
+          <Property Name="success" Type="bit" Nullable="false" />
+          <Property Name="bomb" Type="bit" Nullable="false" />
+          <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="ABLT_ID_ABILITY_CATALOG_FK">
+          <End Role="ABILITY_CATALOG" Type="Self.ABILITY_CATALOG" Multiplicity="1" />
+          <End Role="GAME_ABILITY" Type="Self.GAME_ABILITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ABILITY_CATALOG">
+              <PropertyRef Name="abilityID" />
+            </Principal>
+            <Dependent Role="GAME_ABILITY">
+              <PropertyRef Name="abilityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ABLT_USR_ID_ABILITY_CATALOG_FK">
+          <End Role="ABILITY_CATALOG" Type="Self.ABILITY_CATALOG" Multiplicity="0..1" />
+          <End Role="GAME_USER_ABILITY" Type="Self.GAME_USER_ABILITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ABILITY_CATALOG">
+              <PropertyRef Name="abilityID" />
+            </Principal>
+            <Dependent Role="GAME_USER_ABILITY">
+              <PropertyRef Name="abilityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ADM_ID_ADMIN_USERS_FK">
+          <End Role="ADMIN_USER" Type="Self.ADMIN_USER" Multiplicity="0..1" />
+          <End Role="SHIP_CATALOG" Type="Self.SHIP_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMIN_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="SHIP_CATALOG">
+              <PropertyRef Name="adminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ADMAC_ID_ADMIN_USERS_FK">
+          <End Role="ADMIN_USER" Type="Self.ADMIN_USER" Multiplicity="0..1" />
+          <End Role="ABILITY_CATALOG" Type="Self.ABILITY_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMIN_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="ABILITY_CATALOG">
+              <PropertyRef Name="adminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ADMIN_USERS_ID_USERS_FK">
+          <End Role="USER_NICK_PASS" Type="Self.USER_NICK_PASS" Multiplicity="1" />
+          <End Role="ADMIN_USER" Type="Self.ADMIN_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_NICK_PASS">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="ADMIN_USER">
+              <PropertyRef Name="nickAndPassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AGAINST_ID_SHOT_FEED_FK">
+          <End Role="GAME_PLAYER" Type="Self.GAME_PLAYER" Multiplicity="1" />
+          <End Role="SHOT_FEED" Type="Self.SHOT_FEED" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_PLAYER">
+              <PropertyRef Name="playerID" />
+            </Principal>
+            <Dependent Role="SHOT_FEED">
+              <PropertyRef Name="againstPlayerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CHT_PLY_ID_GAME_PLAYER_FK">
+          <End Role="GAME_PLAYER" Type="Self.GAME_PLAYER" Multiplicity="0..1" />
+          <End Role="CHAT_MESSAGE" Type="Self.CHAT_MESSAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_PLAYER">
+              <PropertyRef Name="playerID" />
+            </Principal>
+            <Dependent Role="CHAT_MESSAGE">
+              <PropertyRef Name="playerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="COUNT_ID_GAME_USER_COUNT_FK">
+          <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="1" />
+          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COUNTRY">
+              <PropertyRef Name="countryID" />
+            </Principal>
+            <Dependent Role="GAME_USER">
+              <PropertyRef Name="countryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="COUNT_ID_MOD_USER_COUNT_FK">
+          <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="1" />
+          <End Role="MOD_USER" Type="Self.MOD_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COUNTRY">
+              <PropertyRef Name="countryID" />
+            </Principal>
+            <Dependent Role="MOD_USER">
+              <PropertyRef Name="countryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRT_PLY_GAME_PLAYER_FK">
+          <End Role="GAME_PLAYER" Type="Self.GAME_PLAYER" Multiplicity="0..1" />
+          <End Role="GAME_AND_PLAYER" Type="Self.GAME_AND_PLAYER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_PLAYER">
+              <PropertyRef Name="playerID" />
+            </Principal>
+            <Dependent Role="GAME_AND_PLAYER">
+              <PropertyRef Name="playerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GAME_ID_GAME_FK">
+          <End Role="GAME" Type="Self.GAME" Multiplicity="1" />
+          <End Role="LIVE_GAME" Type="Self.LIVE_GAME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME">
+              <PropertyRef Name="gameID" />
+            </Principal>
+            <Dependent Role="LIVE_GAME">
+              <PropertyRef Name="gameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GM_ID_GAME_FK">
+          <End Role="GAME" Type="Self.GAME" Multiplicity="0..1" />
+          <End Role="GAME_AND_PLAYER" Type="Self.GAME_AND_PLAYER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME">
+              <PropertyRef Name="gameID" />
+            </Principal>
+            <Dependent Role="GAME_AND_PLAYER">
+              <PropertyRef Name="gameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GM_SHP_ID_GAME_SHIP_FK">
+          <End Role="GAME_SHIP" Type="Self.GAME_SHIP" Multiplicity="0..1" />
+          <End Role="BOARD_SHIP" Type="Self.BOARD_SHIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_SHIP">
+              <PropertyRef Name="gameShipID" />
+            </Principal>
+            <Dependent Role="BOARD_SHIP">
+              <PropertyRef Name="gameShipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GM_USR_ID_GAME_USERS_FK">
+          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="0..1" />
+          <End Role="GAME_PLAYER" Type="Self.GAME_PLAYER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="GAME_PLAYER">
+              <PropertyRef Name="gameUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GM_USRABLT_ID_GAME_USERS_FK">
+          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="0..1" />
+          <End Role="GAME_USER_ABILITY" Type="Self.GAME_USER_ABILITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="GAME_USER_ABILITY">
+              <PropertyRef Name="gameUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GMCM_ID_GAME_FK">
+          <End Role="GAME" Type="Self.GAME" Multiplicity="0..1" />
+          <End Role="CHAT_MESSAGE" Type="Self.CHAT_MESSAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME">
+              <PropertyRef Name="gameID" />
+            </Principal>
+            <Dependent Role="CHAT_MESSAGE">
+              <PropertyRef Name="gameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GMSC_ID_GAME_FK">
+          <End Role="GAME" Type="Self.GAME" Multiplicity="1" />
+          <End Role="GAME_SHIP_CATALOG" Type="Self.GAME_SHIP_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME">
+              <PropertyRef Name="gameID" />
+            </Principal>
+            <Dependent Role="GAME_SHIP_CATALOG">
+              <PropertyRef Name="gameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GUSR_USERS_ID_USERS_FK">
+          <End Role="USER_NICK_PASS" Type="Self.USER_NICK_PASS" Multiplicity="1" />
+          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_NICK_PASS">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="GAME_USER">
+              <PropertyRef Name="nickAndPassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LOS_USR_ID_FK">
+          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="1" />
+          <End Role="PLAYED_GAME" Type="Self.PLAYED_GAME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="PLAYED_GAME">
+              <PropertyRef Name="loserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MOD_ID_MOD_USER_FK">
+          <End Role="MOD_USER" Type="Self.MOD_USER" Multiplicity="1" />
+          <End Role="LIVE_GAME" Type="Self.LIVE_GAME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MOD_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="LIVE_GAME">
+              <PropertyRef Name="modID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MOD_USERS_ID_USERS_FK">
+          <End Role="USER_NICK_PASS" Type="Self.USER_NICK_PASS" Multiplicity="1" />
+          <End Role="MOD_USER" Type="Self.MOD_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_NICK_PASS">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="MOD_USER">
+              <PropertyRef Name="nickAndPassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PH_USR_ID_FK">
+          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="1" />
+          <End Role="USER_PHOTO" Type="Self.USER_PHOTO" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="USER_PHOTO">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PLY_ID_ABLT_ID_GAME_ABILITIES_FK">
+          <End Role="GAME_ABILITY" Type="Self.GAME_ABILITY" Multiplicity="1" />
+          <End Role="ONE_PLUS_ABILITY" Type="Self.ONE_PLUS_ABILITY" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_ABILITY">
+              <PropertyRef Name="playerID" />
+              <PropertyRef Name="abilityID" />
+            </Principal>
+            <Dependent Role="ONE_PLUS_ABILITY">
+              <PropertyRef Name="playerID" />
+              <PropertyRef Name="abilityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PLY_ID_BOARD_SHIP_FK">
+          <End Role="GAME_PLAYER" Type="Self.GAME_PLAYER" Multiplicity="0..1" />
+          <End Role="GAME_SHIP" Type="Self.GAME_SHIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_PLAYER">
+              <PropertyRef Name="playerID" />
+            </Principal>
+            <Dependent Role="GAME_SHIP">
+              <PropertyRef Name="playerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PLYBB_ID_GAME_PLAYER_FK">
+          <End Role="GAME_PLAYER" Type="Self.GAME_PLAYER" Multiplicity="1" />
+          <End Role="BOARD_BOX" Type="Self.BOARD_BOX" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_PLAYER">
+              <PropertyRef Name="playerID" />
+            </Principal>
+            <Dependent Role="BOARD_BOX">
+              <PropertyRef Name="playerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PLYGA_ID_GAME_PLAYER_FK">
+          <End Role="GAME_PLAYER" Type="Self.GAME_PLAYER" Multiplicity="1" />
+          <End Role="GAME_ABILITY" Type="Self.GAME_ABILITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_PLAYER">
+              <PropertyRef Name="playerID" />
+            </Principal>
+            <Dependent Role="GAME_ABILITY">
+              <PropertyRef Name="playerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="POST_PLY_ID_BOARD_BOX_FK">
+          <End Role="BOARD_BOX" Type="Self.BOARD_BOX" Multiplicity="0..1" />
+          <End Role="BOARD_SHIP" Type="Self.BOARD_SHIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOARD_BOX">
+              <PropertyRef Name="playerID" />
+              <PropertyRef Name="posX" />
+              <PropertyRef Name="posY" />
+            </Principal>
+            <Dependent Role="BOARD_SHIP">
+              <PropertyRef Name="playerID" />
+              <PropertyRef Name="posX" />
+              <PropertyRef Name="posY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SHLD_GAME_ABILITY_FK">
+          <End Role="GAME_ABILITY" Type="Self.GAME_ABILITY" Multiplicity="0..1" />
+          <End Role="SHIELD" Type="Self.SHIELD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_ABILITY">
+              <PropertyRef Name="playerID" />
+              <PropertyRef Name="abilityID" />
+            </Principal>
+            <Dependent Role="SHIELD">
+              <PropertyRef Name="playerID" />
+              <PropertyRef Name="abilityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SHLD_GAME_SHIP_FK">
+          <End Role="GAME_SHIP" Type="Self.GAME_SHIP" Multiplicity="0..1" />
+          <End Role="SHIELD" Type="Self.SHIELD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_SHIP">
+              <PropertyRef Name="gameShipID" />
+            </Principal>
+            <Dependent Role="SHIELD">
+              <PropertyRef Name="gameShipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SHP_ID_SHIP_CATALOG_FK">
+          <End Role="SHIP_CATALOG" Type="Self.SHIP_CATALOG" Multiplicity="0..1" />
+          <End Role="GAME_SHIP" Type="Self.GAME_SHIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHIP_CATALOG">
+              <PropertyRef Name="shipID" />
+            </Principal>
+            <Dependent Role="GAME_SHIP">
+              <PropertyRef Name="shipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SP_ID_SHIP_CATALOG_FK">
+          <End Role="SHIP_CATALOG" Type="Self.SHIP_CATALOG" Multiplicity="1" />
+          <End Role="GAME_SHIP_CATALOG" Type="Self.GAME_SHIP_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHIP_CATALOG">
+              <PropertyRef Name="shipID" />
+            </Principal>
+            <Dependent Role="GAME_SHIP_CATALOG">
+              <PropertyRef Name="shipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TERM_ID_LIVE_TERMINAL_FK">
+          <End Role="LIVE_TERMINAL" Type="Self.LIVE_TERMINAL" Multiplicity="1" />
+          <End Role="LIVE_GAME" Type="Self.LIVE_GAME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LIVE_TERMINAL">
+              <PropertyRef Name="idTerminal" />
+            </Principal>
+            <Dependent Role="LIVE_GAME">
+              <PropertyRef Name="idTerminal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WIN_USR_ID_FK">
+          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="1" />
+          <End Role="PLAYED_GAME" Type="Self.PLAYED_GAME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="PLAYED_GAME">
+              <PropertyRef Name="winnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyBattlePongModelStoreContainer">
+          <EntitySet Name="ABILITY_CATALOG" EntityType="Self.ABILITY_CATALOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ADMIN_USER" EntityType="Self.ADMIN_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BOARD_BOX" EntityType="Self.BOARD_BOX" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BOARD_SHIP" EntityType="Self.BOARD_SHIP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHAT_MESSAGE" EntityType="Self.CHAT_MESSAGE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COUNTRY" EntityType="Self.COUNTRY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GAME" EntityType="Self.GAME" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GAME_ABILITY" EntityType="Self.GAME_ABILITY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GAME_AND_PLAYER" EntityType="Self.GAME_AND_PLAYER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GAME_PLAYER" EntityType="Self.GAME_PLAYER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GAME_SHIP" EntityType="Self.GAME_SHIP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GAME_SHIP_CATALOG" EntityType="Self.GAME_SHIP_CATALOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GAME_USER" EntityType="Self.GAME_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GAME_USER_ABILITY" EntityType="Self.GAME_USER_ABILITY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LIVE_GAME" EntityType="Self.LIVE_GAME" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LIVE_TERMINAL" EntityType="Self.LIVE_TERMINAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MOD_USER" EntityType="Self.MOD_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ONE_PLUS_ABILITY" EntityType="Self.ONE_PLUS_ABILITY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PLAYED_GAME" EntityType="Self.PLAYED_GAME" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SHIELD" EntityType="Self.SHIELD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SHIP_CATALOG" EntityType="Self.SHIP_CATALOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SHOT_FEED" EntityType="Self.SHOT_FEED" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSTEM_MESSAGE" EntityType="Self.SYSTEM_MESSAGE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_NICK_PASS" EntityType="Self.USER_NICK_PASS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_PHOTO" EntityType="Self.USER_PHOTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VW_ADMIN_USER_EXT" EntityType="Self.VW_ADMIN_USER_EXT" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_ADMIN_USER_EXT].[userID] AS [userID], 
+    [VW_ADMIN_USER_EXT].[nickAndPassID] AS [nickAndPassID], 
+    [VW_ADMIN_USER_EXT].[name] AS [name], 
+    [VW_ADMIN_USER_EXT].[secondName] AS [secondName], 
+    [VW_ADMIN_USER_EXT].[email] AS [email], 
+    [VW_ADMIN_USER_EXT].[regDate] AS [regDate], 
+    [VW_ADMIN_USER_EXT].[nickname] AS [nickname]
+    FROM [dbo].[VW_ADMIN_USER_EXT] AS [VW_ADMIN_USER_EXT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_BOARD_BOX_EXT" EntityType="Self.VW_BOARD_BOX_EXT" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_BOARD_BOX_EXT].[gameShipID] AS [gameShipID], 
+    [VW_BOARD_BOX_EXT].[shipID] AS [shipID], 
+    [VW_BOARD_BOX_EXT].[playerID] AS [playerID], 
+    [VW_BOARD_BOX_EXT].[integrity] AS [integrity], 
+    [VW_BOARD_BOX_EXT].[posX] AS [posX], 
+    [VW_BOARD_BOX_EXT].[posY] AS [posY], 
+    [VW_BOARD_BOX_EXT].[nickname] AS [nickname], 
+    [VW_BOARD_BOX_EXT].[posXBoardBox] AS [posXBoardBox], 
+    [VW_BOARD_BOX_EXT].[posYBoardBox] AS [posYBoardBox], 
+    [VW_BOARD_BOX_EXT].[alive] AS [alive]
+    FROM [dbo].[VW_BOARD_BOX_EXT] AS [VW_BOARD_BOX_EXT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CHAT_MESSAGE_EXT" EntityType="Self.VW_CHAT_MESSAGE_EXT" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_CHAT_MESSAGE_EXT].[chatMessageID] AS [chatMessageID], 
+    [VW_CHAT_MESSAGE_EXT].[gameID] AS [gameID], 
+    [VW_CHAT_MESSAGE_EXT].[playerID] AS [playerID], 
+    [VW_CHAT_MESSAGE_EXT].[message] AS [message], 
+    [VW_CHAT_MESSAGE_EXT].[nickname] AS [nickname]
+    FROM [dbo].[VW_CHAT_MESSAGE_EXT] AS [VW_CHAT_MESSAGE_EXT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_GAME_ABILITY_EXT" EntityType="Self.VW_GAME_ABILITY_EXT" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_GAME_ABILITY_EXT].[nickname] AS [nickname], 
+    [VW_GAME_ABILITY_EXT].[playerID] AS [playerID], 
+    [VW_GAME_ABILITY_EXT].[abilityID] AS [abilityID], 
+    [VW_GAME_ABILITY_EXT].[active] AS [active], 
+    [VW_GAME_ABILITY_EXT].[availableCount] AS [availableCount], 
+    [VW_GAME_ABILITY_EXT].[direction] AS [direction]
+    FROM [dbo].[VW_GAME_ABILITY_EXT] AS [VW_GAME_ABILITY_EXT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_GAME_AND_PLAYER_INFO" EntityType="Self.VW_GAME_AND_PLAYER_INFO" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_GAME_AND_PLAYER_INFO].[gameID] AS [gameID], 
+    [VW_GAME_AND_PLAYER_INFO].[playerID] AS [playerID], 
+    [VW_GAME_AND_PLAYER_INFO].[nickname] AS [nickname], 
+    [VW_GAME_AND_PLAYER_INFO].[shotsTurn] AS [shotsTurn], 
+    [VW_GAME_AND_PLAYER_INFO].[boardSize] AS [boardSize], 
+    [VW_GAME_AND_PLAYER_INFO].[profileAccess] AS [profileAccess], 
+    [VW_GAME_AND_PLAYER_INFO].[ships] AS [ships]
+    FROM [dbo].[VW_GAME_AND_PLAYER_INFO] AS [VW_GAME_AND_PLAYER_INFO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_GAME_PLAYER_EXT" EntityType="Self.VW_GAME_PLAYER_EXT" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_GAME_PLAYER_EXT].[playerID] AS [playerID], 
+    [VW_GAME_PLAYER_EXT].[gameUserID] AS [gameUserID], 
+    [VW_GAME_PLAYER_EXT].[lastFeed] AS [lastFeed], 
+    [VW_GAME_PLAYER_EXT].[availableShots] AS [availableShots], 
+    [VW_GAME_PLAYER_EXT].[remainingShips] AS [remainingShips], 
+    [VW_GAME_PLAYER_EXT].[winFeedDelivered] AS [winFeedDelivered], 
+    [VW_GAME_PLAYER_EXT].[inTurn] AS [inTurn], 
+    [VW_GAME_PLAYER_EXT].[hitShots] AS [hitShots], 
+    [VW_GAME_PLAYER_EXT].[missShots] AS [missShots], 
+    [VW_GAME_PLAYER_EXT].[points] AS [points], 
+    [VW_GAME_PLAYER_EXT].[lock] AS [lock], 
+    [VW_GAME_PLAYER_EXT].[nickname] AS [nickname]
+    FROM [dbo].[VW_GAME_PLAYER_EXT] AS [VW_GAME_PLAYER_EXT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_GAME_SHIP_CATALOG" EntityType="Self.VW_GAME_SHIP_CATALOG" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_GAME_SHIP_CATALOG].[gameID] AS [gameID], 
+    [VW_GAME_SHIP_CATALOG].[shipCount] AS [shipCount], 
+    [VW_GAME_SHIP_CATALOG].[shipID] AS [shipID], 
+    [VW_GAME_SHIP_CATALOG].[shipVersion] AS [shipVersion], 
+    [VW_GAME_SHIP_CATALOG].[name] AS [name], 
+    [VW_GAME_SHIP_CATALOG].[points] AS [points], 
+    [VW_GAME_SHIP_CATALOG].[width] AS [width], 
+    [VW_GAME_SHIP_CATALOG].[height] AS [height], 
+    [VW_GAME_SHIP_CATALOG].[photo] AS [photo]
+    FROM [dbo].[VW_GAME_SHIP_CATALOG] AS [VW_GAME_SHIP_CATALOG]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_GAME_SHIP_EXT" EntityType="Self.VW_GAME_SHIP_EXT" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_GAME_SHIP_EXT].[gameShipID] AS [gameShipID], 
+    [VW_GAME_SHIP_EXT].[shipID] AS [shipID], 
+    [VW_GAME_SHIP_EXT].[playerID] AS [playerID], 
+    [VW_GAME_SHIP_EXT].[integrity] AS [integrity], 
+    [VW_GAME_SHIP_EXT].[posX] AS [posX], 
+    [VW_GAME_SHIP_EXT].[posY] AS [posY], 
+    [VW_GAME_SHIP_EXT].[nickname] AS [nickname]
+    FROM [dbo].[VW_GAME_SHIP_EXT] AS [VW_GAME_SHIP_EXT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_GAME_USER_ABILITY_EXT" EntityType="Self.VW_GAME_USER_ABILITY_EXT" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_GAME_USER_ABILITY_EXT].[abilityID] AS [abilityID], 
+    [VW_GAME_USER_ABILITY_EXT].[name] AS [name], 
+    [VW_GAME_USER_ABILITY_EXT].[userID] AS [userID], 
+    [VW_GAME_USER_ABILITY_EXT].[nickname] AS [nickname]
+    FROM [dbo].[VW_GAME_USER_ABILITY_EXT] AS [VW_GAME_USER_ABILITY_EXT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_GAME_USER_EXT" EntityType="Self.VW_GAME_USER_EXT" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_GAME_USER_EXT].[userID] AS [userID], 
+    [VW_GAME_USER_EXT].[nickAndPassID] AS [nickAndPassID], 
+    [VW_GAME_USER_EXT].[name] AS [name], 
+    [VW_GAME_USER_EXT].[secondName] AS [secondName], 
+    [VW_GAME_USER_EXT].[countryID] AS [countryID], 
+    [VW_GAME_USER_EXT].[email] AS [email], 
+    [VW_GAME_USER_EXT].[genre] AS [genre], 
+    [VW_GAME_USER_EXT].[regDate] AS [regDate], 
+    [VW_GAME_USER_EXT].[wins] AS [wins], 
+    [VW_GAME_USER_EXT].[defeats] AS [defeats], 
+    [VW_GAME_USER_EXT].[hits] AS [hits], 
+    [VW_GAME_USER_EXT].[misses] AS [misses], 
+    [VW_GAME_USER_EXT].[totalPoints] AS [totalPoints], 
+    [VW_GAME_USER_EXT].[points] AS [points], 
+    [VW_GAME_USER_EXT].[birthdate] AS [birthdate], 
+    [VW_GAME_USER_EXT].[personalDescription] AS [personalDescription], 
+    [VW_GAME_USER_EXT].[nickname] AS [nickname]
+    FROM [dbo].[VW_GAME_USER_EXT] AS [VW_GAME_USER_EXT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_LIVE_GAME" EntityType="Self.VW_LIVE_GAME" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_LIVE_GAME].[idLiveGame] AS [idLiveGame], 
+    [VW_LIVE_GAME].[modID] AS [modID], 
+    [VW_LIVE_GAME].[gameID] AS [gameID], 
+    [VW_LIVE_GAME].[idTerminal] AS [idTerminal], 
+    [VW_LIVE_GAME].[nickname] AS [nickname]
+    FROM [dbo].[VW_LIVE_GAME] AS [VW_LIVE_GAME]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_MOD_USER_EXT" EntityType="Self.VW_MOD_USER_EXT" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_MOD_USER_EXT].[userID] AS [userID], 
+    [VW_MOD_USER_EXT].[nickAndPassID] AS [nickAndPassID], 
+    [VW_MOD_USER_EXT].[name] AS [name], 
+    [VW_MOD_USER_EXT].[secondName] AS [secondName], 
+    [VW_MOD_USER_EXT].[countryID] AS [countryID], 
+    [VW_MOD_USER_EXT].[email] AS [email], 
+    [VW_MOD_USER_EXT].[genre] AS [genre], 
+    [VW_MOD_USER_EXT].[business] AS [business], 
+    [VW_MOD_USER_EXT].[regDate] AS [regDate], 
+    [VW_MOD_USER_EXT].[birthdate] AS [birthdate], 
+    [VW_MOD_USER_EXT].[photo] AS [photo], 
+    [VW_MOD_USER_EXT].[nickname] AS [nickname]
+    FROM [dbo].[VW_MOD_USER_EXT] AS [VW_MOD_USER_EXT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_PLAYED_GAME_EXT" EntityType="Self.VW_PLAYED_GAME_EXT" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_PLAYED_GAME_EXT].[playedGameID] AS [playedGameID], 
+    [VW_PLAYED_GAME_EXT].[winnerID] AS [winnerID], 
+    [VW_PLAYED_GAME_EXT].[loserID] AS [loserID], 
+    [VW_PLAYED_GAME_EXT].[winnerScore] AS [winnerScore], 
+    [VW_PLAYED_GAME_EXT].[looserScore] AS [looserScore], 
+    [VW_PLAYED_GAME_EXT].[gameDate] AS [gameDate], 
+    [VW_PLAYED_GAME_EXT].[winnerNick] AS [winnerNick], 
+    [VW_PLAYED_GAME_EXT].[loserNick] AS [loserNick]
+    FROM [dbo].[VW_PLAYED_GAME_EXT] AS [VW_PLAYED_GAME_EXT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_SHOT_FEED_EXT" EntityType="Self.VW_SHOT_FEED_EXT" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_SHOT_FEED_EXT].[shotFeedID] AS [shotFeedID], 
+    [VW_SHOT_FEED_EXT].[againstPlayerID] AS [againstPlayerID], 
+    [VW_SHOT_FEED_EXT].[posX] AS [posX], 
+    [VW_SHOT_FEED_EXT].[posY] AS [posY], 
+    [VW_SHOT_FEED_EXT].[success] AS [success], 
+    [VW_SHOT_FEED_EXT].[bomb] AS [bomb], 
+    [VW_SHOT_FEED_EXT].[nickname] AS [nickname]
+    FROM [dbo].[VW_SHOT_FEED_EXT] AS [VW_SHOT_FEED_EXT]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="ABLT_ID_ABILITY_CATALOG_FK" Association="Self.ABLT_ID_ABILITY_CATALOG_FK">
+            <End Role="ABILITY_CATALOG" EntitySet="ABILITY_CATALOG" />
+            <End Role="GAME_ABILITY" EntitySet="GAME_ABILITY" />
+          </AssociationSet>
+          <AssociationSet Name="ABLT_USR_ID_ABILITY_CATALOG_FK" Association="Self.ABLT_USR_ID_ABILITY_CATALOG_FK">
+            <End Role="ABILITY_CATALOG" EntitySet="ABILITY_CATALOG" />
+            <End Role="GAME_USER_ABILITY" EntitySet="GAME_USER_ABILITY" />
+          </AssociationSet>
+          <AssociationSet Name="ADM_ID_ADMIN_USERS_FK" Association="Self.ADM_ID_ADMIN_USERS_FK">
+            <End Role="ADMIN_USER" EntitySet="ADMIN_USER" />
+            <End Role="SHIP_CATALOG" EntitySet="SHIP_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="ADMAC_ID_ADMIN_USERS_FK" Association="Self.ADMAC_ID_ADMIN_USERS_FK">
+            <End Role="ADMIN_USER" EntitySet="ADMIN_USER" />
+            <End Role="ABILITY_CATALOG" EntitySet="ABILITY_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="ADMIN_USERS_ID_USERS_FK" Association="Self.ADMIN_USERS_ID_USERS_FK">
+            <End Role="USER_NICK_PASS" EntitySet="USER_NICK_PASS" />
+            <End Role="ADMIN_USER" EntitySet="ADMIN_USER" />
+          </AssociationSet>
+          <AssociationSet Name="AGAINST_ID_SHOT_FEED_FK" Association="Self.AGAINST_ID_SHOT_FEED_FK">
+            <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
+            <End Role="SHOT_FEED" EntitySet="SHOT_FEED" />
+          </AssociationSet>
+          <AssociationSet Name="CHT_PLY_ID_GAME_PLAYER_FK" Association="Self.CHT_PLY_ID_GAME_PLAYER_FK">
+            <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
+            <End Role="CHAT_MESSAGE" EntitySet="CHAT_MESSAGE" />
+          </AssociationSet>
+          <AssociationSet Name="COUNT_ID_GAME_USER_COUNT_FK" Association="Self.COUNT_ID_GAME_USER_COUNT_FK">
+            <End Role="COUNTRY" EntitySet="COUNTRY" />
+            <End Role="GAME_USER" EntitySet="GAME_USER" />
+          </AssociationSet>
+          <AssociationSet Name="COUNT_ID_MOD_USER_COUNT_FK" Association="Self.COUNT_ID_MOD_USER_COUNT_FK">
+            <End Role="COUNTRY" EntitySet="COUNTRY" />
+            <End Role="MOD_USER" EntitySet="MOD_USER" />
+          </AssociationSet>
+          <AssociationSet Name="CRT_PLY_GAME_PLAYER_FK" Association="Self.CRT_PLY_GAME_PLAYER_FK">
+            <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
+            <End Role="GAME_AND_PLAYER" EntitySet="GAME_AND_PLAYER" />
+          </AssociationSet>
+          <AssociationSet Name="GAME_ID_GAME_FK" Association="Self.GAME_ID_GAME_FK">
+            <End Role="GAME" EntitySet="GAME" />
+            <End Role="LIVE_GAME" EntitySet="LIVE_GAME" />
+          </AssociationSet>
+          <AssociationSet Name="GM_ID_GAME_FK" Association="Self.GM_ID_GAME_FK">
+            <End Role="GAME" EntitySet="GAME" />
+            <End Role="GAME_AND_PLAYER" EntitySet="GAME_AND_PLAYER" />
+          </AssociationSet>
+          <AssociationSet Name="GM_SHP_ID_GAME_SHIP_FK" Association="Self.GM_SHP_ID_GAME_SHIP_FK">
+            <End Role="GAME_SHIP" EntitySet="GAME_SHIP" />
+            <End Role="BOARD_SHIP" EntitySet="BOARD_SHIP" />
+          </AssociationSet>
+          <AssociationSet Name="GM_USR_ID_GAME_USERS_FK" Association="Self.GM_USR_ID_GAME_USERS_FK">
+            <End Role="GAME_USER" EntitySet="GAME_USER" />
+            <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
+          </AssociationSet>
+          <AssociationSet Name="GM_USRABLT_ID_GAME_USERS_FK" Association="Self.GM_USRABLT_ID_GAME_USERS_FK">
+            <End Role="GAME_USER" EntitySet="GAME_USER" />
+            <End Role="GAME_USER_ABILITY" EntitySet="GAME_USER_ABILITY" />
+          </AssociationSet>
+          <AssociationSet Name="GMCM_ID_GAME_FK" Association="Self.GMCM_ID_GAME_FK">
+            <End Role="GAME" EntitySet="GAME" />
+            <End Role="CHAT_MESSAGE" EntitySet="CHAT_MESSAGE" />
+          </AssociationSet>
+          <AssociationSet Name="GMSC_ID_GAME_FK" Association="Self.GMSC_ID_GAME_FK">
+            <End Role="GAME" EntitySet="GAME" />
+            <End Role="GAME_SHIP_CATALOG" EntitySet="GAME_SHIP_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="GUSR_USERS_ID_USERS_FK" Association="Self.GUSR_USERS_ID_USERS_FK">
+            <End Role="USER_NICK_PASS" EntitySet="USER_NICK_PASS" />
+            <End Role="GAME_USER" EntitySet="GAME_USER" />
+          </AssociationSet>
+          <AssociationSet Name="LOS_USR_ID_FK" Association="Self.LOS_USR_ID_FK">
+            <End Role="GAME_USER" EntitySet="GAME_USER" />
+            <End Role="PLAYED_GAME" EntitySet="PLAYED_GAME" />
+          </AssociationSet>
+          <AssociationSet Name="MOD_ID_MOD_USER_FK" Association="Self.MOD_ID_MOD_USER_FK">
+            <End Role="MOD_USER" EntitySet="MOD_USER" />
+            <End Role="LIVE_GAME" EntitySet="LIVE_GAME" />
+          </AssociationSet>
+          <AssociationSet Name="MOD_USERS_ID_USERS_FK" Association="Self.MOD_USERS_ID_USERS_FK">
+            <End Role="USER_NICK_PASS" EntitySet="USER_NICK_PASS" />
+            <End Role="MOD_USER" EntitySet="MOD_USER" />
+          </AssociationSet>
+          <AssociationSet Name="PH_USR_ID_FK" Association="Self.PH_USR_ID_FK">
+            <End Role="GAME_USER" EntitySet="GAME_USER" />
+            <End Role="USER_PHOTO" EntitySet="USER_PHOTO" />
+          </AssociationSet>
+          <AssociationSet Name="PLY_ID_ABLT_ID_GAME_ABILITIES_FK" Association="Self.PLY_ID_ABLT_ID_GAME_ABILITIES_FK">
+            <End Role="GAME_ABILITY" EntitySet="GAME_ABILITY" />
+            <End Role="ONE_PLUS_ABILITY" EntitySet="ONE_PLUS_ABILITY" />
+          </AssociationSet>
+          <AssociationSet Name="PLY_ID_BOARD_SHIP_FK" Association="Self.PLY_ID_BOARD_SHIP_FK">
+            <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
+            <End Role="GAME_SHIP" EntitySet="GAME_SHIP" />
+          </AssociationSet>
+          <AssociationSet Name="PLYBB_ID_GAME_PLAYER_FK" Association="Self.PLYBB_ID_GAME_PLAYER_FK">
+            <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
+            <End Role="BOARD_BOX" EntitySet="BOARD_BOX" />
+          </AssociationSet>
+          <AssociationSet Name="PLYGA_ID_GAME_PLAYER_FK" Association="Self.PLYGA_ID_GAME_PLAYER_FK">
+            <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
+            <End Role="GAME_ABILITY" EntitySet="GAME_ABILITY" />
+          </AssociationSet>
+          <AssociationSet Name="POST_PLY_ID_BOARD_BOX_FK" Association="Self.POST_PLY_ID_BOARD_BOX_FK">
+            <End Role="BOARD_BOX" EntitySet="BOARD_BOX" />
+            <End Role="BOARD_SHIP" EntitySet="BOARD_SHIP" />
+          </AssociationSet>
+          <AssociationSet Name="SHLD_GAME_ABILITY_FK" Association="Self.SHLD_GAME_ABILITY_FK">
+            <End Role="GAME_ABILITY" EntitySet="GAME_ABILITY" />
+            <End Role="SHIELD" EntitySet="SHIELD" />
+          </AssociationSet>
+          <AssociationSet Name="SHLD_GAME_SHIP_FK" Association="Self.SHLD_GAME_SHIP_FK">
+            <End Role="GAME_SHIP" EntitySet="GAME_SHIP" />
+            <End Role="SHIELD" EntitySet="SHIELD" />
+          </AssociationSet>
+          <AssociationSet Name="SHP_ID_SHIP_CATALOG_FK" Association="Self.SHP_ID_SHIP_CATALOG_FK">
+            <End Role="SHIP_CATALOG" EntitySet="SHIP_CATALOG" />
+            <End Role="GAME_SHIP" EntitySet="GAME_SHIP" />
+          </AssociationSet>
+          <AssociationSet Name="SP_ID_SHIP_CATALOG_FK" Association="Self.SP_ID_SHIP_CATALOG_FK">
+            <End Role="SHIP_CATALOG" EntitySet="SHIP_CATALOG" />
+            <End Role="GAME_SHIP_CATALOG" EntitySet="GAME_SHIP_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="TERM_ID_LIVE_TERMINAL_FK" Association="Self.TERM_ID_LIVE_TERMINAL_FK">
+            <End Role="LIVE_TERMINAL" EntitySet="LIVE_TERMINAL" />
+            <End Role="LIVE_GAME" EntitySet="LIVE_GAME" />
+          </AssociationSet>
+          <AssociationSet Name="WIN_USR_ID_FK" Association="Self.WIN_USR_ID_FK">
+            <End Role="GAME_USER" EntitySet="GAME_USER" />
+            <End Role="PLAYED_GAME" EntitySet="PLAYED_GAME" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyBattlePongModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ABILITY_CATALOG">
+          <Key>
+            <PropertyRef Name="abilityID" />
+          </Key>
+          <Property Name="abilityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adminID" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="versionAbility" Type="Int32" Nullable="false" />
+          <Property Name="points" Type="Int32" />
+          <Property Name="ranking" Type="Int32" />
+          <Property Name="experience" Type="Int32" />
+          <Property Name="wins" Type="Int32" />
+          <Property Name="defeats" Type="Int32" />
+          <NavigationProperty Name="GAME_ABILITY" Relationship="Self.ABLT_ID_ABILITY_CATALOG_FK" FromRole="ABILITY_CATALOG" ToRole="GAME_ABILITY" />
+          <NavigationProperty Name="GAME_USER_ABILITY" Relationship="Self.ABLT_USR_ID_ABILITY_CATALOG_FK" FromRole="ABILITY_CATALOG" ToRole="GAME_USER_ABILITY" />
+          <NavigationProperty Name="ADMIN_USER" Relationship="Self.ADMAC_ID_ADMIN_USERS_FK" FromRole="ABILITY_CATALOG" ToRole="ADMIN_USER" />
+        </EntityType>
+        <EntityType Name="ADMIN_USER">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nickAndPassID" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="secondName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ABILITY_CATALOG" Relationship="Self.ADMAC_ID_ADMIN_USERS_FK" FromRole="ADMIN_USER" ToRole="ABILITY_CATALOG" />
+          <NavigationProperty Name="SHIP_CATALOG" Relationship="Self.ADM_ID_ADMIN_USERS_FK" FromRole="ADMIN_USER" ToRole="SHIP_CATALOG" />
+          <NavigationProperty Name="USER_NICK_PASS" Relationship="Self.ADMIN_USERS_ID_USERS_FK" FromRole="ADMIN_USER" ToRole="USER_NICK_PASS" />
+        </EntityType>
+        <EntityType Name="BOARD_BOX">
+          <Key>
+            <PropertyRef Name="playerID" />
+            <PropertyRef Name="posX" />
+            <PropertyRef Name="posY" />
+          </Key>
+          <Property Name="playerID" Type="Int32" Nullable="false" />
+          <Property Name="posX" Type="Int32" Nullable="false" />
+          <Property Name="posY" Type="Int32" Nullable="false" />
+          <Property Name="alive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GAME_PLAYER" Relationship="Self.PLYBB_ID_GAME_PLAYER_FK" FromRole="BOARD_BOX" ToRole="GAME_PLAYER" />
+          <NavigationProperty Name="BOARD_SHIP" Relationship="Self.POST_PLY_ID_BOARD_BOX_FK" FromRole="BOARD_BOX" ToRole="BOARD_SHIP" />
+        </EntityType>
+        <EntityType Name="BOARD_SHIP">
+          <Key>
+            <PropertyRef Name="boardShipID" />
+          </Key>
+          <Property Name="boardShipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="playerID" Type="Int32" />
+          <Property Name="posX" Type="Int32" />
+          <Property Name="posY" Type="Int32" />
+          <Property Name="gameShipID" Type="Int32" />
+          <NavigationProperty Name="BOARD_BOX" Relationship="Self.POST_PLY_ID_BOARD_BOX_FK" FromRole="BOARD_SHIP" ToRole="BOARD_BOX" />
+          <NavigationProperty Name="GAME_SHIP" Relationship="Self.GM_SHP_ID_GAME_SHIP_FK" FromRole="BOARD_SHIP" ToRole="GAME_SHIP" />
+        </EntityType>
+        <EntityType Name="CHAT_MESSAGE">
+          <Key>
+            <PropertyRef Name="chatMessageID" />
+          </Key>
+          <Property Name="chatMessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gameID" Type="Int32" />
+          <Property Name="playerID" Type="Int32" />
+          <Property Name="message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="GAME_PLAYER" Relationship="Self.CHT_PLY_ID_GAME_PLAYER_FK" FromRole="CHAT_MESSAGE" ToRole="GAME_PLAYER" />
+          <NavigationProperty Name="GAME" Relationship="Self.GMCM_ID_GAME_FK" FromRole="CHAT_MESSAGE" ToRole="GAME" />
+        </EntityType>
+        <EntityType Name="COUNTRY">
+          <Key>
+            <PropertyRef Name="countryID" />
+          </Key>
+          <Property Name="countryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="countryName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="GAME_USER" Relationship="Self.COUNT_ID_GAME_USER_COUNT_FK" FromRole="COUNTRY" ToRole="GAME_USER" />
+          <NavigationProperty Name="MOD_USER" Relationship="Self.COUNT_ID_MOD_USER_COUNT_FK" FromRole="COUNTRY" ToRole="MOD_USER" />
+        </EntityType>
+        <EntityType Name="GAME">
+          <Key>
+            <PropertyRef Name="gameID" />
+          </Key>
+          <Property Name="gameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="turnChangeTime" Type="DateTime" Precision="3" />
+          <Property Name="shotsTurn" Type="Int32" Nullable="false" />
+          <Property Name="boardSize" Type="Int32" Nullable="false" />
+          <Property Name="profileAccess" Type="Boolean" Nullable="false" />
+          <Property Name="feed" Type="Boolean" Nullable="false" />
+          <Property Name="lock" Type="Boolean" Nullable="false" />
+          <Property Name="joined" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CHAT_MESSAGE" Relationship="Self.GMCM_ID_GAME_FK" FromRole="GAME" ToRole="CHAT_MESSAGE" />
+          <NavigationProperty Name="LIVE_GAME" Relationship="Self.GAME_ID_GAME_FK" FromRole="GAME" ToRole="LIVE_GAME" />
+          <NavigationProperty Name="GAME_AND_PLAYER" Relationship="Self.GM_ID_GAME_FK" FromRole="GAME" ToRole="GAME_AND_PLAYER" />
+          <NavigationProperty Name="GAME_SHIP_CATALOG" Relationship="Self.GMSC_ID_GAME_FK" FromRole="GAME" ToRole="GAME_SHIP_CATALOG" />
+        </EntityType>
+        <EntityType Name="GAME_ABILITY">
+          <Key>
+            <PropertyRef Name="playerID" />
+            <PropertyRef Name="abilityID" />
+          </Key>
+          <Property Name="playerID" Type="Int32" Nullable="false" />
+          <Property Name="abilityID" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="availableCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ABILITY_CATALOG" Relationship="Self.ABLT_ID_ABILITY_CATALOG_FK" FromRole="GAME_ABILITY" ToRole="ABILITY_CATALOG" />
+          <NavigationProperty Name="ONE_PLUS_ABILITY" Relationship="Self.PLY_ID_ABLT_ID_GAME_ABILITIES_FK" FromRole="GAME_ABILITY" ToRole="ONE_PLUS_ABILITY" />
+          <NavigationProperty Name="GAME_PLAYER" Relationship="Self.PLYGA_ID_GAME_PLAYER_FK" FromRole="GAME_ABILITY" ToRole="GAME_PLAYER" />
+          <NavigationProperty Name="SHIELD" Relationship="Self.SHLD_GAME_ABILITY_FK" FromRole="GAME_ABILITY" ToRole="SHIELD" />
+        </EntityType>
+        <EntityType Name="GAME_AND_PLAYER">
+          <Key>
+            <PropertyRef Name="gameAndPlayerID" />
+          </Key>
+          <Property Name="gameAndPlayerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gameID" Type="Int32" />
+          <Property Name="playerID" Type="Int32" />
+          <NavigationProperty Name="GAME" Relationship="Self.GM_ID_GAME_FK" FromRole="GAME_AND_PLAYER" ToRole="GAME" />
+          <NavigationProperty Name="GAME_PLAYER" Relationship="Self.CRT_PLY_GAME_PLAYER_FK" FromRole="GAME_AND_PLAYER" ToRole="GAME_PLAYER" />
+        </EntityType>
+        <EntityType Name="GAME_PLAYER">
+          <Key>
+            <PropertyRef Name="playerID" />
+          </Key>
+          <Property Name="playerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gameUserID" Type="Int32" />
+          <Property Name="lastFeed" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="availableShots" Type="Int32" Nullable="false" />
+          <Property Name="remainingShips" Type="Int32" Nullable="false" />
+          <Property Name="winFeedDelivered" Type="Boolean" Nullable="false" />
+          <Property Name="inTurn" Type="Boolean" Nullable="false" />
+          <Property Name="hitShots" Type="Int32" Nullable="false" />
+          <Property Name="missShots" Type="Int32" Nullable="false" />
+          <Property Name="points" Type="Int32" Nullable="false" />
+          <Property Name="lock" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BOARD_BOX" Relationship="Self.PLYBB_ID_GAME_PLAYER_FK" FromRole="GAME_PLAYER" ToRole="BOARD_BOX" />
+          <NavigationProperty Name="CHAT_MESSAGE" Relationship="Self.CHT_PLY_ID_GAME_PLAYER_FK" FromRole="GAME_PLAYER" ToRole="CHAT_MESSAGE" />
+          <NavigationProperty Name="GAME_ABILITY" Relationship="Self.PLYGA_ID_GAME_PLAYER_FK" FromRole="GAME_PLAYER" ToRole="GAME_ABILITY" />
+          <NavigationProperty Name="GAME_AND_PLAYER" Relationship="Self.CRT_PLY_GAME_PLAYER_FK" FromRole="GAME_PLAYER" ToRole="GAME_AND_PLAYER" />
+          <NavigationProperty Name="SHOT_FEED" Relationship="Self.AGAINST_ID_SHOT_FEED_FK" FromRole="GAME_PLAYER" ToRole="SHOT_FEED" />
+          <NavigationProperty Name="GAME_USER" Relationship="Self.GM_USR_ID_GAME_USERS_FK" FromRole="GAME_PLAYER" ToRole="GAME_USER" />
+          <NavigationProperty Name="GAME_SHIP" Relationship="Self.PLY_ID_BOARD_SHIP_FK" FromRole="GAME_PLAYER" ToRole="GAME_SHIP" />
+        </EntityType>
+        <EntityType Name="GAME_SHIP">
+          <Key>
+            <PropertyRef Name="gameShipID" />
+          </Key>
+          <Property Name="gameShipID" Type="Int32" Nullable="false" />
+          <Property Name="shipID" Type="Int32" />
+          <Property Name="playerID" Type="Int32" />
+          <Property Name="integrity" Type="Int32" Nullable="false" />
+          <Property Name="posX" Type="Int32" Nullable="false" />
+          <Property Name="posY" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BOARD_SHIP" Relationship="Self.GM_SHP_ID_GAME_SHIP_FK" FromRole="GAME_SHIP" ToRole="BOARD_SHIP" />
+          <NavigationProperty Name="GAME_PLAYER" Relationship="Self.PLY_ID_BOARD_SHIP_FK" FromRole="GAME_SHIP" ToRole="GAME_PLAYER" />
+          <NavigationProperty Name="SHIELD" Relationship="Self.SHLD_GAME_SHIP_FK" FromRole="GAME_SHIP" ToRole="SHIELD" />
+          <NavigationProperty Name="SHIP_CATALOG" Relationship="Self.SHP_ID_SHIP_CATALOG_FK" FromRole="GAME_SHIP" ToRole="SHIP_CATALOG" />
+        </EntityType>
+        <EntityType Name="GAME_SHIP_CATALOG">
+          <Key>
+            <PropertyRef Name="gameID" />
+            <PropertyRef Name="shipID" />
+          </Key>
+          <Property Name="gameID" Type="Int32" Nullable="false" />
+          <Property Name="shipID" Type="Int32" Nullable="false" />
+          <Property Name="shipCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GAME" Relationship="Self.GMSC_ID_GAME_FK" FromRole="GAME_SHIP_CATALOG" ToRole="GAME" />
+          <NavigationProperty Name="SHIP_CATALOG" Relationship="Self.SP_ID_SHIP_CATALOG_FK" FromRole="GAME_SHIP_CATALOG" ToRole="SHIP_CATALOG" />
+        </EntityType>
+        <EntityType Name="GAME_USER">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nickAndPassID" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="secondName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="countryID" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="genre" Type="Boolean" Nullable="false" />
+          <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="wins" Type="Int32" Nullable="false" />
+          <Property Name="defeats" Type="Int32" Nullable="false" />
+          <Property Name="hits" Type="Int32" Nullable="false" />
+          <Property Name="misses" Type="Int32" Nullable="false" />
+          <Property Name="totalPoints" Type="Int32" Nullable="false" />
+          <Property Name="points" Type="Int32" Nullable="false" />
+          <Property Name="birthdate" Type="DateTime" Precision="0" />
+          <Property Name="personalDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="COUNTRY" Relationship="Self.COUNT_ID_GAME_USER_COUNT_FK" FromRole="GAME_USER" ToRole="COUNTRY" />
+          <NavigationProperty Name="GAME_PLAYER" Relationship="Self.GM_USR_ID_GAME_USERS_FK" FromRole="GAME_USER" ToRole="GAME_PLAYER" />
+          <NavigationProperty Name="GAME_USER_ABILITY" Relationship="Self.GM_USRABLT_ID_GAME_USERS_FK" FromRole="GAME_USER" ToRole="GAME_USER_ABILITY" />
+          <NavigationProperty Name="USER_NICK_PASS" Relationship="Self.GUSR_USERS_ID_USERS_FK" FromRole="GAME_USER" ToRole="USER_NICK_PASS" />
+          <NavigationProperty Name="PLAYED_GAME" Relationship="Self.LOS_USR_ID_FK" FromRole="GAME_USER" ToRole="PLAYED_GAME" />
+          <NavigationProperty Name="USER_PHOTO" Relationship="Self.PH_USR_ID_FK" FromRole="GAME_USER" ToRole="USER_PHOTO" />
+          <NavigationProperty Name="PLAYED_GAME1" Relationship="Self.WIN_USR_ID_FK" FromRole="GAME_USER" ToRole="PLAYED_GAME" />
+        </EntityType>
+        <EntityType Name="GAME_USER_ABILITY">
+          <Key>
+            <PropertyRef Name="gameUserAbilityID" />
+          </Key>
+          <Property Name="gameUserAbilityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gameUserID" Type="Int32" />
+          <Property Name="abilityID" Type="Int32" />
+          <NavigationProperty Name="ABILITY_CATALOG" Relationship="Self.ABLT_USR_ID_ABILITY_CATALOG_FK" FromRole="GAME_USER_ABILITY" ToRole="ABILITY_CATALOG" />
+          <NavigationProperty Name="GAME_USER" Relationship="Self.GM_USRABLT_ID_GAME_USERS_FK" FromRole="GAME_USER_ABILITY" ToRole="GAME_USER" />
+        </EntityType>
+        <EntityType Name="LIVE_GAME">
+          <Key>
+            <PropertyRef Name="idLiveGame" />
+          </Key>
+          <Property Name="idLiveGame" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="modID" Type="Int32" Nullable="false" />
+          <Property Name="gameID" Type="Int32" Nullable="false" />
+          <Property Name="idTerminal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GAME" Relationship="Self.GAME_ID_GAME_FK" FromRole="LIVE_GAME" ToRole="GAME" />
+          <NavigationProperty Name="MOD_USER" Relationship="Self.MOD_ID_MOD_USER_FK" FromRole="LIVE_GAME" ToRole="MOD_USER" />
+          <NavigationProperty Name="LIVE_TERMINAL" Relationship="Self.TERM_ID_LIVE_TERMINAL_FK" FromRole="LIVE_GAME" ToRole="LIVE_TERMINAL" />
+        </EntityType>
+        <EntityType Name="LIVE_TERMINAL">
+          <Key>
+            <PropertyRef Name="idTerminal" />
+          </Key>
+          <Property Name="idTerminal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="keyTerminal" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LIVE_GAME" Relationship="Self.TERM_ID_LIVE_TERMINAL_FK" FromRole="LIVE_TERMINAL" ToRole="LIVE_GAME" />
+        </EntityType>
+        <EntityType Name="MOD_USER">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nickAndPassID" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="secondName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="countryID" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="genre" Type="Boolean" Nullable="false" />
+          <Property Name="business" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="birthdate" Type="DateTime" Precision="0" />
+          <Property Name="photo" Type="Int32" />
+          <NavigationProperty Name="COUNTRY" Relationship="Self.COUNT_ID_MOD_USER_COUNT_FK" FromRole="MOD_USER" ToRole="COUNTRY" />
+          <NavigationProperty Name="LIVE_GAME" Relationship="Self.MOD_ID_MOD_USER_FK" FromRole="MOD_USER" ToRole="LIVE_GAME" />
+          <NavigationProperty Name="USER_NICK_PASS" Relationship="Self.MOD_USERS_ID_USERS_FK" FromRole="MOD_USER" ToRole="USER_NICK_PASS" />
+        </EntityType>
+        <EntityType Name="ONE_PLUS_ABILITY">
+          <Key>
+            <PropertyRef Name="playerID" />
+            <PropertyRef Name="abilityID" />
+          </Key>
+          <Property Name="playerID" Type="Int32" Nullable="false" />
+          <Property Name="abilityID" Type="Int32" Nullable="false" />
+          <Property Name="direction" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="GAME_ABILITY" Relationship="Self.PLY_ID_ABLT_ID_GAME_ABILITIES_FK" FromRole="ONE_PLUS_ABILITY" ToRole="GAME_ABILITY" />
+        </EntityType>
+        <EntityType Name="PLAYED_GAME">
+          <Key>
+            <PropertyRef Name="playedGameID" />
+          </Key>
+          <Property Name="playedGameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="winnerID" Type="Int32" Nullable="false" />
+          <Property Name="loserID" Type="Int32" Nullable="false" />
+          <Property Name="winnerScore" Type="Int32" Nullable="false" />
+          <Property Name="looserScore" Type="Int32" Nullable="false" />
+          <Property Name="gameDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="GAME_USER" Relationship="Self.LOS_USR_ID_FK" FromRole="PLAYED_GAME" ToRole="GAME_USER" />
+          <NavigationProperty Name="GAME_USER1" Relationship="Self.WIN_USR_ID_FK" FromRole="PLAYED_GAME" ToRole="GAME_USER" />
+        </EntityType>
+        <EntityType Name="SHIELD">
+          <Key>
+            <PropertyRef Name="shieldID" />
+          </Key>
+          <Property Name="shieldID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="playerID" Type="Int32" />
+          <Property Name="abilityID" Type="Int32" />
+          <Property Name="gameShipID" Type="Int32" />
+          <NavigationProperty Name="GAME_ABILITY" Relationship="Self.SHLD_GAME_ABILITY_FK" FromRole="SHIELD" ToRole="GAME_ABILITY" />
+          <NavigationProperty Name="GAME_SHIP" Relationship="Self.SHLD_GAME_SHIP_FK" FromRole="SHIELD" ToRole="GAME_SHIP" />
+        </EntityType>
+        <EntityType Name="SHIP_CATALOG">
+          <Key>
+            <PropertyRef Name="shipID" />
+          </Key>
+          <Property Name="uniqueID" Type="Guid" Nullable="false" />
+          <Property Name="shipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adminID" Type="Int32" />
+          <Property Name="shipVersion" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="points" Type="Int32" Nullable="false" />
+          <Property Name="width" Type="Int32" Nullable="false" />
+          <Property Name="height" Type="Int32" Nullable="false" />
+          <Property Name="photo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ADMIN_USER" Relationship="Self.ADM_ID_ADMIN_USERS_FK" FromRole="SHIP_CATALOG" ToRole="ADMIN_USER" />
+          <NavigationProperty Name="GAME_SHIP" Relationship="Self.SHP_ID_SHIP_CATALOG_FK" FromRole="SHIP_CATALOG" ToRole="GAME_SHIP" />
+          <NavigationProperty Name="GAME_SHIP_CATALOG" Relationship="Self.SP_ID_SHIP_CATALOG_FK" FromRole="SHIP_CATALOG" ToRole="GAME_SHIP_CATALOG" />
+        </EntityType>
+        <EntityType Name="SHOT_FEED">
+          <Key>
+            <PropertyRef Name="shotFeedID" />
+          </Key>
+          <Property Name="shotFeedID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="againstPlayerID" Type="Int32" Nullable="false" />
+          <Property Name="posX" Type="Int32" Nullable="false" />
+          <Property Name="posY" Type="Int32" Nullable="false" />
+          <Property Name="success" Type="Boolean" Nullable="false" />
+          <Property Name="bomb" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GAME_PLAYER" Relationship="Self.AGAINST_ID_SHOT_FEED_FK" FromRole="SHOT_FEED" ToRole="GAME_PLAYER" />
+        </EntityType>
+        <EntityType Name="SYSTEM_MESSAGE">
+          <Key>
+            <PropertyRef Name="messageID" />
+          </Key>
+          <Property Name="messageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codeMessage" Type="Int32" Nullable="false" />
+          <Property Name="textMessage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_NICK_PASS">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ADMIN_USER" Relationship="Self.ADMIN_USERS_ID_USERS_FK" FromRole="USER_NICK_PASS" ToRole="ADMIN_USER" />
+          <NavigationProperty Name="GAME_USER" Relationship="Self.GUSR_USERS_ID_USERS_FK" FromRole="USER_NICK_PASS" ToRole="GAME_USER" />
+          <NavigationProperty Name="MOD_USER" Relationship="Self.MOD_USERS_ID_USERS_FK" FromRole="USER_NICK_PASS" ToRole="MOD_USER" />
+        </EntityType>
+        <EntityType Name="USER_PHOTO">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="uniqueID" Type="Guid" Nullable="false" />
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="photo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="GAME_USER" Relationship="Self.PH_USR_ID_FK" FromRole="USER_PHOTO" ToRole="GAME_USER" />
+        </EntityType>
+        <EntityType Name="VW_ADMIN_USER_EXT">
+          <Key>
+            <PropertyRef Name="userID" />
+            <PropertyRef Name="nickAndPassID" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="secondName" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="regDate" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="nickAndPassID" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="secondName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_BOARD_BOX_EXT">
+          <Key>
+            <PropertyRef Name="gameShipID" />
+            <PropertyRef Name="integrity" />
+            <PropertyRef Name="posX" />
+            <PropertyRef Name="posY" />
+            <PropertyRef Name="nickname" />
+            <PropertyRef Name="posXBoardBox" />
+            <PropertyRef Name="posYBoardBox" />
+            <PropertyRef Name="alive" />
+          </Key>
+          <Property Name="gameShipID" Type="Int32" Nullable="false" />
+          <Property Name="shipID" Type="Int32" />
+          <Property Name="playerID" Type="Int32" />
+          <Property Name="integrity" Type="Int32" Nullable="false" />
+          <Property Name="posX" Type="Int32" Nullable="false" />
+          <Property Name="posY" Type="Int32" Nullable="false" />
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="posXBoardBox" Type="Int32" Nullable="false" />
+          <Property Name="posYBoardBox" Type="Int32" Nullable="false" />
+          <Property Name="alive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_CHAT_MESSAGE_EXT">
+          <Key>
+            <PropertyRef Name="chatMessageID" />
+            <PropertyRef Name="message" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="chatMessageID" Type="Int32" Nullable="false" />
+          <Property Name="gameID" Type="Int32" />
+          <Property Name="playerID" Type="Int32" />
+          <Property Name="message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_GAME_ABILITY_EXT">
+          <Key>
+            <PropertyRef Name="nickname" />
+            <PropertyRef Name="playerID" />
+            <PropertyRef Name="abilityID" />
+            <PropertyRef Name="active" />
+            <PropertyRef Name="availableCount" />
+            <PropertyRef Name="direction" />
+          </Key>
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="playerID" Type="Int32" Nullable="false" />
+          <Property Name="abilityID" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="availableCount" Type="Int32" Nullable="false" />
+          <Property Name="direction" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_GAME_AND_PLAYER_INFO">
+          <Key>
+            <PropertyRef Name="gameID" />
+            <PropertyRef Name="nickname" />
+            <PropertyRef Name="shotsTurn" />
+            <PropertyRef Name="boardSize" />
+            <PropertyRef Name="profileAccess" />
+          </Key>
+          <Property Name="gameID" Type="Int32" Nullable="false" />
+          <Property Name="playerID" Type="Int32" />
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shotsTurn" Type="Int32" Nullable="false" />
+          <Property Name="boardSize" Type="Int32" Nullable="false" />
+          <Property Name="profileAccess" Type="Boolean" Nullable="false" />
+          <Property Name="ships" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VW_GAME_PLAYER_EXT">
+          <Key>
+            <PropertyRef Name="playerID" />
+            <PropertyRef Name="lastFeed" />
+            <PropertyRef Name="availableShots" />
+            <PropertyRef Name="remainingShips" />
+            <PropertyRef Name="winFeedDelivered" />
+            <PropertyRef Name="inTurn" />
+            <PropertyRef Name="hitShots" />
+            <PropertyRef Name="missShots" />
+            <PropertyRef Name="points" />
+            <PropertyRef Name="lock" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="playerID" Type="Int32" Nullable="false" />
+          <Property Name="gameUserID" Type="Int32" />
+          <Property Name="lastFeed" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="availableShots" Type="Int32" Nullable="false" />
+          <Property Name="remainingShips" Type="Int32" Nullable="false" />
+          <Property Name="winFeedDelivered" Type="Boolean" Nullable="false" />
+          <Property Name="inTurn" Type="Boolean" Nullable="false" />
+          <Property Name="hitShots" Type="Int32" Nullable="false" />
+          <Property Name="missShots" Type="Int32" Nullable="false" />
+          <Property Name="points" Type="Int32" Nullable="false" />
+          <Property Name="lock" Type="Boolean" Nullable="false" />
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_GAME_SHIP_CATALOG">
+          <Key>
+            <PropertyRef Name="gameID" />
+            <PropertyRef Name="shipCount" />
+            <PropertyRef Name="shipID" />
+            <PropertyRef Name="points" />
+            <PropertyRef Name="width" />
+            <PropertyRef Name="height" />
+            <PropertyRef Name="photo" />
+          </Key>
+          <Property Name="gameID" Type="Int32" Nullable="false" />
+          <Property Name="shipCount" Type="Int32" Nullable="false" />
+          <Property Name="shipID" Type="Int32" Nullable="false" />
+          <Property Name="shipVersion" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="points" Type="Int32" Nullable="false" />
+          <Property Name="width" Type="Int32" Nullable="false" />
+          <Property Name="height" Type="Int32" Nullable="false" />
+          <Property Name="photo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_GAME_SHIP_EXT">
+          <Key>
+            <PropertyRef Name="gameShipID" />
+            <PropertyRef Name="integrity" />
+            <PropertyRef Name="posX" />
+            <PropertyRef Name="posY" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="gameShipID" Type="Int32" Nullable="false" />
+          <Property Name="shipID" Type="Int32" />
+          <Property Name="playerID" Type="Int32" />
+          <Property Name="integrity" Type="Int32" Nullable="false" />
+          <Property Name="posX" Type="Int32" Nullable="false" />
+          <Property Name="posY" Type="Int32" Nullable="false" />
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_GAME_USER_ABILITY_EXT">
+          <Key>
+            <PropertyRef Name="abilityID" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="userID" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="abilityID" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_GAME_USER_EXT">
+          <Key>
+            <PropertyRef Name="userID" />
+            <PropertyRef Name="nickAndPassID" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="secondName" />
+            <PropertyRef Name="countryID" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="genre" />
+            <PropertyRef Name="regDate" />
+            <PropertyRef Name="wins" />
+            <PropertyRef Name="defeats" />
+            <PropertyRef Name="hits" />
+            <PropertyRef Name="misses" />
+            <PropertyRef Name="totalPoints" />
+            <PropertyRef Name="points" />
+            <PropertyRef Name="personalDescription" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="nickAndPassID" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="secondName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="countryID" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="genre" Type="Boolean" Nullable="false" />
+          <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="wins" Type="Int32" Nullable="false" />
+          <Property Name="defeats" Type="Int32" Nullable="false" />
+          <Property Name="hits" Type="Int32" Nullable="false" />
+          <Property Name="misses" Type="Int32" Nullable="false" />
+          <Property Name="totalPoints" Type="Int32" Nullable="false" />
+          <Property Name="points" Type="Int32" Nullable="false" />
+          <Property Name="birthdate" Type="DateTime" Precision="0" />
+          <Property Name="personalDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_LIVE_GAME">
+          <Key>
+            <PropertyRef Name="idLiveGame" />
+            <PropertyRef Name="modID" />
+            <PropertyRef Name="gameID" />
+            <PropertyRef Name="idTerminal" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="idLiveGame" Type="Int32" Nullable="false" />
+          <Property Name="modID" Type="Int32" Nullable="false" />
+          <Property Name="gameID" Type="Int32" Nullable="false" />
+          <Property Name="idTerminal" Type="Int32" Nullable="false" />
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_MOD_USER_EXT">
+          <Key>
+            <PropertyRef Name="userID" />
+            <PropertyRef Name="nickAndPassID" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="secondName" />
+            <PropertyRef Name="countryID" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="genre" />
+            <PropertyRef Name="business" />
+            <PropertyRef Name="regDate" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="nickAndPassID" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="secondName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="countryID" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="genre" Type="Boolean" Nullable="false" />
+          <Property Name="business" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="birthdate" Type="DateTime" Precision="0" />
+          <Property Name="photo" Type="Int32" />
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_PLAYED_GAME_EXT">
+          <Key>
+            <PropertyRef Name="playedGameID" />
+            <PropertyRef Name="winnerID" />
+            <PropertyRef Name="loserID" />
+            <PropertyRef Name="winnerScore" />
+            <PropertyRef Name="looserScore" />
+            <PropertyRef Name="gameDate" />
+            <PropertyRef Name="winnerNick" />
+            <PropertyRef Name="loserNick" />
+          </Key>
+          <Property Name="playedGameID" Type="Int32" Nullable="false" />
+          <Property Name="winnerID" Type="Int32" Nullable="false" />
+          <Property Name="loserID" Type="Int32" Nullable="false" />
+          <Property Name="winnerScore" Type="Int32" Nullable="false" />
+          <Property Name="looserScore" Type="Int32" Nullable="false" />
+          <Property Name="gameDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="winnerNick" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="loserNick" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_SHOT_FEED_EXT">
+          <Key>
+            <PropertyRef Name="shotFeedID" />
+            <PropertyRef Name="againstPlayerID" />
+            <PropertyRef Name="posX" />
+            <PropertyRef Name="posY" />
+            <PropertyRef Name="success" />
+            <PropertyRef Name="bomb" />
+            <PropertyRef Name="nickname" />
+          </Key>
+          <Property Name="shotFeedID" Type="Int32" Nullable="false" />
+          <Property Name="againstPlayerID" Type="Int32" Nullable="false" />
+          <Property Name="posX" Type="Int32" Nullable="false" />
+          <Property Name="posY" Type="Int32" Nullable="false" />
+          <Property Name="success" Type="Boolean" Nullable="false" />
+          <Property Name="bomb" Type="Boolean" Nullable="false" />
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="ABLT_ID_ABILITY_CATALOG_FK">
+          <End Role="ABILITY_CATALOG" Type="Self.ABILITY_CATALOG" Multiplicity="1" />
+          <End Role="GAME_ABILITY" Type="Self.GAME_ABILITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ABILITY_CATALOG">
+              <PropertyRef Name="abilityID" />
+            </Principal>
+            <Dependent Role="GAME_ABILITY">
+              <PropertyRef Name="abilityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ABLT_USR_ID_ABILITY_CATALOG_FK">
+          <End Role="ABILITY_CATALOG" Type="Self.ABILITY_CATALOG" Multiplicity="0..1" />
+          <End Role="GAME_USER_ABILITY" Type="Self.GAME_USER_ABILITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ABILITY_CATALOG">
+              <PropertyRef Name="abilityID" />
+            </Principal>
+            <Dependent Role="GAME_USER_ABILITY">
+              <PropertyRef Name="abilityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ADMAC_ID_ADMIN_USERS_FK">
+          <End Role="ADMIN_USER" Type="Self.ADMIN_USER" Multiplicity="0..1" />
+          <End Role="ABILITY_CATALOG" Type="Self.ABILITY_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMIN_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="ABILITY_CATALOG">
+              <PropertyRef Name="adminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ADM_ID_ADMIN_USERS_FK">
+          <End Role="ADMIN_USER" Type="Self.ADMIN_USER" Multiplicity="0..1" />
+          <End Role="SHIP_CATALOG" Type="Self.SHIP_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMIN_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="SHIP_CATALOG">
+              <PropertyRef Name="adminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ADMIN_USERS_ID_USERS_FK">
+          <End Role="USER_NICK_PASS" Type="Self.USER_NICK_PASS" Multiplicity="1" />
+          <End Role="ADMIN_USER" Type="Self.ADMIN_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_NICK_PASS">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="ADMIN_USER">
+              <PropertyRef Name="nickAndPassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PLYBB_ID_GAME_PLAYER_FK">
+          <End Role="GAME_PLAYER" Type="Self.GAME_PLAYER" Multiplicity="1" />
+          <End Role="BOARD_BOX" Type="Self.BOARD_BOX" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_PLAYER">
+              <PropertyRef Name="playerID" />
+            </Principal>
+            <Dependent Role="BOARD_BOX">
+              <PropertyRef Name="playerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="POST_PLY_ID_BOARD_BOX_FK">
+          <End Role="BOARD_BOX" Type="Self.BOARD_BOX" Multiplicity="0..1" />
+          <End Role="BOARD_SHIP" Type="Self.BOARD_SHIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOARD_BOX">
+              <PropertyRef Name="playerID" />
+              <PropertyRef Name="posX" />
+              <PropertyRef Name="posY" />
+            </Principal>
+            <Dependent Role="BOARD_SHIP">
+              <PropertyRef Name="playerID" />
+              <PropertyRef Name="posX" />
+              <PropertyRef Name="posY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GM_SHP_ID_GAME_SHIP_FK">
+          <End Role="GAME_SHIP" Type="Self.GAME_SHIP" Multiplicity="0..1" />
+          <End Role="BOARD_SHIP" Type="Self.BOARD_SHIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_SHIP">
+              <PropertyRef Name="gameShipID" />
+            </Principal>
+            <Dependent Role="BOARD_SHIP">
+              <PropertyRef Name="gameShipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CHT_PLY_ID_GAME_PLAYER_FK">
+          <End Role="GAME_PLAYER" Type="Self.GAME_PLAYER" Multiplicity="0..1" />
+          <End Role="CHAT_MESSAGE" Type="Self.CHAT_MESSAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_PLAYER">
+              <PropertyRef Name="playerID" />
+            </Principal>
+            <Dependent Role="CHAT_MESSAGE">
+              <PropertyRef Name="playerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GMCM_ID_GAME_FK">
+          <End Role="GAME" Type="Self.GAME" Multiplicity="0..1" />
+          <End Role="CHAT_MESSAGE" Type="Self.CHAT_MESSAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME">
+              <PropertyRef Name="gameID" />
+            </Principal>
+            <Dependent Role="CHAT_MESSAGE">
+              <PropertyRef Name="gameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="COUNT_ID_GAME_USER_COUNT_FK">
+          <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="1" />
+          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COUNTRY">
+              <PropertyRef Name="countryID" />
+            </Principal>
+            <Dependent Role="GAME_USER">
+              <PropertyRef Name="countryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="COUNT_ID_MOD_USER_COUNT_FK">
+          <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="1" />
+          <End Role="MOD_USER" Type="Self.MOD_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COUNTRY">
+              <PropertyRef Name="countryID" />
+            </Principal>
+            <Dependent Role="MOD_USER">
+              <PropertyRef Name="countryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GAME_ID_GAME_FK">
+          <End Role="GAME" Type="Self.GAME" Multiplicity="1" />
+          <End Role="LIVE_GAME" Type="Self.LIVE_GAME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME">
+              <PropertyRef Name="gameID" />
+            </Principal>
+            <Dependent Role="LIVE_GAME">
+              <PropertyRef Name="gameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GM_ID_GAME_FK">
+          <End Role="GAME" Type="Self.GAME" Multiplicity="0..1" />
+          <End Role="GAME_AND_PLAYER" Type="Self.GAME_AND_PLAYER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME">
+              <PropertyRef Name="gameID" />
+            </Principal>
+            <Dependent Role="GAME_AND_PLAYER">
+              <PropertyRef Name="gameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GMSC_ID_GAME_FK">
+          <End Role="GAME" Type="Self.GAME" Multiplicity="1" />
+          <End Role="GAME_SHIP_CATALOG" Type="Self.GAME_SHIP_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME">
+              <PropertyRef Name="gameID" />
+            </Principal>
+            <Dependent Role="GAME_SHIP_CATALOG">
+              <PropertyRef Name="gameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PLY_ID_ABLT_ID_GAME_ABILITIES_FK">
+          <End Role="GAME_ABILITY" Type="Self.GAME_ABILITY" Multiplicity="1" />
+          <End Role="ONE_PLUS_ABILITY" Type="Self.ONE_PLUS_ABILITY" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_ABILITY">
+              <PropertyRef Name="playerID" />
+              <PropertyRef Name="abilityID" />
+            </Principal>
+            <Dependent Role="ONE_PLUS_ABILITY">
+              <PropertyRef Name="playerID" />
+              <PropertyRef Name="abilityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PLYGA_ID_GAME_PLAYER_FK">
+          <End Role="GAME_PLAYER" Type="Self.GAME_PLAYER" Multiplicity="1" />
+          <End Role="GAME_ABILITY" Type="Self.GAME_ABILITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_PLAYER">
+              <PropertyRef Name="playerID" />
+            </Principal>
+            <Dependent Role="GAME_ABILITY">
+              <PropertyRef Name="playerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SHLD_GAME_ABILITY_FK">
+          <End Role="GAME_ABILITY" Type="Self.GAME_ABILITY" Multiplicity="0..1" />
+          <End Role="SHIELD" Type="Self.SHIELD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_ABILITY">
+              <PropertyRef Name="playerID" />
+              <PropertyRef Name="abilityID" />
+            </Principal>
+            <Dependent Role="SHIELD">
+              <PropertyRef Name="playerID" />
+              <PropertyRef Name="abilityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRT_PLY_GAME_PLAYER_FK">
+          <End Role="GAME_PLAYER" Type="Self.GAME_PLAYER" Multiplicity="0..1" />
+          <End Role="GAME_AND_PLAYER" Type="Self.GAME_AND_PLAYER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_PLAYER">
+              <PropertyRef Name="playerID" />
+            </Principal>
+            <Dependent Role="GAME_AND_PLAYER">
+              <PropertyRef Name="playerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AGAINST_ID_SHOT_FEED_FK">
+          <End Role="GAME_PLAYER" Type="Self.GAME_PLAYER" Multiplicity="1" />
+          <End Role="SHOT_FEED" Type="Self.SHOT_FEED" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_PLAYER">
+              <PropertyRef Name="playerID" />
+            </Principal>
+            <Dependent Role="SHOT_FEED">
+              <PropertyRef Name="againstPlayerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GM_USR_ID_GAME_USERS_FK">
+          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="0..1" />
+          <End Role="GAME_PLAYER" Type="Self.GAME_PLAYER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="GAME_PLAYER">
+              <PropertyRef Name="gameUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PLY_ID_BOARD_SHIP_FK">
+          <End Role="GAME_PLAYER" Type="Self.GAME_PLAYER" Multiplicity="0..1" />
+          <End Role="GAME_SHIP" Type="Self.GAME_SHIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_PLAYER">
+              <PropertyRef Name="playerID" />
+            </Principal>
+            <Dependent Role="GAME_SHIP">
+              <PropertyRef Name="playerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SHLD_GAME_SHIP_FK">
+          <End Role="GAME_SHIP" Type="Self.GAME_SHIP" Multiplicity="0..1" />
+          <End Role="SHIELD" Type="Self.SHIELD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_SHIP">
+              <PropertyRef Name="gameShipID" />
+            </Principal>
+            <Dependent Role="SHIELD">
+              <PropertyRef Name="gameShipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SHP_ID_SHIP_CATALOG_FK">
+          <End Role="SHIP_CATALOG" Type="Self.SHIP_CATALOG" Multiplicity="0..1" />
+          <End Role="GAME_SHIP" Type="Self.GAME_SHIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHIP_CATALOG">
+              <PropertyRef Name="shipID" />
+            </Principal>
+            <Dependent Role="GAME_SHIP">
+              <PropertyRef Name="shipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SP_ID_SHIP_CATALOG_FK">
+          <End Role="SHIP_CATALOG" Type="Self.SHIP_CATALOG" Multiplicity="1" />
+          <End Role="GAME_SHIP_CATALOG" Type="Self.GAME_SHIP_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHIP_CATALOG">
+              <PropertyRef Name="shipID" />
+            </Principal>
+            <Dependent Role="GAME_SHIP_CATALOG">
+              <PropertyRef Name="shipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GM_USRABLT_ID_GAME_USERS_FK">
+          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="0..1" />
+          <End Role="GAME_USER_ABILITY" Type="Self.GAME_USER_ABILITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="GAME_USER_ABILITY">
+              <PropertyRef Name="gameUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GUSR_USERS_ID_USERS_FK">
+          <End Role="USER_NICK_PASS" Type="Self.USER_NICK_PASS" Multiplicity="1" />
+          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_NICK_PASS">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="GAME_USER">
+              <PropertyRef Name="nickAndPassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LOS_USR_ID_FK">
+          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="1" />
+          <End Role="PLAYED_GAME" Type="Self.PLAYED_GAME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="PLAYED_GAME">
+              <PropertyRef Name="loserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PH_USR_ID_FK">
+          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="1" />
+          <End Role="USER_PHOTO" Type="Self.USER_PHOTO" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="USER_PHOTO">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WIN_USR_ID_FK">
+          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="1" />
+          <End Role="PLAYED_GAME" Type="Self.PLAYED_GAME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="PLAYED_GAME">
+              <PropertyRef Name="winnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MOD_ID_MOD_USER_FK">
+          <End Role="MOD_USER" Type="Self.MOD_USER" Multiplicity="1" />
+          <End Role="LIVE_GAME" Type="Self.LIVE_GAME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MOD_USER">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="LIVE_GAME">
+              <PropertyRef Name="modID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TERM_ID_LIVE_TERMINAL_FK">
+          <End Role="LIVE_TERMINAL" Type="Self.LIVE_TERMINAL" Multiplicity="1" />
+          <End Role="LIVE_GAME" Type="Self.LIVE_GAME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LIVE_TERMINAL">
+              <PropertyRef Name="idTerminal" />
+            </Principal>
+            <Dependent Role="LIVE_GAME">
+              <PropertyRef Name="idTerminal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MOD_USERS_ID_USERS_FK">
+          <End Role="USER_NICK_PASS" Type="Self.USER_NICK_PASS" Multiplicity="1" />
+          <End Role="MOD_USER" Type="Self.MOD_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_NICK_PASS">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="MOD_USER">
+              <PropertyRef Name="nickAndPassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MBP_Data_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ABILITY_CATALOG" EntityType="Self.ABILITY_CATALOG" />
+          <EntitySet Name="ADMIN_USER" EntityType="Self.ADMIN_USER" />
+          <EntitySet Name="BOARD_BOX" EntityType="Self.BOARD_BOX" />
+          <EntitySet Name="BOARD_SHIP" EntityType="Self.BOARD_SHIP" />
+          <EntitySet Name="CHAT_MESSAGE" EntityType="Self.CHAT_MESSAGE" />
+          <EntitySet Name="COUNTRY" EntityType="Self.COUNTRY" />
+          <EntitySet Name="GAME" EntityType="Self.GAME" />
+          <EntitySet Name="GAME_ABILITY" EntityType="Self.GAME_ABILITY" />
+          <EntitySet Name="GAME_AND_PLAYER" EntityType="Self.GAME_AND_PLAYER" />
+          <EntitySet Name="GAME_PLAYER" EntityType="Self.GAME_PLAYER" />
+          <EntitySet Name="GAME_SHIP" EntityType="Self.GAME_SHIP" />
+          <EntitySet Name="GAME_SHIP_CATALOG" EntityType="Self.GAME_SHIP_CATALOG" />
+          <EntitySet Name="GAME_USER" EntityType="Self.GAME_USER" />
+          <EntitySet Name="GAME_USER_ABILITY" EntityType="Self.GAME_USER_ABILITY" />
+          <EntitySet Name="LIVE_GAME" EntityType="Self.LIVE_GAME" />
+          <EntitySet Name="LIVE_TERMINAL" EntityType="Self.LIVE_TERMINAL" />
+          <EntitySet Name="MOD_USER" EntityType="Self.MOD_USER" />
+          <EntitySet Name="ONE_PLUS_ABILITY" EntityType="Self.ONE_PLUS_ABILITY" />
+          <EntitySet Name="PLAYED_GAME" EntityType="Self.PLAYED_GAME" />
+          <EntitySet Name="SHIELD" EntityType="Self.SHIELD" />
+          <EntitySet Name="SHIP_CATALOG" EntityType="Self.SHIP_CATALOG" />
+          <EntitySet Name="SHOT_FEED" EntityType="Self.SHOT_FEED" />
+          <EntitySet Name="SYSTEM_MESSAGE" EntityType="Self.SYSTEM_MESSAGE" />
+          <EntitySet Name="USER_NICK_PASS" EntityType="Self.USER_NICK_PASS" />
+          <EntitySet Name="USER_PHOTO" EntityType="Self.USER_PHOTO" />
+          <EntitySet Name="VW_ADMIN_USER_EXT" EntityType="Self.VW_ADMIN_USER_EXT" />
+          <EntitySet Name="VW_BOARD_BOX_EXT" EntityType="Self.VW_BOARD_BOX_EXT" />
+          <EntitySet Name="VW_CHAT_MESSAGE_EXT" EntityType="Self.VW_CHAT_MESSAGE_EXT" />
+          <EntitySet Name="VW_GAME_ABILITY_EXT" EntityType="Self.VW_GAME_ABILITY_EXT" />
+          <EntitySet Name="VW_GAME_AND_PLAYER_INFO" EntityType="Self.VW_GAME_AND_PLAYER_INFO" />
+          <EntitySet Name="VW_GAME_PLAYER_EXT" EntityType="Self.VW_GAME_PLAYER_EXT" />
+          <EntitySet Name="VW_GAME_SHIP_CATALOG" EntityType="Self.VW_GAME_SHIP_CATALOG" />
+          <EntitySet Name="VW_GAME_SHIP_EXT" EntityType="Self.VW_GAME_SHIP_EXT" />
+          <EntitySet Name="VW_GAME_USER_ABILITY_EXT" EntityType="Self.VW_GAME_USER_ABILITY_EXT" />
+          <EntitySet Name="VW_GAME_USER_EXT" EntityType="Self.VW_GAME_USER_EXT" />
+          <EntitySet Name="VW_LIVE_GAME" EntityType="Self.VW_LIVE_GAME" />
+          <EntitySet Name="VW_MOD_USER_EXT" EntityType="Self.VW_MOD_USER_EXT" />
+          <EntitySet Name="VW_PLAYED_GAME_EXT" EntityType="Self.VW_PLAYED_GAME_EXT" />
+          <EntitySet Name="VW_SHOT_FEED_EXT" EntityType="Self.VW_SHOT_FEED_EXT" />
+          <AssociationSet Name="ABLT_ID_ABILITY_CATALOG_FK" Association="Self.ABLT_ID_ABILITY_CATALOG_FK">
+            <End Role="ABILITY_CATALOG" EntitySet="ABILITY_CATALOG" />
+            <End Role="GAME_ABILITY" EntitySet="GAME_ABILITY" />
+          </AssociationSet>
+          <AssociationSet Name="ABLT_USR_ID_ABILITY_CATALOG_FK" Association="Self.ABLT_USR_ID_ABILITY_CATALOG_FK">
+            <End Role="ABILITY_CATALOG" EntitySet="ABILITY_CATALOG" />
+            <End Role="GAME_USER_ABILITY" EntitySet="GAME_USER_ABILITY" />
+          </AssociationSet>
+          <AssociationSet Name="ADMAC_ID_ADMIN_USERS_FK" Association="Self.ADMAC_ID_ADMIN_USERS_FK">
+            <End Role="ADMIN_USER" EntitySet="ADMIN_USER" />
+            <End Role="ABILITY_CATALOG" EntitySet="ABILITY_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="ADM_ID_ADMIN_USERS_FK" Association="Self.ADM_ID_ADMIN_USERS_FK">
+            <End Role="ADMIN_USER" EntitySet="ADMIN_USER" />
+            <End Role="SHIP_CATALOG" EntitySet="SHIP_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="ADMIN_USERS_ID_USERS_FK" Association="Self.ADMIN_USERS_ID_USERS_FK">
+            <End Role="USER_NICK_PASS" EntitySet="USER_NICK_PASS" />
+            <End Role="ADMIN_USER" EntitySet="ADMIN_USER" />
+          </AssociationSet>
+          <AssociationSet Name="PLYBB_ID_GAME_PLAYER_FK" Association="Self.PLYBB_ID_GAME_PLAYER_FK">
+            <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
+            <End Role="BOARD_BOX" EntitySet="BOARD_BOX" />
+          </AssociationSet>
+          <AssociationSet Name="POST_PLY_ID_BOARD_BOX_FK" Association="Self.POST_PLY_ID_BOARD_BOX_FK">
+            <End Role="BOARD_BOX" EntitySet="BOARD_BOX" />
+            <End Role="BOARD_SHIP" EntitySet="BOARD_SHIP" />
+          </AssociationSet>
+          <AssociationSet Name="GM_SHP_ID_GAME_SHIP_FK" Association="Self.GM_SHP_ID_GAME_SHIP_FK">
+            <End Role="GAME_SHIP" EntitySet="GAME_SHIP" />
+            <End Role="BOARD_SHIP" EntitySet="BOARD_SHIP" />
+          </AssociationSet>
+          <AssociationSet Name="CHT_PLY_ID_GAME_PLAYER_FK" Association="Self.CHT_PLY_ID_GAME_PLAYER_FK">
+            <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
+            <End Role="CHAT_MESSAGE" EntitySet="CHAT_MESSAGE" />
+          </AssociationSet>
+          <AssociationSet Name="GMCM_ID_GAME_FK" Association="Self.GMCM_ID_GAME_FK">
+            <End Role="GAME" EntitySet="GAME" />
+            <End Role="CHAT_MESSAGE" EntitySet="CHAT_MESSAGE" />
+          </AssociationSet>
+          <AssociationSet Name="COUNT_ID_GAME_USER_COUNT_FK" Association="Self.COUNT_ID_GAME_USER_COUNT_FK">
+            <End Role="COUNTRY" EntitySet="COUNTRY" />
+            <End Role="GAME_USER" EntitySet="GAME_USER" />
+          </AssociationSet>
+          <AssociationSet Name="COUNT_ID_MOD_USER_COUNT_FK" Association="Self.COUNT_ID_MOD_USER_COUNT_FK">
+            <End Role="COUNTRY" EntitySet="COUNTRY" />
+            <End Role="MOD_USER" EntitySet="MOD_USER" />
+          </AssociationSet>
+          <AssociationSet Name="GAME_ID_GAME_FK" Association="Self.GAME_ID_GAME_FK">
+            <End Role="GAME" EntitySet="GAME" />
+            <End Role="LIVE_GAME" EntitySet="LIVE_GAME" />
+          </AssociationSet>
+          <AssociationSet Name="GM_ID_GAME_FK" Association="Self.GM_ID_GAME_FK">
+            <End Role="GAME" EntitySet="GAME" />
+            <End Role="GAME_AND_PLAYER" EntitySet="GAME_AND_PLAYER" />
+          </AssociationSet>
+          <AssociationSet Name="GMSC_ID_GAME_FK" Association="Self.GMSC_ID_GAME_FK">
+            <End Role="GAME" EntitySet="GAME" />
+            <End Role="GAME_SHIP_CATALOG" EntitySet="GAME_SHIP_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="PLY_ID_ABLT_ID_GAME_ABILITIES_FK" Association="Self.PLY_ID_ABLT_ID_GAME_ABILITIES_FK">
+            <End Role="GAME_ABILITY" EntitySet="GAME_ABILITY" />
+            <End Role="ONE_PLUS_ABILITY" EntitySet="ONE_PLUS_ABILITY" />
+          </AssociationSet>
+          <AssociationSet Name="PLYGA_ID_GAME_PLAYER_FK" Association="Self.PLYGA_ID_GAME_PLAYER_FK">
+            <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
+            <End Role="GAME_ABILITY" EntitySet="GAME_ABILITY" />
+          </AssociationSet>
+          <AssociationSet Name="SHLD_GAME_ABILITY_FK" Association="Self.SHLD_GAME_ABILITY_FK">
+            <End Role="GAME_ABILITY" EntitySet="GAME_ABILITY" />
+            <End Role="SHIELD" EntitySet="SHIELD" />
+          </AssociationSet>
+          <AssociationSet Name="CRT_PLY_GAME_PLAYER_FK" Association="Self.CRT_PLY_GAME_PLAYER_FK">
+            <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
+            <End Role="GAME_AND_PLAYER" EntitySet="GAME_AND_PLAYER" />
+          </AssociationSet>
+          <AssociationSet Name="AGAINST_ID_SHOT_FEED_FK" Association="Self.AGAINST_ID_SHOT_FEED_FK">
+            <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
+            <End Role="SHOT_FEED" EntitySet="SHOT_FEED" />
+          </AssociationSet>
+          <AssociationSet Name="GM_USR_ID_GAME_USERS_FK" Association="Self.GM_USR_ID_GAME_USERS_FK">
+            <End Role="GAME_USER" EntitySet="GAME_USER" />
+            <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
+          </AssociationSet>
+          <AssociationSet Name="PLY_ID_BOARD_SHIP_FK" Association="Self.PLY_ID_BOARD_SHIP_FK">
+            <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
+            <End Role="GAME_SHIP" EntitySet="GAME_SHIP" />
+          </AssociationSet>
+          <AssociationSet Name="SHLD_GAME_SHIP_FK" Association="Self.SHLD_GAME_SHIP_FK">
+            <End Role="GAME_SHIP" EntitySet="GAME_SHIP" />
+            <End Role="SHIELD" EntitySet="SHIELD" />
+          </AssociationSet>
+          <AssociationSet Name="SHP_ID_SHIP_CATALOG_FK" Association="Self.SHP_ID_SHIP_CATALOG_FK">
+            <End Role="SHIP_CATALOG" EntitySet="SHIP_CATALOG" />
+            <End Role="GAME_SHIP" EntitySet="GAME_SHIP" />
+          </AssociationSet>
+          <AssociationSet Name="SP_ID_SHIP_CATALOG_FK" Association="Self.SP_ID_SHIP_CATALOG_FK">
+            <End Role="SHIP_CATALOG" EntitySet="SHIP_CATALOG" />
+            <End Role="GAME_SHIP_CATALOG" EntitySet="GAME_SHIP_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="GM_USRABLT_ID_GAME_USERS_FK" Association="Self.GM_USRABLT_ID_GAME_USERS_FK">
+            <End Role="GAME_USER" EntitySet="GAME_USER" />
+            <End Role="GAME_USER_ABILITY" EntitySet="GAME_USER_ABILITY" />
+          </AssociationSet>
+          <AssociationSet Name="GUSR_USERS_ID_USERS_FK" Association="Self.GUSR_USERS_ID_USERS_FK">
+            <End Role="USER_NICK_PASS" EntitySet="USER_NICK_PASS" />
+            <End Role="GAME_USER" EntitySet="GAME_USER" />
+          </AssociationSet>
+          <AssociationSet Name="LOS_USR_ID_FK" Association="Self.LOS_USR_ID_FK">
+            <End Role="GAME_USER" EntitySet="GAME_USER" />
+            <End Role="PLAYED_GAME" EntitySet="PLAYED_GAME" />
+          </AssociationSet>
+          <AssociationSet Name="PH_USR_ID_FK" Association="Self.PH_USR_ID_FK">
+            <End Role="GAME_USER" EntitySet="GAME_USER" />
+            <End Role="USER_PHOTO" EntitySet="USER_PHOTO" />
+          </AssociationSet>
+          <AssociationSet Name="WIN_USR_ID_FK" Association="Self.WIN_USR_ID_FK">
+            <End Role="GAME_USER" EntitySet="GAME_USER" />
+            <End Role="PLAYED_GAME" EntitySet="PLAYED_GAME" />
+          </AssociationSet>
+          <AssociationSet Name="MOD_ID_MOD_USER_FK" Association="Self.MOD_ID_MOD_USER_FK">
+            <End Role="MOD_USER" EntitySet="MOD_USER" />
+            <End Role="LIVE_GAME" EntitySet="LIVE_GAME" />
+          </AssociationSet>
+          <AssociationSet Name="TERM_ID_LIVE_TERMINAL_FK" Association="Self.TERM_ID_LIVE_TERMINAL_FK">
+            <End Role="LIVE_TERMINAL" EntitySet="LIVE_TERMINAL" />
+            <End Role="LIVE_GAME" EntitySet="LIVE_GAME" />
+          </AssociationSet>
+          <AssociationSet Name="MOD_USERS_ID_USERS_FK" Association="Self.MOD_USERS_ID_USERS_FK">
+            <End Role="USER_NICK_PASS" EntitySet="USER_NICK_PASS" />
+            <End Role="MOD_USER" EntitySet="MOD_USER" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyBattlePongModelStoreContainer" CdmEntityContainer="MBP_Data_Entities">
+          <EntitySetMapping Name="ABILITY_CATALOG">
+            <EntityTypeMapping TypeName="MyBattlePongModel.ABILITY_CATALOG">
+              <MappingFragment StoreEntitySet="ABILITY_CATALOG">
+                <ScalarProperty Name="abilityID" ColumnName="abilityID" />
+                <ScalarProperty Name="adminID" ColumnName="adminID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="versionAbility" ColumnName="versionAbility" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="ranking" ColumnName="ranking" />
+                <ScalarProperty Name="experience" ColumnName="experience" />
+                <ScalarProperty Name="wins" ColumnName="wins" />
+                <ScalarProperty Name="defeats" ColumnName="defeats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADMIN_USER">
+            <EntityTypeMapping TypeName="MyBattlePongModel.ADMIN_USER">
+              <MappingFragment StoreEntitySet="ADMIN_USER">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="nickAndPassID" ColumnName="nickAndPassID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="secondName" ColumnName="secondName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="regDate" ColumnName="regDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BOARD_BOX">
+            <EntityTypeMapping TypeName="MyBattlePongModel.BOARD_BOX">
+              <MappingFragment StoreEntitySet="BOARD_BOX">
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+                <ScalarProperty Name="posX" ColumnName="posX" />
+                <ScalarProperty Name="posY" ColumnName="posY" />
+                <ScalarProperty Name="alive" ColumnName="alive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BOARD_SHIP">
+            <EntityTypeMapping TypeName="MyBattlePongModel.BOARD_SHIP">
+              <MappingFragment StoreEntitySet="BOARD_SHIP">
+                <ScalarProperty Name="boardShipID" ColumnName="boardShipID" />
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+                <ScalarProperty Name="posX" ColumnName="posX" />
+                <ScalarProperty Name="posY" ColumnName="posY" />
+                <ScalarProperty Name="gameShipID" ColumnName="gameShipID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHAT_MESSAGE">
+            <EntityTypeMapping TypeName="MyBattlePongModel.CHAT_MESSAGE">
+              <MappingFragment StoreEntitySet="CHAT_MESSAGE">
+                <ScalarProperty Name="chatMessageID" ColumnName="chatMessageID" />
+                <ScalarProperty Name="gameID" ColumnName="gameID" />
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+                <ScalarProperty Name="message" ColumnName="message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COUNTRY">
+            <EntityTypeMapping TypeName="MyBattlePongModel.COUNTRY">
+              <MappingFragment StoreEntitySet="COUNTRY">
+                <ScalarProperty Name="countryID" ColumnName="countryID" />
+                <ScalarProperty Name="countryName" ColumnName="countryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GAME">
+            <EntityTypeMapping TypeName="MyBattlePongModel.GAME">
+              <MappingFragment StoreEntitySet="GAME">
+                <ScalarProperty Name="gameID" ColumnName="gameID" />
+                <ScalarProperty Name="turnChangeTime" ColumnName="turnChangeTime" />
+                <ScalarProperty Name="shotsTurn" ColumnName="shotsTurn" />
+                <ScalarProperty Name="boardSize" ColumnName="boardSize" />
+                <ScalarProperty Name="profileAccess" ColumnName="profileAccess" />
+                <ScalarProperty Name="feed" ColumnName="feed" />
+                <ScalarProperty Name="lock" ColumnName="lock" />
+                <ScalarProperty Name="joined" ColumnName="joined" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GAME_ABILITY">
+            <EntityTypeMapping TypeName="MyBattlePongModel.GAME_ABILITY">
+              <MappingFragment StoreEntitySet="GAME_ABILITY">
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+                <ScalarProperty Name="abilityID" ColumnName="abilityID" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="availableCount" ColumnName="availableCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GAME_AND_PLAYER">
+            <EntityTypeMapping TypeName="MyBattlePongModel.GAME_AND_PLAYER">
+              <MappingFragment StoreEntitySet="GAME_AND_PLAYER">
+                <ScalarProperty Name="gameAndPlayerID" ColumnName="gameAndPlayerID" />
+                <ScalarProperty Name="gameID" ColumnName="gameID" />
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GAME_PLAYER">
+            <EntityTypeMapping TypeName="MyBattlePongModel.GAME_PLAYER">
+              <MappingFragment StoreEntitySet="GAME_PLAYER">
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+                <ScalarProperty Name="gameUserID" ColumnName="gameUserID" />
+                <ScalarProperty Name="lastFeed" ColumnName="lastFeed" />
+                <ScalarProperty Name="availableShots" ColumnName="availableShots" />
+                <ScalarProperty Name="remainingShips" ColumnName="remainingShips" />
+                <ScalarProperty Name="winFeedDelivered" ColumnName="winFeedDelivered" />
+                <ScalarProperty Name="inTurn" ColumnName="inTurn" />
+                <ScalarProperty Name="hitShots" ColumnName="hitShots" />
+                <ScalarProperty Name="missShots" ColumnName="missShots" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="lock" ColumnName="lock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GAME_SHIP">
+            <EntityTypeMapping TypeName="MyBattlePongModel.GAME_SHIP">
+              <MappingFragment StoreEntitySet="GAME_SHIP">
+                <ScalarProperty Name="gameShipID" ColumnName="gameShipID" />
+                <ScalarProperty Name="shipID" ColumnName="shipID" />
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+                <ScalarProperty Name="integrity" ColumnName="integrity" />
+                <ScalarProperty Name="posX" ColumnName="posX" />
+                <ScalarProperty Name="posY" ColumnName="posY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GAME_SHIP_CATALOG">
+            <EntityTypeMapping TypeName="MyBattlePongModel.GAME_SHIP_CATALOG">
+              <MappingFragment StoreEntitySet="GAME_SHIP_CATALOG">
+                <ScalarProperty Name="gameID" ColumnName="gameID" />
+                <ScalarProperty Name="shipID" ColumnName="shipID" />
+                <ScalarProperty Name="shipCount" ColumnName="shipCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GAME_USER">
+            <EntityTypeMapping TypeName="MyBattlePongModel.GAME_USER">
+              <MappingFragment StoreEntitySet="GAME_USER">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="nickAndPassID" ColumnName="nickAndPassID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="secondName" ColumnName="secondName" />
+                <ScalarProperty Name="countryID" ColumnName="countryID" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="genre" ColumnName="genre" />
+                <ScalarProperty Name="regDate" ColumnName="regDate" />
+                <ScalarProperty Name="wins" ColumnName="wins" />
+                <ScalarProperty Name="defeats" ColumnName="defeats" />
+                <ScalarProperty Name="hits" ColumnName="hits" />
+                <ScalarProperty Name="misses" ColumnName="misses" />
+                <ScalarProperty Name="totalPoints" ColumnName="totalPoints" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="personalDescription" ColumnName="personalDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GAME_USER_ABILITY">
+            <EntityTypeMapping TypeName="MyBattlePongModel.GAME_USER_ABILITY">
+              <MappingFragment StoreEntitySet="GAME_USER_ABILITY">
+                <ScalarProperty Name="gameUserAbilityID" ColumnName="gameUserAbilityID" />
+                <ScalarProperty Name="gameUserID" ColumnName="gameUserID" />
+                <ScalarProperty Name="abilityID" ColumnName="abilityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LIVE_GAME">
+            <EntityTypeMapping TypeName="MyBattlePongModel.LIVE_GAME">
+              <MappingFragment StoreEntitySet="LIVE_GAME">
+                <ScalarProperty Name="idLiveGame" ColumnName="idLiveGame" />
+                <ScalarProperty Name="modID" ColumnName="modID" />
+                <ScalarProperty Name="gameID" ColumnName="gameID" />
+                <ScalarProperty Name="idTerminal" ColumnName="idTerminal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LIVE_TERMINAL">
+            <EntityTypeMapping TypeName="MyBattlePongModel.LIVE_TERMINAL">
+              <MappingFragment StoreEntitySet="LIVE_TERMINAL">
+                <ScalarProperty Name="idTerminal" ColumnName="idTerminal" />
+                <ScalarProperty Name="keyTerminal" ColumnName="keyTerminal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOD_USER">
+            <EntityTypeMapping TypeName="MyBattlePongModel.MOD_USER">
+              <MappingFragment StoreEntitySet="MOD_USER">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="nickAndPassID" ColumnName="nickAndPassID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="secondName" ColumnName="secondName" />
+                <ScalarProperty Name="countryID" ColumnName="countryID" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="genre" ColumnName="genre" />
+                <ScalarProperty Name="business" ColumnName="business" />
+                <ScalarProperty Name="regDate" ColumnName="regDate" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ONE_PLUS_ABILITY">
+            <EntityTypeMapping TypeName="MyBattlePongModel.ONE_PLUS_ABILITY">
+              <MappingFragment StoreEntitySet="ONE_PLUS_ABILITY">
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+                <ScalarProperty Name="abilityID" ColumnName="abilityID" />
+                <ScalarProperty Name="direction" ColumnName="direction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PLAYED_GAME">
+            <EntityTypeMapping TypeName="MyBattlePongModel.PLAYED_GAME">
+              <MappingFragment StoreEntitySet="PLAYED_GAME">
+                <ScalarProperty Name="playedGameID" ColumnName="playedGameID" />
+                <ScalarProperty Name="winnerID" ColumnName="winnerID" />
+                <ScalarProperty Name="loserID" ColumnName="loserID" />
+                <ScalarProperty Name="winnerScore" ColumnName="winnerScore" />
+                <ScalarProperty Name="looserScore" ColumnName="looserScore" />
+                <ScalarProperty Name="gameDate" ColumnName="gameDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHIELD">
+            <EntityTypeMapping TypeName="MyBattlePongModel.SHIELD">
+              <MappingFragment StoreEntitySet="SHIELD">
+                <ScalarProperty Name="shieldID" ColumnName="shieldID" />
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+                <ScalarProperty Name="abilityID" ColumnName="abilityID" />
+                <ScalarProperty Name="gameShipID" ColumnName="gameShipID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHIP_CATALOG">
+            <EntityTypeMapping TypeName="MyBattlePongModel.SHIP_CATALOG">
+              <MappingFragment StoreEntitySet="SHIP_CATALOG">
+                <ScalarProperty Name="uniqueID" ColumnName="uniqueID" />
+                <ScalarProperty Name="shipID" ColumnName="shipID" />
+                <ScalarProperty Name="adminID" ColumnName="adminID" />
+                <ScalarProperty Name="shipVersion" ColumnName="shipVersion" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHOT_FEED">
+            <EntityTypeMapping TypeName="MyBattlePongModel.SHOT_FEED">
+              <MappingFragment StoreEntitySet="SHOT_FEED">
+                <ScalarProperty Name="shotFeedID" ColumnName="shotFeedID" />
+                <ScalarProperty Name="againstPlayerID" ColumnName="againstPlayerID" />
+                <ScalarProperty Name="posX" ColumnName="posX" />
+                <ScalarProperty Name="posY" ColumnName="posY" />
+                <ScalarProperty Name="success" ColumnName="success" />
+                <ScalarProperty Name="bomb" ColumnName="bomb" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSTEM_MESSAGE">
+            <EntityTypeMapping TypeName="MyBattlePongModel.SYSTEM_MESSAGE">
+              <MappingFragment StoreEntitySet="SYSTEM_MESSAGE">
+                <ScalarProperty Name="messageID" ColumnName="messageID" />
+                <ScalarProperty Name="codeMessage" ColumnName="codeMessage" />
+                <ScalarProperty Name="textMessage" ColumnName="textMessage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_NICK_PASS">
+            <EntityTypeMapping TypeName="MyBattlePongModel.USER_NICK_PASS">
+              <MappingFragment StoreEntitySet="USER_NICK_PASS">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_PHOTO">
+            <EntityTypeMapping TypeName="MyBattlePongModel.USER_PHOTO">
+              <MappingFragment StoreEntitySet="USER_PHOTO">
+                <ScalarProperty Name="uniqueID" ColumnName="uniqueID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_ADMIN_USER_EXT">
+            <EntityTypeMapping TypeName="MyBattlePongModel.VW_ADMIN_USER_EXT">
+              <MappingFragment StoreEntitySet="VW_ADMIN_USER_EXT">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="nickAndPassID" ColumnName="nickAndPassID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="secondName" ColumnName="secondName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="regDate" ColumnName="regDate" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_BOARD_BOX_EXT">
+            <EntityTypeMapping TypeName="MyBattlePongModel.VW_BOARD_BOX_EXT">
+              <MappingFragment StoreEntitySet="VW_BOARD_BOX_EXT">
+                <ScalarProperty Name="gameShipID" ColumnName="gameShipID" />
+                <ScalarProperty Name="shipID" ColumnName="shipID" />
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+                <ScalarProperty Name="integrity" ColumnName="integrity" />
+                <ScalarProperty Name="posX" ColumnName="posX" />
+                <ScalarProperty Name="posY" ColumnName="posY" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="posXBoardBox" ColumnName="posXBoardBox" />
+                <ScalarProperty Name="posYBoardBox" ColumnName="posYBoardBox" />
+                <ScalarProperty Name="alive" ColumnName="alive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CHAT_MESSAGE_EXT">
+            <EntityTypeMapping TypeName="MyBattlePongModel.VW_CHAT_MESSAGE_EXT">
+              <MappingFragment StoreEntitySet="VW_CHAT_MESSAGE_EXT">
+                <ScalarProperty Name="chatMessageID" ColumnName="chatMessageID" />
+                <ScalarProperty Name="gameID" ColumnName="gameID" />
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_GAME_ABILITY_EXT">
+            <EntityTypeMapping TypeName="MyBattlePongModel.VW_GAME_ABILITY_EXT">
+              <MappingFragment StoreEntitySet="VW_GAME_ABILITY_EXT">
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+                <ScalarProperty Name="abilityID" ColumnName="abilityID" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="availableCount" ColumnName="availableCount" />
+                <ScalarProperty Name="direction" ColumnName="direction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_GAME_AND_PLAYER_INFO">
+            <EntityTypeMapping TypeName="MyBattlePongModel.VW_GAME_AND_PLAYER_INFO">
+              <MappingFragment StoreEntitySet="VW_GAME_AND_PLAYER_INFO">
+                <ScalarProperty Name="gameID" ColumnName="gameID" />
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="shotsTurn" ColumnName="shotsTurn" />
+                <ScalarProperty Name="boardSize" ColumnName="boardSize" />
+                <ScalarProperty Name="profileAccess" ColumnName="profileAccess" />
+                <ScalarProperty Name="ships" ColumnName="ships" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_GAME_PLAYER_EXT">
+            <EntityTypeMapping TypeName="MyBattlePongModel.VW_GAME_PLAYER_EXT">
+              <MappingFragment StoreEntitySet="VW_GAME_PLAYER_EXT">
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+                <ScalarProperty Name="gameUserID" ColumnName="gameUserID" />
+                <ScalarProperty Name="lastFeed" ColumnName="lastFeed" />
+                <ScalarProperty Name="availableShots" ColumnName="availableShots" />
+                <ScalarProperty Name="remainingShips" ColumnName="remainingShips" />
+                <ScalarProperty Name="winFeedDelivered" ColumnName="winFeedDelivered" />
+                <ScalarProperty Name="inTurn" ColumnName="inTurn" />
+                <ScalarProperty Name="hitShots" ColumnName="hitShots" />
+                <ScalarProperty Name="missShots" ColumnName="missShots" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="lock" ColumnName="lock" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_GAME_SHIP_CATALOG">
+            <EntityTypeMapping TypeName="MyBattlePongModel.VW_GAME_SHIP_CATALOG">
+              <MappingFragment StoreEntitySet="VW_GAME_SHIP_CATALOG">
+                <ScalarProperty Name="gameID" ColumnName="gameID" />
+                <ScalarProperty Name="shipCount" ColumnName="shipCount" />
+                <ScalarProperty Name="shipID" ColumnName="shipID" />
+                <ScalarProperty Name="shipVersion" ColumnName="shipVersion" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_GAME_SHIP_EXT">
+            <EntityTypeMapping TypeName="MyBattlePongModel.VW_GAME_SHIP_EXT">
+              <MappingFragment StoreEntitySet="VW_GAME_SHIP_EXT">
+                <ScalarProperty Name="gameShipID" ColumnName="gameShipID" />
+                <ScalarProperty Name="shipID" ColumnName="shipID" />
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+                <ScalarProperty Name="integrity" ColumnName="integrity" />
+                <ScalarProperty Name="posX" ColumnName="posX" />
+                <ScalarProperty Name="posY" ColumnName="posY" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_GAME_USER_ABILITY_EXT">
+            <EntityTypeMapping TypeName="MyBattlePongModel.VW_GAME_USER_ABILITY_EXT">
+              <MappingFragment StoreEntitySet="VW_GAME_USER_ABILITY_EXT">
+                <ScalarProperty Name="abilityID" ColumnName="abilityID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_GAME_USER_EXT">
+            <EntityTypeMapping TypeName="MyBattlePongModel.VW_GAME_USER_EXT">
+              <MappingFragment StoreEntitySet="VW_GAME_USER_EXT">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="nickAndPassID" ColumnName="nickAndPassID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="secondName" ColumnName="secondName" />
+                <ScalarProperty Name="countryID" ColumnName="countryID" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="genre" ColumnName="genre" />
+                <ScalarProperty Name="regDate" ColumnName="regDate" />
+                <ScalarProperty Name="wins" ColumnName="wins" />
+                <ScalarProperty Name="defeats" ColumnName="defeats" />
+                <ScalarProperty Name="hits" ColumnName="hits" />
+                <ScalarProperty Name="misses" ColumnName="misses" />
+                <ScalarProperty Name="totalPoints" ColumnName="totalPoints" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="personalDescription" ColumnName="personalDescription" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_LIVE_GAME">
+            <EntityTypeMapping TypeName="MyBattlePongModel.VW_LIVE_GAME">
+              <MappingFragment StoreEntitySet="VW_LIVE_GAME">
+                <ScalarProperty Name="idLiveGame" ColumnName="idLiveGame" />
+                <ScalarProperty Name="modID" ColumnName="modID" />
+                <ScalarProperty Name="gameID" ColumnName="gameID" />
+                <ScalarProperty Name="idTerminal" ColumnName="idTerminal" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_MOD_USER_EXT">
+            <EntityTypeMapping TypeName="MyBattlePongModel.VW_MOD_USER_EXT">
+              <MappingFragment StoreEntitySet="VW_MOD_USER_EXT">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="nickAndPassID" ColumnName="nickAndPassID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="secondName" ColumnName="secondName" />
+                <ScalarProperty Name="countryID" ColumnName="countryID" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="genre" ColumnName="genre" />
+                <ScalarProperty Name="business" ColumnName="business" />
+                <ScalarProperty Name="regDate" ColumnName="regDate" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_PLAYED_GAME_EXT">
+            <EntityTypeMapping TypeName="MyBattlePongModel.VW_PLAYED_GAME_EXT">
+              <MappingFragment StoreEntitySet="VW_PLAYED_GAME_EXT">
+                <ScalarProperty Name="playedGameID" ColumnName="playedGameID" />
+                <ScalarProperty Name="winnerID" ColumnName="winnerID" />
+                <ScalarProperty Name="loserID" ColumnName="loserID" />
+                <ScalarProperty Name="winnerScore" ColumnName="winnerScore" />
+                <ScalarProperty Name="looserScore" ColumnName="looserScore" />
+                <ScalarProperty Name="gameDate" ColumnName="gameDate" />
+                <ScalarProperty Name="winnerNick" ColumnName="winnerNick" />
+                <ScalarProperty Name="loserNick" ColumnName="loserNick" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_SHOT_FEED_EXT">
+            <EntityTypeMapping TypeName="MyBattlePongModel.VW_SHOT_FEED_EXT">
+              <MappingFragment StoreEntitySet="VW_SHOT_FEED_EXT">
+                <ScalarProperty Name="shotFeedID" ColumnName="shotFeedID" />
+                <ScalarProperty Name="againstPlayerID" ColumnName="againstPlayerID" />
+                <ScalarProperty Name="posX" ColumnName="posX" />
+                <ScalarProperty Name="posY" ColumnName="posY" />
+                <ScalarProperty Name="success" ColumnName="success" />
+                <ScalarProperty Name="bomb" ColumnName="bomb" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

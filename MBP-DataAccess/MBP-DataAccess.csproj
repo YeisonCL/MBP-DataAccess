@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0DA7C67B-19C6-473F-B32A-F94BEDA7ECE2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MBP_DataAccess</RootNamespace>
+    <AssemblyName>MBP-DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MBP-Cross">
+      <HintPath>..\..\MBP-Cross\MBP-Cross\bin\Debug\MBP-Cross.dll</HintPath>
+    </Reference>
+    <Reference Include="MBP-Logic">
+      <HintPath>..\..\MBP-Logic\MBP-Logic\bin\Debug\MBP-Logic.dll</HintPath>
+    </Reference>
+    <Reference Include="MBPL-Logic">
+      <HintPath>..\..\MBPL-Logic\MBPL-Logic\bin\Debug\MBPL-Logic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Database\Abilities\AbilityCatalogRepository.cs" />
+    <Compile Include="Database\Abilities\GameAbilityRepository.cs" />
+    <Compile Include="Database\Chat\ChatMessageRepository.cs" />
+    <Compile Include="Database\Device\Terminal.cs" />
+    <Compile Include="Database\GameBoard\GameBoardRepository.cs" />
+    <Compile Include="Database\GamePlayer\GamePlayerRepository.cs" />
+    <Compile Include="Database\Game\GameRepository.cs" />
+    <Compile Include="Database\Roles\GameUserRepository.cs" />
+    <Compile Include="Database\Roles\ModeratorUserRepository.cs" />
+    <Compile Include="Database\Security\AuthenticationRepository.cs" />
+    <Compile Include="Database\Ship\GameShipRepository.cs" />
+    <Compile Include="Database\Ship\ShipCatalogRepository.cs" />
+    <Compile Include="Database\Shot\ShotRepository.cs" />
+    <Compile Include="Database\SystemMessage\SystemMessageRepository.cs" />
+    <Compile Include="EntityData\ABILITY_CATALOG.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\ADMIN_USER.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\BOARD_BOX.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\BOARD_SHIP.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\CHAT_MESSAGE.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\COUNTRY.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\GAME.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\GAME_ABILITY.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\GAME_AND_PLAYER.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\GAME_PLAYER.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\GAME_SHIP.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\GAME_SHIP_CATALOG.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\GAME_USER.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\GAME_USER_ABILITY.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\LIVE_GAME.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\LIVE_TERMINAL.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\MBP_Data_Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MBP_Data_Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\MBP_Data_Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\MBP_Data_Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MBP_Data_Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\MOD_USER.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\ONE_PLUS_ABILITY.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\PLAYED_GAME.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\SHIELD.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\SHIP_CATALOG.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\SHOT_FEED.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\SYSTEM_MESSAGE.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\USER_NICK_PASS.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\USER_PHOTO.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\VW_ADMIN_USER_EXT.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\VW_BOARD_BOX_EXT.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\VW_CHAT_MESSAGE_EXT.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\VW_GAME_ABILITY_EXT.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\VW_GAME_AND_PLAYER_INFO.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\VW_GAME_PLAYER_EXT.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\VW_GAME_SHIP_CATALOG.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\VW_GAME_SHIP_EXT.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\VW_GAME_USER_ABILITY_EXT.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\VW_GAME_USER_EXT.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\VW_LIVE_GAME.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\VW_MOD_USER_EXT.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\VW_PLAYED_GAME_EXT.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\VW_SHOT_FEED_EXT.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XML\GameAbilityDataRepository.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EntityDeploy Include="EntityData\MBP_Data_Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MBP_Data_Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="EntityData\MBP_Data_Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MBP_Data_Model.edmx</DependentUpon>
+      <LastGenOutput>MBP_Data_Model.Context.cs</LastGenOutput>
+    </None>
+    <None Include="EntityData\MBP_Data_Model.edmx.diagram">
+      <DependentUpon>MBP_Data_Model.edmx</DependentUpon>
+    </None>
+    <None Include="EntityData\MBP_Data_Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MBP_Data_Model.edmx</DependentUpon>
+      <LastGenOutput>MBP_Data_Model.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
