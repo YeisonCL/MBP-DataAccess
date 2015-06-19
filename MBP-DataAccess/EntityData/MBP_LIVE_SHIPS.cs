@@ -15,10 +15,10 @@ namespace MBP_DataAccess.EntityData
     public partial class MBP_LIVE_SHIPS
     {
         public int liveShipsID { get; set; }
+        public int playerID { get; set; }
         public int gameShipID { get; set; }
         public int indexShip { get; set; }
         public int gameID { get; set; }
-        public int playerID { get; set; }
     
         public virtual GAME GAME { get; set; }
         public virtual GAME_SHIP GAME_SHIP { get; set; }

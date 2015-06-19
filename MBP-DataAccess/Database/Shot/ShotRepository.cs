@@ -55,7 +55,6 @@ namespace MBP_DataAccess.Database.Shot
                     bomb = pShotFeed.getBomb(),
                     posX = pShotFeed.getPosX(),
                     posY = pShotFeed.getPosY(),
-                    shotFeedID = pShotFeed.getShotFeedID(),
                     success = pShotFeed.getSuccess(),
                     againstPlayerID = pShotFeed.getAgainstPlayerID()
                 };

@@ -28,7 +28,7 @@ namespace MBP_DataAccess.EntityData
         public int points { get; set; }
         public int width { get; set; }
         public int height { get; set; }
-        public byte[] photo { get; set; }
+        public string photo { get; set; }
         public bool active { get; set; }
     
         public virtual ADMIN_USER ADMIN_USER { get; set; }

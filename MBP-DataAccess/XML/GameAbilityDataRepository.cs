@@ -16,7 +16,7 @@ namespace MBP_DataAccess.XML
         /// <returns>Cantidad disponible para uso</returns>
         public int getAvailableCount(int pAbilityCode)
         {
-            return 0;
+            return 5;
         }
     }
 }

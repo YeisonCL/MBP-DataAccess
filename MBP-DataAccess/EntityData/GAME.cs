@@ -18,9 +18,9 @@ namespace MBP_DataAccess.EntityData
         {
             this.CHAT_MESSAGE = new HashSet<CHAT_MESSAGE>();
             this.LIVE_GAME = new HashSet<LIVE_GAME>();
+            this.MBP_LIVE_SHIPS = new HashSet<MBP_LIVE_SHIPS>();
             this.GAME_AND_PLAYER = new HashSet<GAME_AND_PLAYER>();
             this.GAME_SHIP_CATALOG = new HashSet<GAME_SHIP_CATALOG>();
-            this.MBP_LIVE_SHIPS = new HashSet<MBP_LIVE_SHIPS>();
         }
     
         public int gameID { get; set; }
@@ -34,8 +34,8 @@ namespace MBP_DataAccess.EntityData
     
         public virtual ICollection<CHAT_MESSAGE> CHAT_MESSAGE { get; set; }
         public virtual ICollection<LIVE_GAME> LIVE_GAME { get; set; }
+        public virtual ICollection<MBP_LIVE_SHIPS> MBP_LIVE_SHIPS { get; set; }
         public virtual ICollection<GAME_AND_PLAYER> GAME_AND_PLAYER { get; set; }
         public virtual ICollection<GAME_SHIP_CATALOG> GAME_SHIP_CATALOG { get; set; }
-        public virtual ICollection<MBP_LIVE_SHIPS> MBP_LIVE_SHIPS { get; set; }
     }
 }

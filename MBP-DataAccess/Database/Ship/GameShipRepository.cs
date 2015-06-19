@@ -1,6 +1,7 @@
 ﻿using MBP_Cross.DTO.DatabaseDTO;
 using MBP_DataAccess.EntityData;
 using MBP_Logic.Interface.RepositoryInterface.Database;
+using MBPL_Logic.Interface.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MBP_DataAccess.Database.Ship
 {
-    public class GameShipRepository : IGameShipRepository
+    public class GameShipRepository : IGameShipRepository, IMBPLiveShipsRepository
     {
         /// <summary>
         /// Agrega una nueva fila a la tabla GAME_SHIP según los datos dados
@@ -159,6 +160,28 @@ namespace MBP_DataAccess.Database.Ship
         public void addMBPLiveShips(int pPlayerID, int pGameShipID, int pIndexShipID, int pGameID)
         {
             
+        }
+
+        /// <summary>
+        /// Obtiene el valor de la columna gameShipID de la tabla MBP_LIVE_SHIPS para un gameID y un index dado
+        /// </summary>
+        /// <param name="pGameID">ID del juego</param>
+        /// <param name="pIndex">Index de la nave</param>
+        /// <returns>Valor de la columna</returns>
+        public int getGameShipID(int pGameID, int pIndex)
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// Obtiene el valor de la columna playerID de la tabla MBP_LIVE_SHIPS para un gameID y un index dado
+        /// </summary>
+        /// <param name="pGameID">ID del juego</param>
+        /// <param name="pIndex">Index de la nave</param>
+        /// <returns>Valor de la columna</returns>
+        public int getLivePlayerID(int pGameID, int pIndex)
+        {
+            return 0;
         }
     }
 }

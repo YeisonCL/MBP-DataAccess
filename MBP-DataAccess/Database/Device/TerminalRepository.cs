@@ -48,5 +48,15 @@ namespace MBP_DataAccess.Database.Device
         {
             return 0;
         }
+
+        /// <summary>
+        /// Obtiene el valor de la columna gameID de la tabla LIVE_GAME para un terminalID dado
+        /// </summary>
+        /// <param name="pTerminalID">Valor a buscar</param>
+        /// <returns>Valor de la columna</returns>
+        public int getGameIDFromLiveGame(int pTerminalID)
+        {
+            return 0;
+        }
     }
 }

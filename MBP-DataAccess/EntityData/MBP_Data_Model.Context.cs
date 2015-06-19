@@ -41,6 +41,7 @@ namespace MBP_DataAccess.EntityData
         public virtual DbSet<GAME_USER_ABILITY> GAME_USER_ABILITY { get; set; }
         public virtual DbSet<LIVE_GAME> LIVE_GAME { get; set; }
         public virtual DbSet<LIVE_TERMINAL> LIVE_TERMINAL { get; set; }
+        public virtual DbSet<MBP_LIVE_SHIPS> MBP_LIVE_SHIPS { get; set; }
         public virtual DbSet<MOD_USER> MOD_USER { get; set; }
         public virtual DbSet<ONE_PLUS_ABILITY> ONE_PLUS_ABILITY { get; set; }
         public virtual DbSet<PLAYED_GAME> PLAYED_GAME { get; set; }
@@ -64,6 +65,5 @@ namespace MBP_DataAccess.EntityData
         public virtual DbSet<VW_MOD_USER_EXT> VW_MOD_USER_EXT { get; set; }
         public virtual DbSet<VW_PLAYED_GAME_EXT> VW_PLAYED_GAME_EXT { get; set; }
         public virtual DbSet<VW_SHOT_FEED_EXT> VW_SHOT_FEED_EXT { get; set; }
-        public virtual DbSet<MBP_LIVE_SHIPS> MBP_LIVE_SHIPS { get; set; }
     }
 }

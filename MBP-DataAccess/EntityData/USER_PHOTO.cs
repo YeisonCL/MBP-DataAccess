@@ -16,7 +16,7 @@ namespace MBP_DataAccess.EntityData
     {
         public System.Guid uniqueID { get; set; }
         public int userID { get; set; }
-        public byte[] photo { get; set; }
+        public string photo { get; set; }
     
         public virtual GAME_USER GAME_USER { get; set; }
     }
