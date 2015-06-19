@@ -37,7 +37,7 @@ namespace MBP_DataAccess.Database.Roles
         /// <returns>Devuelve una lista ORDENADA de menor a mayor con todos los abilityID extraidos del jugador</returns>
         public IList<int> getGameUserAbilities(int pGameUserID)
         {
-            IList<int> gameuserabilityList = null;
+            IList<int> gameuserabilityList = new List<int>();
             using (var db = new MBP_Data_Entities())
             {
                 var query = from b in db.VW_GAME_USER_ABILITY_EXT

@@ -202,5 +202,18 @@ namespace MBP_DataAccess.Database.Ship
         {
             
         }
+
+        /// <summary>
+        /// Devuelve una lista con todas las gameShip que hay en la tabla GAME_SHIP para un pNickname dado
+        /// </summary>
+        /// <remarks>
+        /// Sugerencia: Use la vista "VW_GAME_SHIP_EXT" 
+        /// </remarks>
+        /// <param name="pNickname">pNickname a buscar</param>
+        /// <returns>Lista con las naves</returns>
+        public IList<GameShipDTO> getGameShips(string pNickname)
+        {
+            return null;
+        }
     }
 }

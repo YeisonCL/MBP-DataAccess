@@ -267,7 +267,7 @@
           </Key>
           <Property Name="messageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="codeMessage" Type="int" Nullable="false" />
-          <Property Name="textMessage" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="textMessage" Type="varchar" MaxLength="70" Nullable="false" />
         </EntityType>
         <EntityType Name="USER_NICK_PASS">
           <Key>
@@ -1691,7 +1691,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           </Key>
           <Property Name="messageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="codeMessage" Type="Int32" Nullable="false" />
-          <Property Name="textMessage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="textMessage" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="USER_NICK_PASS">
           <Key>

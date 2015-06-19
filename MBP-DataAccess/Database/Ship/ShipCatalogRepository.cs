@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MBP_DataAccess.Database.Ship
 {
@@ -19,7 +20,7 @@ namespace MBP_DataAccess.Database.Ship
         /// <returns>Devuelve un objeto que contiene el catálogo de naves</returns>
         public IList<ShipDTO> getAllShipCatalog()
         {
-            IList<ShipDTO> Ship_catalog = null;
+            IList<ShipDTO> Ship_catalog = new List<ShipDTO>();
             using (var db = new MBP_Data_Entities())
             {
                 var query = from b in db.SHIP_CATALOG
@@ -31,8 +32,8 @@ namespace MBP_DataAccess.Database.Ship
                     shipDto_temp.setHeight(item.height);
                     shipDto_temp.setName(item.name);
                     shipDto_temp.setPoints(item.points);
-                    shipDto_temp.setVersion((int)item.shipVersion);
-                    shipDto_temp.setPhoto(item.photo.ToString());
+                    shipDto_temp.setVersion(Convert.ToInt32(item.shipVersion));
+                    shipDto_temp.setPhoto(item.photo);
                     Ship_catalog.Add(shipDto_temp);
                 }
             }

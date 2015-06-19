@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MBP_DataAccess.Database.Security
 {
@@ -28,15 +29,15 @@ namespace MBP_DataAccess.Database.Security
             using (var db = new MBP_Data_Entities())
             {
                 var query = from b in db.USER_NICK_PASS
-                            where b.nickname.Equals(pNickname) & b.password.Equals(pPassword)
+                            where b.nickname.Equals(pNickname) && b.password.Equals(pPassword)
                             select b;
-
-                foreach (var item in query)
+                if (query.FirstOrDefault() == null)
                 {
-                    if (item != null)
-                    {
-                        checkuser = new Tuple<bool, string>(true, item.type);
-                    }
+                    checkuser = new Tuple<bool, string>(false, "NONE");
+                }
+                else
+                {
+                    checkuser = new Tuple<bool, string>(true, query.FirstOrDefault().type);
                 }
             }
             return checkuser;

@@ -22,7 +22,7 @@ namespace MBP_DataAccess.Database.Shot
         /// <returns>Una lista con todos los shots encontrador en la tabla</returns>
         public IList<ShotFeedDTO> getShotFeed(string pNickname)
         {
-            IList<ShotFeedDTO> shotfeedList = null;
+            IList<ShotFeedDTO> shotfeedList = new List<ShotFeedDTO>();
             using (var db = new MBP_Data_Entities())
             {
                 var query = from b in db.VW_SHOT_FEED_EXT

@@ -438,5 +438,15 @@ namespace MBP_DataAccess.Database.Game
                 db.SaveChanges();
             }
         }
+
+        /// <summary>
+        /// Devuelve el valor de la columna profileAccess de la tabla GAME dado un pGameID
+        /// </summary>
+        /// <param name="pGameID">pGameID a extraer el profileAccess</param>
+        /// <returns>Valor de la columna</returns>
+        public bool getProfileAccess(int pGameID)
+        {
+            return false; 
+        }
     }
 }

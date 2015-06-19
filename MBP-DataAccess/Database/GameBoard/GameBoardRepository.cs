@@ -139,7 +139,7 @@ namespace MBP_DataAccess.Database.GameBoard
         /// <returns>Una lista con todos los shotFeedDTO co sus respectivas variables pPosX y pPoxY seteadas UNICAMENTE</returns>
         public IList<ShipPositionDTO> extractAllShipPosition(int pGameShipID, int pPlayerID)
         {
-            IList<ShipPositionDTO> allshiPosition = null;
+            IList<ShipPositionDTO> allshiPosition = new List<ShipPositionDTO>();
             using (var db = new MBP_Data_Entities())
             {
                 var query = from b in db.BOARD_SHIP
@@ -187,7 +187,7 @@ namespace MBP_DataAccess.Database.GameBoard
         /// <returns>Lista de enteros</returns>
         public IList<int> getAllGameShipID(int pPlayerID)
         {
-            IList<int> allgameshipID = null;
+            IList<int> allgameshipID = new List<int>();
             using (var db = new MBP_Data_Entities())
             {
                 var query = from b in db.BOARD_SHIP

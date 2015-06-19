@@ -21,7 +21,7 @@ namespace MBP_DataAccess.Database.Chat
         /// <returns>Una lista con todos los mensajes asociados ordenados de primero en ser insertado a ultimo</returns>
         public IList<string> getChatMessages(string pNickname)
         {
-            IList<string> chatList = null;
+            IList<string> chatList = new List<string>();
             using (var db = new MBP_Data_Entities())
             {
                 var query = from b in db.VW_CHAT_MESSAGE_EXT

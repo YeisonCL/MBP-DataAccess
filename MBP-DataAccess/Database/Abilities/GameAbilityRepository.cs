@@ -40,7 +40,7 @@ namespace MBP_DataAccess.Database.Abilities
         /// <returns>Lista con los feed de las habilidades</returns>
         public IList<GameAbilityFeedDTO> getGameAbilityFeed(string pNickname)
         {
-            IList<GameAbilityFeedDTO> gameAbility_List = null;
+            IList<GameAbilityFeedDTO> gameAbility_List = new List<GameAbilityFeedDTO>();
             using (var db = new MBP_Data_Entities())
             {
                 var query = from b in db.GAME_ABILITY
