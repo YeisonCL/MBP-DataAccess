@@ -148,5 +148,17 @@ namespace MBP_DataAccess.Database.Ship
                 db.SaveChanges();
             }
         }
+
+        /// <summary>
+        /// Agrega una nueva fila a la tabla MBP_LIVE_SHIPS con los datos dados
+        /// </summary>
+        /// <param name="pPlayerID">Jugador</param>
+        /// <param name="pGameShipID">ID a la nave</param>
+        /// <param name="pIndexShipID">pIndex del vaso</param>
+        /// <param name="pGameID">ID del juego</param>
+        public void addMBPLiveShips(int pPlayerID, int pGameShipID, int pIndexShipID, int pGameID)
+        {
+            
+        }
     }
 }
