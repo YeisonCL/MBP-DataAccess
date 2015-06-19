@@ -96,7 +96,19 @@ namespace MBP_DataAccess.Database.Device
         /// <returns>Valor de la columna</returns>
         public int getGameIDFromLiveGame(int pTerminalID)
         {
-            return 0;
+            int gameid = -1;
+            using (var db = new MBP_Data_Entities())
+            {
+                var query = from b in db.LIVE_GAME
+                            where b.idTerminal.Equals(pTerminalID)
+                            select b;
+
+                foreach (var item in query)
+                {
+                    gameid = item.gameID;
+                }
+            }
+            return gameid;
         }
     }
 }

@@ -146,7 +146,18 @@ namespace MBP_DataAccess.Database.Ship
         /// <returns>Valor de la columna</returns>
         public string getPhoto(int pShipID)
         {
-            return "";
+            string photo = "";
+            using (var db = new MBP_Data_Entities())
+            {
+                var query = from b in db.SHIP_CATALOG
+                            where b.shipID.Equals(pShipID)
+                            select b;
+                foreach (var item in query)
+                {
+                    photo = item.photo;
+                }
+            }
+            return photo;
         }
     }
 }

@@ -159,7 +159,18 @@ namespace MBP_DataAccess.Database.Ship
         /// <param name="pGameID">ID del juego</param>
         public void addMBPLiveShips(int pPlayerID, int pGameShipID, int pIndexShipID, int pGameID)
         {
-            
+            using (var db = new MBP_Data_Entities())
+            {
+                MBP_LIVE_SHIPS mbpLiveShips = new MBP_LIVE_SHIPS()
+                {
+                    playerID = pPlayerID,
+                    gameID = pGameID,
+                    gameShipID = pGameShipID,
+                    indexShip = pIndexShipID
+                };
+                db.MBP_LIVE_SHIPS.Add(mbpLiveShips);
+                db.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -170,7 +181,16 @@ namespace MBP_DataAccess.Database.Ship
         /// <returns>Valor de la columna</returns>
         public int getGameShipID(int pGameID, int pIndex)
         {
-            return 0;
+            int gameshipid = -1;
+            using (var db = new MBP_Data_Entities())
+            {
+                var query =
+                    db.MBP_LIVE_SHIPS.Where(b => b.gameID.Equals(pGameID) && b.indexShip.Equals(pIndex))
+                        .Select(b => b.gameShipID)
+                        .FirstOrDefault();
+                gameshipid = query;
+            }
+            return gameshipid;
         }
 
         /// <summary>
@@ -181,7 +201,16 @@ namespace MBP_DataAccess.Database.Ship
         /// <returns>Valor de la columna</returns>
         public int getLivePlayerID(int pGameID, int pIndex)
         {
-            return 0;
+            int playerid = -1;
+            using (var db = new MBP_Data_Entities())
+            {
+                var query =
+                    db.MBP_LIVE_SHIPS.Where(b => b.gameID.Equals(pGameID) && b.indexShip.Equals(pIndex))
+                        .Select(b => b.playerID)
+                        .FirstOrDefault();
+                playerid = query;
+            }
+            return playerid;
         }
 
         /// <summary>
@@ -191,7 +220,14 @@ namespace MBP_DataAccess.Database.Ship
         /// <param name="pIndex">Index de juego a borrar</param>
         public void deleteLiveShip(int pGameID, int pIndex)
         {
-            
+            using (var db = new MBP_Data_Entities())
+            {
+                var query = from b in db.MBP_LIVE_SHIPS
+                            where b.gameID.Equals(pGameID) && b.indexShip.Equals(pIndex)
+                            select b;
+                db.MBP_LIVE_SHIPS.Remove(query.FirstOrDefault());
+                db.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -200,7 +236,18 @@ namespace MBP_DataAccess.Database.Ship
         /// <param name="pGameID">pGameID a borrar</param>
         public void deleteAllLiveShips(int pGameID)
         {
-            
+            using (var db = new MBP_Data_Entities())
+            {
+                var query = from b in db.MBP_LIVE_SHIPS
+                            where b.gameID.Equals(pGameID)
+                            select b;
+
+                foreach (var item in query)
+                {
+                    db.MBP_LIVE_SHIPS.Remove(item);
+                    db.SaveChanges();
+                }
+            }
         }
 
         /// <summary>

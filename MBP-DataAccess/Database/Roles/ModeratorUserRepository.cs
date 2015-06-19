@@ -1,4 +1,5 @@
-﻿using MBP_Logic.Interface.RepositoryInterface.Database;
+﻿using MBP_DataAccess.EntityData;
+using MBP_Logic.Interface.RepositoryInterface.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,19 @@ namespace MBP_DataAccess.Database.Roles
         /// <returns>Valor de la columna</returns>
         public int getModUserID(string pNickname)
         {
-            return 0;
+            int userid = 0;
+            using (var db = new MBP_Data_Entities())
+            {
+                var query = from b in db.VW_MOD_USER_EXT
+                            where b.nickname.Equals(pNickname)
+                            select b;
+
+                foreach (var item in query)
+                {
+                    userid = item.userID;
+                }
+            }
+            return userid;
         }
     }
 }

@@ -209,9 +209,6 @@
     <Compile Include="XML\GameAbilityDataRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
     <EntityDeploy Include="EntityData\MBP_Data_Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
