@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MyBattlePongModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MyBattlePongModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ABILITY_CATALOG">
           <Key>
             <PropertyRef Name="abilityID" />
@@ -259,6 +259,7 @@
           <Property Name="posY" Type="int" Nullable="false" />
           <Property Name="success" Type="bit" Nullable="false" />
           <Property Name="bomb" Type="bit" Nullable="false" />
+          <Property Name="destroyedShield" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SYSTEM_MESSAGE">
           <Key>
@@ -577,6 +578,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             <PropertyRef Name="posY" />
             <PropertyRef Name="success" />
             <PropertyRef Name="bomb" />
+            <PropertyRef Name="destroyedShield" />
             <PropertyRef Name="nickname" />
           </Key>
           <Property Name="shotFeedID" Type="int" Nullable="false" />
@@ -585,6 +587,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="posY" Type="int" Nullable="false" />
           <Property Name="success" Type="bit" Nullable="false" />
           <Property Name="bomb" Type="bit" Nullable="false" />
+          <Property Name="destroyedShield" Type="bit" Nullable="false" />
           <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <Association Name="ABLT_ID_ABILITY_CATALOG_FK">
@@ -1211,6 +1214,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
     [VW_SHOT_FEED_EXT].[posY] AS [posY], 
     [VW_SHOT_FEED_EXT].[success] AS [success], 
     [VW_SHOT_FEED_EXT].[bomb] AS [bomb], 
+    [VW_SHOT_FEED_EXT].[destroyedShield] AS [destroyedShield], 
     [VW_SHOT_FEED_EXT].[nickname] AS [nickname]
     FROM [dbo].[VW_SHOT_FEED_EXT] AS [VW_SHOT_FEED_EXT]</DefiningQuery>
           </EntitySet>
@@ -1355,8 +1359,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             <End Role="PLAYED_GAME" EntitySet="PLAYED_GAME" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyBattlePongModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1680,6 +1683,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="success" Type="Boolean" Nullable="false" />
           <Property Name="bomb" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="GAME_PLAYER" Relationship="Self.AGAINST_ID_SHOT_FEED_FK" FromRole="SHOT_FEED" ToRole="GAME_PLAYER" />
+          <Property Name="destroyedShield" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="SYSTEM_MESSAGE">
           <Key>
@@ -1975,6 +1979,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             <PropertyRef Name="success" />
             <PropertyRef Name="bomb" />
             <PropertyRef Name="nickname" />
+            <PropertyRef Name="destroyedShield" />
           </Key>
           <Property Name="shotFeedID" Type="Int32" Nullable="false" />
           <Property Name="againstPlayerID" Type="Int32" Nullable="false" />
@@ -1983,6 +1988,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="success" Type="Boolean" Nullable="false" />
           <Property Name="bomb" Type="Boolean" Nullable="false" />
           <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="destroyedShield" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="ABLT_ID_ABILITY_CATALOG_FK">
           <End Role="ABILITY_CATALOG" Type="Self.ABILITY_CATALOG" Multiplicity="1" />
@@ -2864,6 +2870,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <EntitySetMapping Name="SHOT_FEED">
             <EntityTypeMapping TypeName="MyBattlePongModel.SHOT_FEED">
               <MappingFragment StoreEntitySet="SHOT_FEED">
+                <ScalarProperty Name="destroyedShield" ColumnName="destroyedShield" />
                 <ScalarProperty Name="shotFeedID" ColumnName="shotFeedID" />
                 <ScalarProperty Name="againstPlayerID" ColumnName="againstPlayerID" />
                 <ScalarProperty Name="posX" ColumnName="posX" />
@@ -3091,6 +3098,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <EntitySetMapping Name="VW_SHOT_FEED_EXT">
             <EntityTypeMapping TypeName="MyBattlePongModel.VW_SHOT_FEED_EXT">
               <MappingFragment StoreEntitySet="VW_SHOT_FEED_EXT">
+                <ScalarProperty Name="destroyedShield" ColumnName="destroyedShield" />
                 <ScalarProperty Name="shotFeedID" ColumnName="shotFeedID" />
                 <ScalarProperty Name="againstPlayerID" ColumnName="againstPlayerID" />
                 <ScalarProperty Name="posX" ColumnName="posX" />
