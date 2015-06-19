@@ -18,6 +18,7 @@ namespace MBP_DataAccess.EntityData
         public int gameShipID { get; set; }
         public int indexShip { get; set; }
         public int gameID { get; set; }
+        public int playerID { get; set; }
     
         public virtual GAME GAME { get; set; }
         public virtual GAME_SHIP GAME_SHIP { get; set; }

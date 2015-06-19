@@ -184,6 +184,7 @@
             <PropertyRef Name="liveShipsID" />
           </Key>
           <Property Name="liveShipsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="playerID" Type="int" Nullable="false" />
           <Property Name="gameShipID" Type="int" Nullable="false" />
           <Property Name="indexShip" Type="int" Nullable="false" />
           <Property Name="gameID" Type="int" Nullable="false" />
@@ -2566,6 +2567,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="gameID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="GAME" Relationship="MyBattlePongModel.GAME_ID_LIVE_GAME_FK" FromRole="MBP_LIVE_SHIPS" ToRole="GAME" />
           <NavigationProperty Name="GAME_SHIP" Relationship="MyBattlePongModel.GAME_SHP_ID_GAME_SHIP_FK" FromRole="MBP_LIVE_SHIPS" ToRole="GAME_SHIP" />
+          <Property Name="playerID" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="GAME_ID_LIVE_GAME_FK">
           <End Type="MyBattlePongModel.GAME" Role="GAME" Multiplicity="1" />
@@ -3090,6 +3092,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <EntitySetMapping Name="MBP_LIVE_SHIPS">
             <EntityTypeMapping TypeName="MyBattlePongModel.MBP_LIVE_SHIPS">
               <MappingFragment StoreEntitySet="MBP_LIVE_SHIPS">
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
                 <ScalarProperty Name="gameID" ColumnName="gameID" />
                 <ScalarProperty Name="indexShip" ColumnName="indexShip" />
                 <ScalarProperty Name="gameShipID" ColumnName="gameShipID" />
