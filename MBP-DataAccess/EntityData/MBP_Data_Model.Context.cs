@@ -64,5 +64,6 @@ namespace MBP_DataAccess.EntityData
         public virtual DbSet<VW_MOD_USER_EXT> VW_MOD_USER_EXT { get; set; }
         public virtual DbSet<VW_PLAYED_GAME_EXT> VW_PLAYED_GAME_EXT { get; set; }
         public virtual DbSet<VW_SHOT_FEED_EXT> VW_SHOT_FEED_EXT { get; set; }
+        public virtual DbSet<MBP_LIVE_SHIPS> MBP_LIVE_SHIPS { get; set; }
     }
 }

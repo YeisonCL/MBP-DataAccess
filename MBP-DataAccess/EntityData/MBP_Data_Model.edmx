@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MyBattlePongModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MyBattlePongModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ABILITY_CATALOG">
           <Key>
             <PropertyRef Name="abilityID" />
@@ -178,6 +178,15 @@
           </Key>
           <Property Name="idTerminal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="keyTerminal" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MBP_LIVE_SHIPS">
+          <Key>
+            <PropertyRef Name="liveShipsID" />
+          </Key>
+          <Property Name="liveShipsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gameShipID" Type="int" Nullable="false" />
+          <Property Name="indexShip" Type="int" Nullable="false" />
+          <Property Name="gameID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MOD_USER">
           <Key>
@@ -709,6 +718,30 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="GAME_ID_LIVE_GAME_FK">
+          <End Role="GAME" Type="Self.GAME" Multiplicity="1" />
+          <End Role="MBP_LIVE_SHIPS" Type="Self.MBP_LIVE_SHIPS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME">
+              <PropertyRef Name="gameID" />
+            </Principal>
+            <Dependent Role="MBP_LIVE_SHIPS">
+              <PropertyRef Name="gameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GAME_SHP_ID_GAME_SHIP_FK">
+          <End Role="GAME_SHIP" Type="Self.GAME_SHIP" Multiplicity="1" />
+          <End Role="MBP_LIVE_SHIPS" Type="Self.MBP_LIVE_SHIPS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_SHIP">
+              <PropertyRef Name="gameShipID" />
+            </Principal>
+            <Dependent Role="MBP_LIVE_SHIPS">
+              <PropertyRef Name="gameShipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="GM_ID_GAME_FK">
           <End Role="GAME" Type="Self.GAME" Multiplicity="0..1" />
           <End Role="GAME_AND_PLAYER" Type="Self.GAME_AND_PLAYER" Multiplicity="*" />
@@ -998,6 +1031,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <EntitySet Name="GAME_USER_ABILITY" EntityType="Self.GAME_USER_ABILITY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LIVE_GAME" EntityType="Self.LIVE_GAME" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LIVE_TERMINAL" EntityType="Self.LIVE_TERMINAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MBP_LIVE_SHIPS" EntityType="Self.MBP_LIVE_SHIPS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MOD_USER" EntityType="Self.MOD_USER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ONE_PLUS_ABILITY" EntityType="Self.ONE_PLUS_ABILITY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PLAYED_GAME" EntityType="Self.PLAYED_GAME" Schema="dbo" store:Type="Tables" />
@@ -1223,6 +1257,14 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             <End Role="GAME" EntitySet="GAME" />
             <End Role="LIVE_GAME" EntitySet="LIVE_GAME" />
           </AssociationSet>
+          <AssociationSet Name="GAME_ID_LIVE_GAME_FK" Association="Self.GAME_ID_LIVE_GAME_FK">
+            <End Role="GAME" EntitySet="GAME" />
+            <End Role="MBP_LIVE_SHIPS" EntitySet="MBP_LIVE_SHIPS" />
+          </AssociationSet>
+          <AssociationSet Name="GAME_SHP_ID_GAME_SHIP_FK" Association="Self.GAME_SHP_ID_GAME_SHIP_FK">
+            <End Role="GAME_SHIP" EntitySet="GAME_SHIP" />
+            <End Role="MBP_LIVE_SHIPS" EntitySet="MBP_LIVE_SHIPS" />
+          </AssociationSet>
           <AssociationSet Name="GM_ID_GAME_FK" Association="Self.GM_ID_GAME_FK">
             <End Role="GAME" EntitySet="GAME" />
             <End Role="GAME_AND_PLAYER" EntitySet="GAME_AND_PLAYER" />
@@ -1312,8 +1354,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             <End Role="PLAYED_GAME" EntitySet="PLAYED_GAME" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyBattlePongModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1409,6 +1450,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <NavigationProperty Name="LIVE_GAME" Relationship="Self.GAME_ID_GAME_FK" FromRole="GAME" ToRole="LIVE_GAME" />
           <NavigationProperty Name="GAME_AND_PLAYER" Relationship="Self.GM_ID_GAME_FK" FromRole="GAME" ToRole="GAME_AND_PLAYER" />
           <NavigationProperty Name="GAME_SHIP_CATALOG" Relationship="Self.GMSC_ID_GAME_FK" FromRole="GAME" ToRole="GAME_SHIP_CATALOG" />
+          <NavigationProperty Name="MBP_LIVE_SHIPS" Relationship="MyBattlePongModel.GAME_ID_LIVE_GAME_FK" FromRole="GAME" ToRole="MBP_LIVE_SHIPS" />
         </EntityType>
         <EntityType Name="GAME_ABILITY">
           <Key>
@@ -1471,6 +1513,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <NavigationProperty Name="GAME_PLAYER" Relationship="Self.PLY_ID_BOARD_SHIP_FK" FromRole="GAME_SHIP" ToRole="GAME_PLAYER" />
           <NavigationProperty Name="SHIELD" Relationship="Self.SHLD_GAME_SHIP_FK" FromRole="GAME_SHIP" ToRole="SHIELD" />
           <NavigationProperty Name="SHIP_CATALOG" Relationship="Self.SHP_ID_SHIP_CATALOG_FK" FromRole="GAME_SHIP" ToRole="SHIP_CATALOG" />
+          <NavigationProperty Name="MBP_LIVE_SHIPS" Relationship="MyBattlePongModel.GAME_SHP_ID_GAME_SHIP_FK" FromRole="GAME_SHIP" ToRole="MBP_LIVE_SHIPS" />
         </EntityType>
         <EntityType Name="GAME_SHIP_CATALOG">
           <Key>
@@ -2503,7 +2546,51 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             <End Role="USER_NICK_PASS" EntitySet="USER_NICK_PASS" />
             <End Role="MOD_USER" EntitySet="MOD_USER" />
           </AssociationSet>
+          <EntitySet Name="MBP_LIVE_SHIPS" EntityType="MyBattlePongModel.MBP_LIVE_SHIPS" />
+          <AssociationSet Name="GAME_ID_LIVE_GAME_FK" Association="MyBattlePongModel.GAME_ID_LIVE_GAME_FK">
+            <End Role="GAME" EntitySet="GAME" />
+            <End Role="MBP_LIVE_SHIPS" EntitySet="MBP_LIVE_SHIPS" />
+          </AssociationSet>
+          <AssociationSet Name="GAME_SHP_ID_GAME_SHIP_FK" Association="MyBattlePongModel.GAME_SHP_ID_GAME_SHIP_FK">
+            <End Role="GAME_SHIP" EntitySet="GAME_SHIP" />
+            <End Role="MBP_LIVE_SHIPS" EntitySet="MBP_LIVE_SHIPS" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="MBP_LIVE_SHIPS">
+          <Key>
+            <PropertyRef Name="liveShipsID" />
+          </Key>
+          <Property Name="liveShipsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gameShipID" Type="Int32" Nullable="false" />
+          <Property Name="indexShip" Type="Int32" Nullable="false" />
+          <Property Name="gameID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GAME" Relationship="MyBattlePongModel.GAME_ID_LIVE_GAME_FK" FromRole="MBP_LIVE_SHIPS" ToRole="GAME" />
+          <NavigationProperty Name="GAME_SHIP" Relationship="MyBattlePongModel.GAME_SHP_ID_GAME_SHIP_FK" FromRole="MBP_LIVE_SHIPS" ToRole="GAME_SHIP" />
+        </EntityType>
+        <Association Name="GAME_ID_LIVE_GAME_FK">
+          <End Type="MyBattlePongModel.GAME" Role="GAME" Multiplicity="1" />
+          <End Type="MyBattlePongModel.MBP_LIVE_SHIPS" Role="MBP_LIVE_SHIPS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME">
+              <PropertyRef Name="gameID" />
+            </Principal>
+            <Dependent Role="MBP_LIVE_SHIPS">
+              <PropertyRef Name="gameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GAME_SHP_ID_GAME_SHIP_FK">
+          <End Type="MyBattlePongModel.GAME_SHIP" Role="GAME_SHIP" Multiplicity="1" />
+          <End Type="MyBattlePongModel.MBP_LIVE_SHIPS" Role="MBP_LIVE_SHIPS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GAME_SHIP">
+              <PropertyRef Name="gameShipID" />
+            </Principal>
+            <Dependent Role="MBP_LIVE_SHIPS">
+              <PropertyRef Name="gameShipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2997,6 +3084,16 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
                 <ScalarProperty Name="success" ColumnName="success" />
                 <ScalarProperty Name="bomb" ColumnName="bomb" />
                 <ScalarProperty Name="nickname" ColumnName="nickname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MBP_LIVE_SHIPS">
+            <EntityTypeMapping TypeName="MyBattlePongModel.MBP_LIVE_SHIPS">
+              <MappingFragment StoreEntitySet="MBP_LIVE_SHIPS">
+                <ScalarProperty Name="gameID" ColumnName="gameID" />
+                <ScalarProperty Name="indexShip" ColumnName="indexShip" />
+                <ScalarProperty Name="gameShipID" ColumnName="gameShipID" />
+                <ScalarProperty Name="liveShipsID" ColumnName="liveShipsID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

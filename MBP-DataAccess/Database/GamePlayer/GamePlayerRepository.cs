@@ -436,7 +436,7 @@ namespace MBP_DataAccess.Database.GamePlayer
         /// </remarks>
         /// <param name="pNickname">Valor para el cual se exttraera lo explicado arriba</param>
         /// <returns>Valor de la columna</returns>
-        public bool getWindFeedDelivered(string pNickname)
+        public bool getWindFeedDelivered(int pPlayerID)
         {
             return false;
         }

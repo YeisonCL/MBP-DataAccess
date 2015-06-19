@@ -61,7 +61,7 @@
     <Compile Include="Database\Abilities\AbilityCatalogRepository.cs" />
     <Compile Include="Database\Abilities\GameAbilityRepository.cs" />
     <Compile Include="Database\Chat\ChatMessageRepository.cs" />
-    <Compile Include="Database\Device\Terminal.cs" />
+    <Compile Include="Database\Device\TerminalRepository.cs" />
     <Compile Include="Database\GameBoard\GameBoardRepository.cs" />
     <Compile Include="Database\GamePlayer\GamePlayerRepository.cs" />
     <Compile Include="Database\Game\GameRepository.cs" />
@@ -134,6 +134,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MBP_Data_Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EntityData\MBP_LIVE_SHIPS.cs">
+      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityData\MOD_USER.cs">
       <DependentUpon>MBP_Data_Model.tt</DependentUpon>

@@ -77,6 +77,9 @@
         <AssociationConnector Association="MyBattlePongModel.MOD_ID_MOD_USER_FK" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.TERM_ID_LIVE_TERMINAL_FK" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.MOD_USERS_ID_USERS_FK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MyBattlePongModel.MBP_LIVE_SHIPS" Width="1.5" PointX="14.5" PointY="16.5" />
+        <AssociationConnector Association="MyBattlePongModel.GAME_ID_LIVE_GAME_FK" />
+        <AssociationConnector Association="MyBattlePongModel.GAME_SHP_ID_GAME_SHIP_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

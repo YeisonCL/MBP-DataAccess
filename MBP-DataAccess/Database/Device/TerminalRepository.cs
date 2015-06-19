@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MBP_DataAccess.Database.Device
 {
-    public class Terminal : ILiveTerminal
+    public class TerminalRepository : ILiveTerminal, ILiveGame
     {
         /// <summary>
         /// Agrea una nueva fila a la tabla LIVE_TERMINAL con los datos dados
@@ -26,6 +26,27 @@ namespace MBP_DataAccess.Database.Device
         public bool getTerminalKey(string pKey)
         {
             return false;
+        }
+
+        /// <summary>
+        /// Agrega una nueva fila a la tabla LIVE_GAME con los datos dados
+        /// </summary>
+        /// <param name="pModeratorID">ID del moderador</param>
+        /// <param name="pGameID">ID del juego</param>
+        /// <param name="pTerminalID">ID del terminal</param>
+        public void addLiveGame(int pModeratorID, int pGameID, int pTerminalID)
+        {
+            
+        }
+
+        /// <summary>
+        /// Devuelve el valor de la columna idTerminal de la tabla LIVE_TERMINAL para un pkey dado
+        /// </summary>
+        /// <param name="pKey">pKey a buscar</param>
+        /// <returns>Valor de la columna</returns>
+        public int getTerminalKeyID(string pKey)
+        {
+            return 0;
         }
     }
 }
