@@ -88,9 +88,6 @@
     <Compile Include="EntityData\CHAT_MESSAGE.cs">
       <DependentUpon>MBP_Data_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityData\COUNTRY.cs">
-      <DependentUpon>MBP_Data_Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="EntityData\GAME.cs">
       <DependentUpon>MBP_Data_Model.tt</DependentUpon>
     </Compile>

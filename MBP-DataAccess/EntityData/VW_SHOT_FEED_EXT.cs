@@ -20,7 +20,7 @@ namespace MBP_DataAccess.EntityData
         public int posY { get; set; }
         public bool success { get; set; }
         public bool bomb { get; set; }
-        public string nickname { get; set; }
         public bool destroyedShield { get; set; }
+        public string nickname { get; set; }
     }
 }

@@ -30,7 +30,6 @@ namespace MBP_DataAccess.EntityData
         public virtual DbSet<BOARD_BOX> BOARD_BOX { get; set; }
         public virtual DbSet<BOARD_SHIP> BOARD_SHIP { get; set; }
         public virtual DbSet<CHAT_MESSAGE> CHAT_MESSAGE { get; set; }
-        public virtual DbSet<COUNTRY> COUNTRY { get; set; }
         public virtual DbSet<GAME> GAME { get; set; }
         public virtual DbSet<GAME_ABILITY> GAME_ABILITY { get; set; }
         public virtual DbSet<GAME_AND_PLAYER> GAME_AND_PLAYER { get; set; }

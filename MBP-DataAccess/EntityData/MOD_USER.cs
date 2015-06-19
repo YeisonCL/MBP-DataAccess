@@ -23,7 +23,7 @@ namespace MBP_DataAccess.EntityData
         public int nickAndPassID { get; set; }
         public string name { get; set; }
         public string secondName { get; set; }
-        public int countryID { get; set; }
+        public string country { get; set; }
         public string email { get; set; }
         public bool genre { get; set; }
         public string business { get; set; }
@@ -31,7 +31,6 @@ namespace MBP_DataAccess.EntityData
         public Nullable<System.DateTime> birthdate { get; set; }
         public Nullable<int> photo { get; set; }
     
-        public virtual COUNTRY COUNTRY { get; set; }
         public virtual ICollection<LIVE_GAME> LIVE_GAME { get; set; }
         public virtual USER_NICK_PASS USER_NICK_PASS { get; set; }
     }

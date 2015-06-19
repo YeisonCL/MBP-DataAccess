@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MyBattlePongModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MyBattlePongModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ABILITY_CATALOG">
           <Key>
             <PropertyRef Name="abilityID" />
@@ -59,13 +59,6 @@
           <Property Name="gameID" Type="int" />
           <Property Name="playerID" Type="int" />
           <Property Name="message" Type="varchar" MaxLength="500" Nullable="false" />
-        </EntityType>
-        <EntityType Name="COUNTRY">
-          <Key>
-            <PropertyRef Name="countryID" />
-          </Key>
-          <Property Name="countryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="countryName" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="GAME">
           <Key>
@@ -142,7 +135,7 @@
           <Property Name="nickAndPassID" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="secondName" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="countryID" Type="int" Nullable="false" />
+          <Property Name="country" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="genre" Type="bit" Nullable="false" />
           <Property Name="regDate" Type="datetime" Nullable="false" />
@@ -197,7 +190,7 @@
           <Property Name="nickAndPassID" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="secondName" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="countryID" Type="int" Nullable="false" />
+          <Property Name="country" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="genre" Type="bit" Nullable="false" />
           <Property Name="business" Type="varchar" MaxLength="30" Nullable="false" />
@@ -471,7 +464,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_GAME_USER_EXT' no tiene 
             <PropertyRef Name="nickAndPassID" />
             <PropertyRef Name="name" />
             <PropertyRef Name="secondName" />
-            <PropertyRef Name="countryID" />
+            <PropertyRef Name="country" />
             <PropertyRef Name="email" />
             <PropertyRef Name="genre" />
             <PropertyRef Name="regDate" />
@@ -488,7 +481,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_GAME_USER_EXT' no tiene 
           <Property Name="nickAndPassID" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="secondName" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="countryID" Type="int" Nullable="false" />
+          <Property Name="country" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="genre" Type="bit" Nullable="false" />
           <Property Name="regDate" Type="datetime" Nullable="false" />
@@ -526,7 +519,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_MOD_USER_EXT' no tiene d
             <PropertyRef Name="nickAndPassID" />
             <PropertyRef Name="name" />
             <PropertyRef Name="secondName" />
-            <PropertyRef Name="countryID" />
+            <PropertyRef Name="country" />
             <PropertyRef Name="email" />
             <PropertyRef Name="genre" />
             <PropertyRef Name="business" />
@@ -537,7 +530,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_MOD_USER_EXT' no tiene d
           <Property Name="nickAndPassID" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="secondName" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="countryID" Type="int" Nullable="false" />
+          <Property Name="country" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="genre" Type="bit" Nullable="false" />
           <Property Name="business" Type="varchar" MaxLength="30" Nullable="false" />
@@ -671,30 +664,6 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             </Principal>
             <Dependent Role="CHAT_MESSAGE">
               <PropertyRef Name="playerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="COUNT_ID_GAME_USER_COUNT_FK">
-          <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="1" />
-          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="COUNTRY">
-              <PropertyRef Name="countryID" />
-            </Principal>
-            <Dependent Role="GAME_USER">
-              <PropertyRef Name="countryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="COUNT_ID_MOD_USER_COUNT_FK">
-          <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="1" />
-          <End Role="MOD_USER" Type="Self.MOD_USER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="COUNTRY">
-              <PropertyRef Name="countryID" />
-            </Principal>
-            <Dependent Role="MOD_USER">
-              <PropertyRef Name="countryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1024,7 +993,6 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <EntitySet Name="BOARD_BOX" EntityType="Self.BOARD_BOX" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BOARD_SHIP" EntityType="Self.BOARD_SHIP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHAT_MESSAGE" EntityType="Self.CHAT_MESSAGE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="COUNTRY" EntityType="Self.COUNTRY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GAME" EntityType="Self.GAME" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GAME_ABILITY" EntityType="Self.GAME_ABILITY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GAME_AND_PLAYER" EntityType="Self.GAME_AND_PLAYER" Schema="dbo" store:Type="Tables" />
@@ -1154,7 +1122,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
     [VW_GAME_USER_EXT].[nickAndPassID] AS [nickAndPassID], 
     [VW_GAME_USER_EXT].[name] AS [name], 
     [VW_GAME_USER_EXT].[secondName] AS [secondName], 
-    [VW_GAME_USER_EXT].[countryID] AS [countryID], 
+    [VW_GAME_USER_EXT].[country] AS [country], 
     [VW_GAME_USER_EXT].[email] AS [email], 
     [VW_GAME_USER_EXT].[genre] AS [genre], 
     [VW_GAME_USER_EXT].[regDate] AS [regDate], 
@@ -1184,7 +1152,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
     [VW_MOD_USER_EXT].[nickAndPassID] AS [nickAndPassID], 
     [VW_MOD_USER_EXT].[name] AS [name], 
     [VW_MOD_USER_EXT].[secondName] AS [secondName], 
-    [VW_MOD_USER_EXT].[countryID] AS [countryID], 
+    [VW_MOD_USER_EXT].[country] AS [country], 
     [VW_MOD_USER_EXT].[email] AS [email], 
     [VW_MOD_USER_EXT].[genre] AS [genre], 
     [VW_MOD_USER_EXT].[business] AS [business], 
@@ -1245,14 +1213,6 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <AssociationSet Name="CHT_PLY_ID_GAME_PLAYER_FK" Association="Self.CHT_PLY_ID_GAME_PLAYER_FK">
             <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
             <End Role="CHAT_MESSAGE" EntitySet="CHAT_MESSAGE" />
-          </AssociationSet>
-          <AssociationSet Name="COUNT_ID_GAME_USER_COUNT_FK" Association="Self.COUNT_ID_GAME_USER_COUNT_FK">
-            <End Role="COUNTRY" EntitySet="COUNTRY" />
-            <End Role="GAME_USER" EntitySet="GAME_USER" />
-          </AssociationSet>
-          <AssociationSet Name="COUNT_ID_MOD_USER_COUNT_FK" Association="Self.COUNT_ID_MOD_USER_COUNT_FK">
-            <End Role="COUNTRY" EntitySet="COUNTRY" />
-            <End Role="MOD_USER" EntitySet="MOD_USER" />
           </AssociationSet>
           <AssociationSet Name="CRT_PLY_GAME_PLAYER_FK" Association="Self.CRT_PLY_GAME_PLAYER_FK">
             <End Role="GAME_PLAYER" EntitySet="GAME_PLAYER" />
@@ -1359,7 +1319,8 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             <End Role="PLAYED_GAME" EntitySet="PLAYED_GAME" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyBattlePongModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1429,15 +1390,6 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="GAME_PLAYER" Relationship="Self.CHT_PLY_ID_GAME_PLAYER_FK" FromRole="CHAT_MESSAGE" ToRole="GAME_PLAYER" />
           <NavigationProperty Name="GAME" Relationship="Self.GMCM_ID_GAME_FK" FromRole="CHAT_MESSAGE" ToRole="GAME" />
-        </EntityType>
-        <EntityType Name="COUNTRY">
-          <Key>
-            <PropertyRef Name="countryID" />
-          </Key>
-          <Property Name="countryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="countryName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="GAME_USER" Relationship="Self.COUNT_ID_GAME_USER_COUNT_FK" FromRole="COUNTRY" ToRole="GAME_USER" />
-          <NavigationProperty Name="MOD_USER" Relationship="Self.COUNT_ID_MOD_USER_COUNT_FK" FromRole="COUNTRY" ToRole="MOD_USER" />
         </EntityType>
         <EntityType Name="GAME">
           <Key>
@@ -1539,7 +1491,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="nickAndPassID" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="secondName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="countryID" Type="Int32" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="genre" Type="Boolean" Nullable="false" />
           <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -1551,7 +1503,6 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="points" Type="Int32" Nullable="false" />
           <Property Name="birthdate" Type="DateTime" Precision="0" />
           <Property Name="personalDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="COUNTRY" Relationship="Self.COUNT_ID_GAME_USER_COUNT_FK" FromRole="GAME_USER" ToRole="COUNTRY" />
           <NavigationProperty Name="GAME_PLAYER" Relationship="Self.GM_USR_ID_GAME_USERS_FK" FromRole="GAME_USER" ToRole="GAME_PLAYER" />
           <NavigationProperty Name="GAME_USER_ABILITY" Relationship="Self.GM_USRABLT_ID_GAME_USERS_FK" FromRole="GAME_USER" ToRole="GAME_USER_ABILITY" />
           <NavigationProperty Name="USER_NICK_PASS" Relationship="Self.GUSR_USERS_ID_USERS_FK" FromRole="GAME_USER" ToRole="USER_NICK_PASS" />
@@ -1609,14 +1560,13 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="nickAndPassID" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="secondName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="countryID" Type="Int32" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="genre" Type="Boolean" Nullable="false" />
           <Property Name="business" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="birthdate" Type="DateTime" Precision="0" />
           <Property Name="photo" Type="Int32" />
-          <NavigationProperty Name="COUNTRY" Relationship="Self.COUNT_ID_MOD_USER_COUNT_FK" FromRole="MOD_USER" ToRole="COUNTRY" />
           <NavigationProperty Name="LIVE_GAME" Relationship="Self.MOD_ID_MOD_USER_FK" FromRole="MOD_USER" ToRole="LIVE_GAME" />
           <NavigationProperty Name="USER_NICK_PASS" Relationship="Self.MOD_USERS_ID_USERS_FK" FromRole="MOD_USER" ToRole="USER_NICK_PASS" />
         </EntityType>
@@ -1682,8 +1632,8 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="posY" Type="Int32" Nullable="false" />
           <Property Name="success" Type="Boolean" Nullable="false" />
           <Property Name="bomb" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="GAME_PLAYER" Relationship="Self.AGAINST_ID_SHOT_FEED_FK" FromRole="SHOT_FEED" ToRole="GAME_PLAYER" />
           <Property Name="destroyedShield" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GAME_PLAYER" Relationship="Self.AGAINST_ID_SHOT_FEED_FK" FromRole="SHOT_FEED" ToRole="GAME_PLAYER" />
         </EntityType>
         <EntityType Name="SYSTEM_MESSAGE">
           <Key>
@@ -1879,7 +1829,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             <PropertyRef Name="nickAndPassID" />
             <PropertyRef Name="name" />
             <PropertyRef Name="secondName" />
-            <PropertyRef Name="countryID" />
+            <PropertyRef Name="country" />
             <PropertyRef Name="email" />
             <PropertyRef Name="genre" />
             <PropertyRef Name="regDate" />
@@ -1896,7 +1846,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="nickAndPassID" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="secondName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="countryID" Type="Int32" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="genre" Type="Boolean" Nullable="false" />
           <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -1930,7 +1880,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             <PropertyRef Name="nickAndPassID" />
             <PropertyRef Name="name" />
             <PropertyRef Name="secondName" />
-            <PropertyRef Name="countryID" />
+            <PropertyRef Name="country" />
             <PropertyRef Name="email" />
             <PropertyRef Name="genre" />
             <PropertyRef Name="business" />
@@ -1941,7 +1891,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="nickAndPassID" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="secondName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="countryID" Type="Int32" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="genre" Type="Boolean" Nullable="false" />
           <Property Name="business" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
@@ -1978,8 +1928,8 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             <PropertyRef Name="posY" />
             <PropertyRef Name="success" />
             <PropertyRef Name="bomb" />
-            <PropertyRef Name="nickname" />
             <PropertyRef Name="destroyedShield" />
+            <PropertyRef Name="nickname" />
           </Key>
           <Property Name="shotFeedID" Type="Int32" Nullable="false" />
           <Property Name="againstPlayerID" Type="Int32" Nullable="false" />
@@ -1987,8 +1937,8 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="posY" Type="Int32" Nullable="false" />
           <Property Name="success" Type="Boolean" Nullable="false" />
           <Property Name="bomb" Type="Boolean" Nullable="false" />
-          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="destroyedShield" Type="Boolean" Nullable="false" />
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <Association Name="ABLT_ID_ABILITY_CATALOG_FK">
           <End Role="ABILITY_CATALOG" Type="Self.ABILITY_CATALOG" Multiplicity="1" />
@@ -2111,30 +2061,6 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             </Principal>
             <Dependent Role="CHAT_MESSAGE">
               <PropertyRef Name="gameID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="COUNT_ID_GAME_USER_COUNT_FK">
-          <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="1" />
-          <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="COUNTRY">
-              <PropertyRef Name="countryID" />
-            </Principal>
-            <Dependent Role="GAME_USER">
-              <PropertyRef Name="countryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="COUNT_ID_MOD_USER_COUNT_FK">
-          <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="1" />
-          <End Role="MOD_USER" Type="Self.MOD_USER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="COUNTRY">
-              <PropertyRef Name="countryID" />
-            </Principal>
-            <Dependent Role="MOD_USER">
-              <PropertyRef Name="countryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2424,7 +2350,6 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <EntitySet Name="BOARD_BOX" EntityType="Self.BOARD_BOX" />
           <EntitySet Name="BOARD_SHIP" EntityType="Self.BOARD_SHIP" />
           <EntitySet Name="CHAT_MESSAGE" EntityType="Self.CHAT_MESSAGE" />
-          <EntitySet Name="COUNTRY" EntityType="Self.COUNTRY" />
           <EntitySet Name="GAME" EntityType="Self.GAME" />
           <EntitySet Name="GAME_ABILITY" EntityType="Self.GAME_ABILITY" />
           <EntitySet Name="GAME_AND_PLAYER" EntityType="Self.GAME_AND_PLAYER" />
@@ -2498,14 +2423,6 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <AssociationSet Name="GMCM_ID_GAME_FK" Association="Self.GMCM_ID_GAME_FK">
             <End Role="GAME" EntitySet="GAME" />
             <End Role="CHAT_MESSAGE" EntitySet="CHAT_MESSAGE" />
-          </AssociationSet>
-          <AssociationSet Name="COUNT_ID_GAME_USER_COUNT_FK" Association="Self.COUNT_ID_GAME_USER_COUNT_FK">
-            <End Role="COUNTRY" EntitySet="COUNTRY" />
-            <End Role="GAME_USER" EntitySet="GAME_USER" />
-          </AssociationSet>
-          <AssociationSet Name="COUNT_ID_MOD_USER_COUNT_FK" Association="Self.COUNT_ID_MOD_USER_COUNT_FK">
-            <End Role="COUNTRY" EntitySet="COUNTRY" />
-            <End Role="MOD_USER" EntitySet="MOD_USER" />
           </AssociationSet>
           <AssociationSet Name="GAME_ID_GAME_FK" Association="Self.GAME_ID_GAME_FK">
             <End Role="GAME" EntitySet="GAME" />
@@ -2664,14 +2581,6 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="COUNTRY">
-            <EntityTypeMapping TypeName="MyBattlePongModel.COUNTRY">
-              <MappingFragment StoreEntitySet="COUNTRY">
-                <ScalarProperty Name="countryID" ColumnName="countryID" />
-                <ScalarProperty Name="countryName" ColumnName="countryName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="GAME">
             <EntityTypeMapping TypeName="MyBattlePongModel.GAME">
               <MappingFragment StoreEntitySet="GAME">
@@ -2750,7 +2659,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
                 <ScalarProperty Name="nickAndPassID" ColumnName="nickAndPassID" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="secondName" ColumnName="secondName" />
-                <ScalarProperty Name="countryID" ColumnName="countryID" />
+                <ScalarProperty Name="country" ColumnName="country" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="genre" ColumnName="genre" />
                 <ScalarProperty Name="regDate" ColumnName="regDate" />
@@ -2810,7 +2719,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
                 <ScalarProperty Name="nickAndPassID" ColumnName="nickAndPassID" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="secondName" ColumnName="secondName" />
-                <ScalarProperty Name="countryID" ColumnName="countryID" />
+                <ScalarProperty Name="country" ColumnName="country" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="genre" ColumnName="genre" />
                 <ScalarProperty Name="business" ColumnName="business" />
@@ -2870,13 +2779,13 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <EntitySetMapping Name="SHOT_FEED">
             <EntityTypeMapping TypeName="MyBattlePongModel.SHOT_FEED">
               <MappingFragment StoreEntitySet="SHOT_FEED">
-                <ScalarProperty Name="destroyedShield" ColumnName="destroyedShield" />
                 <ScalarProperty Name="shotFeedID" ColumnName="shotFeedID" />
                 <ScalarProperty Name="againstPlayerID" ColumnName="againstPlayerID" />
                 <ScalarProperty Name="posX" ColumnName="posX" />
                 <ScalarProperty Name="posY" ColumnName="posY" />
                 <ScalarProperty Name="success" ColumnName="success" />
                 <ScalarProperty Name="bomb" ColumnName="bomb" />
+                <ScalarProperty Name="destroyedShield" ColumnName="destroyedShield" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3036,7 +2945,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
                 <ScalarProperty Name="nickAndPassID" ColumnName="nickAndPassID" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="secondName" ColumnName="secondName" />
-                <ScalarProperty Name="countryID" ColumnName="countryID" />
+                <ScalarProperty Name="country" ColumnName="country" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="genre" ColumnName="genre" />
                 <ScalarProperty Name="regDate" ColumnName="regDate" />
@@ -3070,7 +2979,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
                 <ScalarProperty Name="nickAndPassID" ColumnName="nickAndPassID" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="secondName" ColumnName="secondName" />
-                <ScalarProperty Name="countryID" ColumnName="countryID" />
+                <ScalarProperty Name="country" ColumnName="country" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="genre" ColumnName="genre" />
                 <ScalarProperty Name="business" ColumnName="business" />
@@ -3098,13 +3007,13 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <EntitySetMapping Name="VW_SHOT_FEED_EXT">
             <EntityTypeMapping TypeName="MyBattlePongModel.VW_SHOT_FEED_EXT">
               <MappingFragment StoreEntitySet="VW_SHOT_FEED_EXT">
-                <ScalarProperty Name="destroyedShield" ColumnName="destroyedShield" />
                 <ScalarProperty Name="shotFeedID" ColumnName="shotFeedID" />
                 <ScalarProperty Name="againstPlayerID" ColumnName="againstPlayerID" />
                 <ScalarProperty Name="posX" ColumnName="posX" />
                 <ScalarProperty Name="posY" ColumnName="posY" />
                 <ScalarProperty Name="success" ColumnName="success" />
                 <ScalarProperty Name="bomb" ColumnName="bomb" />
+                <ScalarProperty Name="destroyedShield" ColumnName="destroyedShield" />
                 <ScalarProperty Name="nickname" ColumnName="nickname" />
               </MappingFragment>
             </EntityTypeMapping>

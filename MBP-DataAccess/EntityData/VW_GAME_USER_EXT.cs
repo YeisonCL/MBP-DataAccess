@@ -18,7 +18,7 @@ namespace MBP_DataAccess.EntityData
         public int nickAndPassID { get; set; }
         public string name { get; set; }
         public string secondName { get; set; }
-        public int countryID { get; set; }
+        public string country { get; set; }
         public string email { get; set; }
         public bool genre { get; set; }
         public System.DateTime regDate { get; set; }
