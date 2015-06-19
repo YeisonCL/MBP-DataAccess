@@ -183,5 +183,24 @@ namespace MBP_DataAccess.Database.Ship
         {
             return 0;
         }
+
+        /// <summary>
+        /// Borra una fila de la tabla MBP_LIVE_SHIPS para los datos dados
+        /// </summary>
+        /// <param name="pGameID">ID de juego a borrar</param>
+        /// <param name="pIndex">Index de juego a borrar</param>
+        public void deleteLiveShip(int pGameID, int pIndex)
+        {
+            
+        }
+
+        /// <summary>
+        /// Borra todas las filas de la tabla MBP_LIVE_SHIPS que hagan match con el gameID dado
+        /// </summary>
+        /// <param name="pGameID">pGameID a borrar</param>
+        public void deleteAllLiveShips(int pGameID)
+        {
+            
+        }
     }
 }

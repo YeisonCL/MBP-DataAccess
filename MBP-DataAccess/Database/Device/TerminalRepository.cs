@@ -1,4 +1,5 @@
-﻿using MBPL_Logic.Interface.Database;
+﻿using MBP_DataAccess.EntityData;
+using MBPL_Logic.Interface.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,15 @@ namespace MBP_DataAccess.Database.Device
         /// <param name="pKey">Datos a agregar</param>
         public void addTerminalKey(string pKey)
         {
-            
+            using (var db = new MBP_Data_Entities())
+            {
+                LIVE_TERMINAL liveTerminal = new LIVE_TERMINAL()
+                {
+                    keyTerminal = pKey
+                };
+                db.LIVE_TERMINAL.Add(liveTerminal);
+                db.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -25,7 +34,16 @@ namespace MBP_DataAccess.Database.Device
         /// <returns>True o false dependiendo</returns>
         public bool getTerminalKey(string pKey)
         {
-            return false;
+            bool existterminalkey = false;
+            using (var db = new MBP_Data_Entities())
+            {
+                var query = db.LIVE_TERMINAL.Where(b => b.keyTerminal.Equals(pKey)).Select(b => b).FirstOrDefault();
+                if (query != null)
+                {
+                    existterminalkey = true;
+                }
+            }
+            return existterminalkey;
         }
 
         /// <summary>
@@ -36,7 +54,17 @@ namespace MBP_DataAccess.Database.Device
         /// <param name="pTerminalID">ID del terminal</param>
         public void addLiveGame(int pModeratorID, int pGameID, int pTerminalID)
         {
-            
+            using (var db = new MBP_Data_Entities())
+            {
+                LIVE_GAME liveGame = new LIVE_GAME()
+                {
+                    gameID = pGameID,
+                    modID = pModeratorID,
+                    idTerminal = pTerminalID
+                };
+                db.LIVE_GAME.Add(liveGame);
+                db.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -46,7 +74,19 @@ namespace MBP_DataAccess.Database.Device
         /// <returns>Valor de la columna</returns>
         public int getTerminalKeyID(string pKey)
         {
-            return 0;
+            int idterminal = -1;
+            using (var db = new MBP_Data_Entities())
+            {
+                var query = from b in db.LIVE_TERMINAL
+                            where b.keyTerminal.Equals(pKey)
+                            select b;
+
+                foreach (var item in query)
+                {
+                    idterminal = item.idTerminal;
+                }
+            }
+            return idterminal;
         }
 
         /// <summary>

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace MBP_DataAccess.Database.GamePlayer
 {
@@ -438,7 +439,40 @@ namespace MBP_DataAccess.Database.GamePlayer
         /// <returns>Valor de la columna</returns>
         public bool getWindFeedDelivered(int pPlayerID)
         {
-            return false;
+            bool widfeeddelivered = false;
+            var scope = new TransactionScope(
+                TransactionScopeOption.RequiresNew,
+                new TransactionOptions()
+                {
+                    IsolationLevel = IsolationLevel.RepeatableRead
+                }
+                );
+            using (var db = new MBP_Data_Entities())
+            {
+                using (scope)
+                {
+                    try
+                    {
+                        var query = from b in db.GAME_PLAYER
+                                    where b.playerID.Equals(pPlayerID)
+                                    select b;
+
+                        foreach (var item in query)
+                        {
+                            item.@lock = true;
+                            widfeeddelivered = item.winFeedDelivered;
+                        }
+                        db.SaveChanges();
+                        scope.Complete();
+                    }
+                    catch (Exception)
+                    {
+                        scope.Dispose();
+                        throw;
+                    }
+                }
+            }
+            return widfeeddelivered;
         }
 
         /// <summary>
@@ -455,7 +489,38 @@ namespace MBP_DataAccess.Database.GamePlayer
         /// <param name="pPlayerID">Valor al cual se aplicará lo explicado arriba</param>
         public void updateWinFeedDelivered(int pPlayerID, bool pValue)
         {
+            var scope = new TransactionScope(
+                TransactionScopeOption.RequiresNew,
+                new TransactionOptions()
+                {
+                    IsolationLevel = IsolationLevel.RepeatableRead
+                }
+                );
+            using (var db = new MBP_Data_Entities())
+            {
+                using (scope)
+                {
+                    try
+                    {
+                        var query = from b in db.GAME_PLAYER
+                                    where b.playerID.Equals(pPlayerID)
+                                    select b;
 
+                        foreach (var item in query)
+                        {
+                            item.@lock = true;
+                            item.winFeedDelivered = pValue;
+                        }
+                        db.SaveChanges();
+                        scope.Complete();
+                    }
+                    catch (Exception)
+                    {
+                        scope.Dispose();
+                        throw;
+                    }
+                }
+            }
         }
 
         /// <summary>
