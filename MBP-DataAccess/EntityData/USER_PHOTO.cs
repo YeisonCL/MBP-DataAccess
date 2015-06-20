@@ -17,11 +17,13 @@ namespace MBP_DataAccess.EntityData
         public USER_PHOTO()
         {
             this.GAME_USER = new HashSet<GAME_USER>();
+            this.MOD_USER = new HashSet<MOD_USER>();
         }
     
         public int userID { get; set; }
         public string photo { get; set; }
     
         public virtual ICollection<GAME_USER> GAME_USER { get; set; }
+        public virtual ICollection<MOD_USER> MOD_USER { get; set; }
     }
 }

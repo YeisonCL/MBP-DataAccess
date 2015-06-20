@@ -90,13 +90,24 @@ namespace MBP_DataAccess.Database.Game
         /// <returns></returns>
         public int getGameID(string pNickname)
         {
-            int gameID_temp;
+            int gameID_temp = -1;
+            int playerID = -1;
             using (var db = new MBP_Data_Entities())
             {
-                var playerid = db.USER_NICK_PASS.Where(b => b.nickname.Equals(pNickname)).Select(b => b.userID).FirstOrDefault();
-                var query = db.VW_GAME_AND_PLAYER_INFO.Where(c => c.playerID.Equals(playerid)).Select(c => c.gameID).FirstOrDefault();
-
-                gameID_temp = query;
+                var query = from b in db.VW_GAME_PLAYER_EXT
+                            where b.nickname.Equals(pNickname)
+                            select b;
+                foreach(var item in query)
+                {
+                    playerID = item.playerID;
+                }
+                var query2 = from b in db.GAME_AND_PLAYER
+                            where b.playerID.Equals(playerID)
+                            select b;
+                foreach(var item in query2)
+                {
+                    gameID_temp = item.gameID;
+                }
             }
             return gameID_temp;
         }
@@ -213,8 +224,13 @@ namespace MBP_DataAccess.Database.Game
             int boardSize_temp = 0;
             using (var db = new MBP_Data_Entities())
             {
-                var query = db.GAME.Where(c => c.gameID.Equals(pGameID)).Select(c => c.boardSize).FirstOrDefault();
-                boardSize_temp = query;
+                var query = from b in db.GAME
+                            where b.gameID.Equals(pGameID)
+                            select b;
+                foreach (var item in query)
+                {
+                    boardSize_temp = item.boardSize;
+                }
             }
             return boardSize_temp;
         }

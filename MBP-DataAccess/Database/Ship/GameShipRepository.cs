@@ -262,21 +262,17 @@ namespace MBP_DataAccess.Database.Ship
             {
                 var query = from b in db.VW_GAME_SHIP_EXT
                             where b.nickname.Equals(pNickname)
-                            select b.playerID;
+                            select b;
 
-                var query2 = from c in db.GAME_SHIP
-                             where c.playerID.Equals(query)
-                             select c;
-
-                foreach (var item in query2)
+                foreach (var item in query)
                 {
                     GameShipDTO gameShipDto = new GameShipDTO();
                     gameShipDto._gameShipID = item.gameShipID;
                     gameShipDto._integrity = item.integrity;
-                    gameShipDto._playerID = (int)item.playerID;
+                    gameShipDto._playerID =  item.playerID;
                     gameShipDto._posX = item.posX;
                     gameShipDto._posY = item.posY;
-                    gameShipDto._shipID = (int)item.shipID;
+                    gameShipDto._shipID = item.shipID;
                     gameShipDtosList.Add(gameShipDto);
                 }
             }

@@ -28,10 +28,11 @@ namespace MBP_DataAccess.EntityData
         public string genre { get; set; }
         public string business { get; set; }
         public System.DateTime regDate { get; set; }
-        public System.DateTime birthdate { get; set; }
-        public string photo { get; set; }
+        public Nullable<System.DateTime> birthdate { get; set; }
+        public int userPhotoID { get; set; }
     
         public virtual ICollection<LIVE_GAME> LIVE_GAME { get; set; }
         public virtual USER_NICK_PASS USER_NICK_PASS { get; set; }
+        public virtual USER_PHOTO USER_PHOTO { get; set; }
     }
 }

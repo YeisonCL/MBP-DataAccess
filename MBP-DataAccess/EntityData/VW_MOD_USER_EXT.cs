@@ -23,8 +23,8 @@ namespace MBP_DataAccess.EntityData
         public string genre { get; set; }
         public string business { get; set; }
         public System.DateTime regDate { get; set; }
-        public System.DateTime birthdate { get; set; }
-        public string photo { get; set; }
+        public Nullable<System.DateTime> birthdate { get; set; }
+        public int userPhotoID { get; set; }
         public string nickname { get; set; }
     }
 }

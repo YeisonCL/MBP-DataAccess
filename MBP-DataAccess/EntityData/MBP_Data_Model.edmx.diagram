@@ -4,46 +4,46 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0a018904e2a541ff80f88f3a7718c899" Name="Diagram1">
-        <EntityTypeShape EntityType="MyBattlePongModel.ABILITY_CATALOG" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.ADMIN_USER" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.BOARD_BOX" Width="1.5" PointX="7.5" PointY="23.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.BOARD_SHIP" Width="1.5" PointX="9.75" PointY="22.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.CHAT_MESSAGE" Width="1.5" PointX="7.5" PointY="26.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.GAME" Width="1.5" PointX="10.5" PointY="29.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.GAME_ABILITY" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.GAME_AND_PLAYER" Width="1.5" PointX="10.5" PointY="26.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.GAME_PLAYER" Width="1.5" PointX="5.25" PointY="23.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.GAME_SHIP" Width="1.5" PointX="7.5" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.GAME_SHIP_CATALOG" Width="1.5" PointX="10.5" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.GAME_USER" Width="1.5" PointX="3" PointY="20.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.GAME_USER_ABILITY" Width="1.5" PointX="7.5" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.LIVE_GAME" Width="1.5" PointX="5.25" PointY="33.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.LIVE_TERMINAL" Width="1.5" PointX="3" PointY="29.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.MBP_LIVE_SHIPS" Width="1.5" PointX="12.75" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.MOD_USER" Width="1.5" PointX="3" PointY="32.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.ONE_PLUS_ABILITY" Width="1.5" PointX="9.75" PointY="15.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.PLAYED_GAME" Width="1.5" PointX="5.25" PointY="29.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.SHIELD" Width="1.5" PointX="12.75" PointY="17.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.SHIP_CATALOG" Width="1.5" PointX="5.25" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.SHOT_FEED" Width="1.5" PointX="7.5" PointY="31.75" IsExpanded="true" />
+      <Diagram DiagramId="058deafa0b2f4a0a87feed2e61217212" Name="Diagram1">
+        <EntityTypeShape EntityType="MyBattlePongModel.ABILITY_CATALOG" Width="1.5" PointX="5.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.ADMIN_USER" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.BOARD_BOX" Width="1.5" PointX="7.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.BOARD_SHIP" Width="1.5" PointX="9.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.CHAT_MESSAGE" Width="1.5" PointX="10.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.GAME" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.GAME_ABILITY" Width="1.5" PointX="7.5" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.GAME_AND_PLAYER" Width="1.5" PointX="10.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.GAME_PLAYER" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.GAME_SHIP" Width="1.5" PointX="7.5" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.GAME_SHIP_CATALOG" Width="1.5" PointX="10.5" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.GAME_USER" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.GAME_USER_ABILITY" Width="1.5" PointX="7.5" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.LIVE_GAME" Width="1.5" PointX="10.25" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.LIVE_TERMINAL" Width="1.5" PointX="8" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.MBP_LIVE_SHIPS" Width="1.5" PointX="9.75" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.MOD_USER" Width="1.5" PointX="3" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.ONE_PLUS_ABILITY" Width="1.5" PointX="9.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.PLAYED_GAME" Width="1.5" PointX="5.25" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.SHIELD" Width="1.5" PointX="12.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.SHIP_CATALOG" Width="1.5" PointX="5.25" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.SHOT_FEED" Width="1.5" PointX="7.5" PointY="25.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.SYSTEM_MESSAGE" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.USER_NICK_PASS" Width="1.5" PointX="0.75" PointY="19.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.USER_PHOTO" Width="1.5" PointX="0.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.USER_NICK_PASS" Width="1.5" PointX="0.75" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.USER_PHOTO" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.VW_ADMIN_USER_EXT" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.VW_BOARD_BOX_EXT" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.VW_CHAT_MESSAGE_EXT" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.VW_GAME_ABILITY_EXT" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.VW_GAME_AND_PLAYER_INFO" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.VW_GAME_PLAYER_EXT" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.VW_GAME_SHIP_CATALOG" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.VW_GAME_SHIP_EXT" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.VW_GAME_USER_ABILITY_EXT" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.VW_GAME_USER_EXT" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.VW_LIVE_GAME" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.VW_MOD_USER_EXT" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.VW_PLAYED_GAME_EXT" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.VW_SHOT_FEED_EXT" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.VW_GAME_PLAYER_EXT" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.VW_GAME_SHIP_CATALOG" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.VW_GAME_SHIP_EXT" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.VW_GAME_USER_ABILITY_EXT" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.VW_GAME_USER_EXT" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.VW_LIVE_GAME" Width="1.5" PointX="11.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.VW_MOD_USER_EXT" Width="1.5" PointX="13.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.VW_PLAYED_GAME_EXT" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.VW_SHOT_FEED_EXT" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="MyBattlePongModel.ABLT_ID_ABILITY_CATALOG_FK" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.ABLT_USR_ID_ABILITY_CATALOG_FK" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.ADMAC_ID_ADMIN_USERS_FK" ManuallyRouted="false" />
@@ -77,6 +77,7 @@
         <AssociationConnector Association="MyBattlePongModel.MOD_ID_MOD_USER_FK" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.TERM_ID_LIVE_TERMINAL_FK" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.MOD_USERS_ID_USERS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="MyBattlePongModel.US_PHOTO_ID_MOD_USERS_FK" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

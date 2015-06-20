@@ -42,29 +42,36 @@ namespace MBP_DataAccess.Database.Roles
         /// <param name="pUserData">Datos a agregar</param>
         public void addModeratorUser(ModeratorUserDTO pUserData)
         {
-            int usernickpassId = -1;
             using (var db = new MBP_Data_Entities())
             {
                 USER_NICK_PASS userNickPass = new USER_NICK_PASS()
                 {
-                    nickname = pUserData._nickname,
-                    password = pUserData._password,
-                    type = pUserData._type
+                    nickname = pUserData.getNickname(),
+                    password = pUserData.getPassword(),
+                    type = pUserData.getType(),
                 };
-                usernickpassId = db.USER_NICK_PASS.Add(userNickPass).userID;
+                db.USER_NICK_PASS.Add(userNickPass);
                 db.SaveChanges();
+
+                USER_PHOTO userPhoto = new USER_PHOTO()
+                {
+                    photo = pUserData.getPhoto(),
+                };
+                db.USER_PHOTO.Add(userPhoto);
+                db.SaveChanges();
+
                 MOD_USER modUser = new MOD_USER()
                 {
-                    nickAndPassID = usernickpassId,
-                    birthdate = pUserData._birthdate,
-                    business = pUserData._business,
-                    country = pUserData._country,
-                    email = pUserData._email,
-                    genre = pUserData._genre,
-                    name = pUserData._name,
-                    photo = pUserData._photo,
-                    regDate = pUserData._regDate,
-                    secondName = pUserData._secondName
+                    nickAndPassID = userNickPass.userID,
+                    birthdate = pUserData.getBirthDate(),
+                    business = pUserData.getBusiness(),
+                    country = pUserData.getCountry(),
+                    email = pUserData.getEmail(),
+                    genre = pUserData.getGenre(),
+                    name = pUserData.getName(),
+                    userPhotoID = userPhoto.userID,
+                    regDate = pUserData.getRegDate(),
+                    secondName = pUserData.getSecondName(),
                 };
                 db.MOD_USER.Add(modUser);
                 db.SaveChanges();

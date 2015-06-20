@@ -196,8 +196,8 @@
           <Property Name="genre" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="business" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="regDate" Type="datetime" Nullable="false" />
-          <Property Name="birthdate" Type="date" Nullable="false" />
-          <Property Name="photo" Type="varchar(max)" Nullable="false" />
+          <Property Name="birthdate" Type="date" />
+          <Property Name="userPhotoID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ONE_PLUS_ABILITY">
           <Key>
@@ -534,8 +534,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_MOD_USER_EXT' no tiene d
             <PropertyRef Name="genre" />
             <PropertyRef Name="business" />
             <PropertyRef Name="regDate" />
-            <PropertyRef Name="birthdate" />
-            <PropertyRef Name="photo" />
+            <PropertyRef Name="userPhotoID" />
             <PropertyRef Name="nickname" />
           </Key>
           <Property Name="userID" Type="int" Nullable="false" />
@@ -547,8 +546,8 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_MOD_USER_EXT' no tiene d
           <Property Name="genre" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="business" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="regDate" Type="datetime" Nullable="false" />
-          <Property Name="birthdate" Type="date" Nullable="false" />
-          <Property Name="photo" Type="varchar(max)" Nullable="false" />
+          <Property Name="birthdate" Type="date" />
+          <Property Name="userPhotoID" Type="int" Nullable="false" />
           <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
@@ -975,6 +974,18 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="US_PHOTO_ID_MOD_USERS_FK">
+          <End Role="USER_PHOTO" Type="Self.USER_PHOTO" Multiplicity="1" />
+          <End Role="MOD_USER" Type="Self.MOD_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_PHOTO">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="MOD_USER">
+              <PropertyRef Name="userPhotoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="US_PHOTO_ID_USERS_FK">
           <End Role="USER_PHOTO" Type="Self.USER_PHOTO" Multiplicity="1" />
           <End Role="GAME_USER" Type="Self.GAME_USER" Multiplicity="*" />
@@ -1171,7 +1182,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
     [VW_MOD_USER_EXT].[business] AS [business], 
     [VW_MOD_USER_EXT].[regDate] AS [regDate], 
     [VW_MOD_USER_EXT].[birthdate] AS [birthdate], 
-    [VW_MOD_USER_EXT].[photo] AS [photo], 
+    [VW_MOD_USER_EXT].[userPhotoID] AS [userPhotoID], 
     [VW_MOD_USER_EXT].[nickname] AS [nickname]
     FROM [dbo].[VW_MOD_USER_EXT] AS [VW_MOD_USER_EXT]</DefiningQuery>
           </EntitySet>
@@ -1322,6 +1333,10 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <AssociationSet Name="TERM_ID_LIVE_TERMINAL_FK" Association="Self.TERM_ID_LIVE_TERMINAL_FK">
             <End Role="LIVE_TERMINAL" EntitySet="LIVE_TERMINAL" />
             <End Role="LIVE_GAME" EntitySet="LIVE_GAME" />
+          </AssociationSet>
+          <AssociationSet Name="US_PHOTO_ID_MOD_USERS_FK" Association="Self.US_PHOTO_ID_MOD_USERS_FK">
+            <End Role="USER_PHOTO" EntitySet="USER_PHOTO" />
+            <End Role="MOD_USER" EntitySet="MOD_USER" />
           </AssociationSet>
           <AssociationSet Name="US_PHOTO_ID_USERS_FK" Association="Self.US_PHOTO_ID_USERS_FK">
             <End Role="USER_PHOTO" EntitySet="USER_PHOTO" />
@@ -1579,10 +1594,11 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="genre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="business" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="birthdate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="birthdate" Type="DateTime" Precision="0" />
+          <Property Name="userPhotoID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="LIVE_GAME" Relationship="Self.MOD_ID_MOD_USER_FK" FromRole="MOD_USER" ToRole="LIVE_GAME" />
           <NavigationProperty Name="USER_NICK_PASS" Relationship="Self.MOD_USERS_ID_USERS_FK" FromRole="MOD_USER" ToRole="USER_NICK_PASS" />
+          <NavigationProperty Name="USER_PHOTO" Relationship="Self.US_PHOTO_ID_MOD_USERS_FK" FromRole="MOD_USER" ToRole="USER_PHOTO" />
         </EntityType>
         <EntityType Name="ONE_PLUS_ABILITY">
           <Key>
@@ -1676,6 +1692,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="GAME_USER" Relationship="Self.US_PHOTO_ID_USERS_FK" FromRole="USER_PHOTO" ToRole="GAME_USER" />
+          <NavigationProperty Name="MOD_USER" Relationship="Self.US_PHOTO_ID_MOD_USERS_FK" FromRole="USER_PHOTO" ToRole="MOD_USER" />
         </EntityType>
         <EntityType Name="VW_ADMIN_USER_EXT">
           <Key>
@@ -1908,8 +1925,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             <PropertyRef Name="genre" />
             <PropertyRef Name="business" />
             <PropertyRef Name="regDate" />
-            <PropertyRef Name="birthdate" />
-            <PropertyRef Name="photo" />
+            <PropertyRef Name="userPhotoID" />
             <PropertyRef Name="nickname" />
           </Key>
           <Property Name="userID" Type="Int32" Nullable="false" />
@@ -1921,8 +1937,8 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="genre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="business" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="birthdate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="birthdate" Type="DateTime" Precision="0" />
+          <Property Name="userPhotoID" Type="Int32" Nullable="false" />
           <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="VW_PLAYED_GAME_EXT">
@@ -2369,6 +2385,18 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="US_PHOTO_ID_MOD_USERS_FK">
+          <End Role="USER_PHOTO" Type="Self.USER_PHOTO" Multiplicity="1" />
+          <End Role="MOD_USER" Type="Self.MOD_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_PHOTO">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="MOD_USER">
+              <PropertyRef Name="userPhotoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MBP_Data_Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ABILITY_CATALOG" EntityType="Self.ABILITY_CATALOG" />
           <EntitySet Name="ADMIN_USER" EntityType="Self.ADMIN_USER" />
@@ -2539,6 +2567,10 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           </AssociationSet>
           <AssociationSet Name="MOD_USERS_ID_USERS_FK" Association="Self.MOD_USERS_ID_USERS_FK">
             <End Role="USER_NICK_PASS" EntitySet="USER_NICK_PASS" />
+            <End Role="MOD_USER" EntitySet="MOD_USER" />
+          </AssociationSet>
+          <AssociationSet Name="US_PHOTO_ID_MOD_USERS_FK" Association="Self.US_PHOTO_ID_MOD_USERS_FK">
+            <End Role="USER_PHOTO" EntitySet="USER_PHOTO" />
             <End Role="MOD_USER" EntitySet="MOD_USER" />
           </AssociationSet>
         </EntityContainer>
@@ -2751,7 +2783,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
                 <ScalarProperty Name="business" ColumnName="business" />
                 <ScalarProperty Name="regDate" ColumnName="regDate" />
                 <ScalarProperty Name="birthdate" ColumnName="birthdate" />
-                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="userPhotoID" ColumnName="userPhotoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3011,7 +3043,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
                 <ScalarProperty Name="business" ColumnName="business" />
                 <ScalarProperty Name="regDate" ColumnName="regDate" />
                 <ScalarProperty Name="birthdate" ColumnName="birthdate" />
-                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="userPhotoID" ColumnName="userPhotoID" />
                 <ScalarProperty Name="nickname" ColumnName="nickname" />
               </MappingFragment>
             </EntityTypeMapping>
