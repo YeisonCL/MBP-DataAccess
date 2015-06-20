@@ -42,7 +42,6 @@ namespace MBP_DataAccess.Database.Roles
             {
                 var query = from b in db.VW_GAME_USER_ABILITY_EXT
                             where b.userID.Equals(pGameUserID)
-                            orderby b.abilityID
                             select b;
                 foreach (var item in query)
                 {
@@ -399,8 +398,8 @@ namespace MBP_DataAccess.Database.Roles
                     gameUser.setCountry(item.country);
                     gameUser.setEmail(item.email);
                     gameUser.setGenre(item.genre);
-                    gameUser.setRegDate(item.regDate);
-                    gameUser.setBirthdate(item.birthdate.Value);
+                    gameUser.setRegDate(item.regDate.Date);
+                    gameUser.setBirthdate(item.birthdate.Value.Date);
                     gameUser.setPersonalDescription(item.personalDescription);
                     var query2 = from b in db.USER_PHOTO
                                  where b.userID.Equals(item.userPhotoID)

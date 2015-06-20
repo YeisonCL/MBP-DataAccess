@@ -70,12 +70,9 @@ namespace MBP_DataAccess.Database.GameBoard
                             where b.playerID.Equals(pPlayerID) & b.posX.Equals(pPosX) & b.posY.Equals(pPosY)
                             select b;
 
-                foreach (var item in query)
+                if (query.FirstOrDefault() != null)
                 {
-                    if (item != null)
-                    {
-                        existsship = true;
-                    }
+                    existsship = true;
                 }
             }
             return existsship;
@@ -97,13 +94,9 @@ namespace MBP_DataAccess.Database.GameBoard
                             where b.playerID.Equals(pPlayerID) & b.posX.Equals(pPosX) & b.posY.Equals(pPosY)
                             select b;
 
-
                 foreach (var item in query)
                 {
-                    if (item != null)
-                    {
-                        gameshipid = (int)item.gameShipID;
-                    }
+                    gameshipid = item.gameShipID;
                 }
             }
             return gameshipid;

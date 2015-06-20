@@ -83,9 +83,9 @@ namespace MBP_DataAccess.Database.Abilities
                             where b.nickname.Equals(pNickname)
                                   & b.abilityID.Equals(pAbilityID)
                             select b;
-                foreach (var item in query)
+                if (query.FirstOrDefault() != null)
                 {
-                    isAbil_Active = item.active;
+                    isAbil_Active = query.First().active;
                 }
             }
             return isAbil_Active;
@@ -100,22 +100,15 @@ namespace MBP_DataAccess.Database.Abilities
         /// <returns>True si esta la fila, false sino</returns>
         public bool isShieldActive(string pNickname, int pGameShipID, int pAbilityID)
         {
-            bool isShieldActive_temp = true;
+            bool isShieldActive_temp = false;
             using (var db = new MBP_Data_Entities())
             {
                 var query = from b in db.SHIELD
                             where b.abilityID.Equals(pAbilityID) & b.gameShipID.Equals(pGameShipID)
                             select b;
-                foreach (var item in query)
+                if (query.FirstOrDefault() != null)
                 {
-                    var query2 = from c in db.USER_NICK_PASS
-                                 where item.playerID.Equals(c.userID)
-                                 select c;
-
-                    if (query2.Equals(null))
-                    {
-                        isShieldActive_temp = false;
-                    }
+                    isShieldActive_temp = true;
                 }
             }
             return isShieldActive_temp;

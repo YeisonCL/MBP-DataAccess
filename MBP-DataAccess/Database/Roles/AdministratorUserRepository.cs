@@ -40,5 +40,27 @@ namespace MBP_DataAccess.Database.Roles
                 db.SaveChanges();
             }
         }
+
+
+        public AdminUserDTO getAdminUser(string pNickname)
+        {
+            AdminUserDTO adminUser = new AdminUserDTO();
+            using (var db = new MBP_Data_Entities())
+            {
+                var query = from b in db.VW_ADMIN_USER_EXT
+                            where b.nickname.Equals(pNickname)
+                            select b;
+
+                foreach (var item in query)
+                {
+                    adminUser.setName(item.name);
+                    adminUser.setNickname(item.nickname);
+                    adminUser.setRegDate(item.regDate);
+                    adminUser.setEmail(item.email);
+                    adminUser.setSecondName(item.secondName);
+                }
+            }
+            return adminUser;
+        }
     }
 }

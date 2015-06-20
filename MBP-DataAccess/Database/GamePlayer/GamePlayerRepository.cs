@@ -273,7 +273,7 @@ namespace MBP_DataAccess.Database.GamePlayer
                 {
                     if (item.playerID != pPlayerID)
                     {
-                        playerId = pPlayerID;
+                        playerId = item.playerID;
                     }
                 }
             }
@@ -343,7 +343,9 @@ namespace MBP_DataAccess.Database.GamePlayer
 
                 foreach (var item in query)
                 {
+                    item.remainingShips = pValue;
                 }
+                db.SaveChanges();
             }
         }
 

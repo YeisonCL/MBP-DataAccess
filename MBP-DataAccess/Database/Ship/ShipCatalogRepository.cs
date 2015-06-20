@@ -101,8 +101,14 @@ namespace MBP_DataAccess.Database.Ship
             int points = -1;
             using (var db = new MBP_Data_Entities())
             {
-                var query = db.SHIP_CATALOG.Where(b => b.shipID.Equals(pShipID)).Select(b => b.points).FirstOrDefault();
-                points = query;
+                var query = from b in db.SHIP_CATALOG
+                            where b.shipID.Equals(pShipID)
+                            select b;
+
+                foreach (var item in query)
+                {
+                    points = item.points;
+                }
             }
             return points;
         }

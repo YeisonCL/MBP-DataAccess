@@ -77,5 +77,38 @@ namespace MBP_DataAccess.Database.Roles
                 db.SaveChanges();
             }
         }
+
+
+        public ModeratorUserDTO getModeratorUser(string pNickname)
+        {
+            ModeratorUserDTO moderatorUser = new ModeratorUserDTO();
+            using (var db = new MBP_Data_Entities())
+            {
+                var query = from b in db.VW_MOD_USER_EXT
+                            where b.nickname.Equals(pNickname)
+                            select b;
+
+                foreach (var item in query)
+                {
+                    moderatorUser.setName(item.name);
+                    moderatorUser.setSecondName(item.secondName);
+                    moderatorUser.setGenre(item.genre);
+                    moderatorUser.setBusiness(item.business);
+                    moderatorUser.setBirthDate(item.birthdate.Value);
+                    moderatorUser.setCountry(item.country);
+                    moderatorUser.setEmail(item.email);
+                    moderatorUser.setNickname(item.nickname);
+                    moderatorUser.setRegDate(item.regDate);
+                    var query2 = from b in db.USER_PHOTO
+                                 where b.userID.Equals(item.userPhotoID)
+                                 select b;
+                    foreach (var item2 in query2)
+                    {
+                        moderatorUser.setPhoto(item2.photo);
+                    }
+                }
+            }
+            return moderatorUser;
+        }
     }
 }

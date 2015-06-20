@@ -49,10 +49,10 @@ namespace MBP_DataAccess.Database.Ship
             {
                 var query = from b in db.GAME_SHIP
                             where b.gameShipID.Equals(pGameShipID)
-                            select b.integrity;
+                            select b;
                 foreach (var item in query)
                 {
-                    integrity_temp = item;
+                    integrity_temp = item.integrity;
                 }
             }
             return integrity_temp;
@@ -90,8 +90,13 @@ namespace MBP_DataAccess.Database.Ship
             int shipid = -1;
             using (var db = new MBP_Data_Entities())
             {
-                var query = db.GAME_SHIP.Where(b => b.gameShipID.Equals(pGameShipID)).Select(b => b.shipID).FirstOrDefault();
-                shipid = (int)query;
+                var query = from b in db.GAME_SHIP
+                            where b.gameShipID.Equals(pGameShipID)
+                            select b;
+                foreach (var item in query)
+                {
+                    shipid = item.shipID;
+                }
             }
             return shipid;
         }

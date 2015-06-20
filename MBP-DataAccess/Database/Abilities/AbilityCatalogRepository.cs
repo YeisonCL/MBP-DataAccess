@@ -89,5 +89,22 @@ namespace MBP_DataAccess.Database.Abilities
             }
             return experience;
         }
+
+
+        public string getAbilityName(int pAbilityID)
+        {
+            string name = "";
+            using (var db = new MBP_Data_Entities())
+            {
+                var query = from b in db.ABILITY_CATALOG
+                            where b.abilityID.Equals(pAbilityID)
+                            select b;
+                foreach (var item in query)
+                {
+                    name = item.name;
+                }
+            }
+            return name;
+        }
     }
 }
