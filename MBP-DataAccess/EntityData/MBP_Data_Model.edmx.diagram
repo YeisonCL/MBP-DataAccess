@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="058deafa0b2f4a0a87feed2e61217212" Name="Diagram1">
+      <Diagram DiagramId="1124b7d7dccd456189687471e01ea1f6" Name="Diagram1">
         <EntityTypeShape EntityType="MyBattlePongModel.ABILITY_CATALOG" Width="1.5" PointX="5.25" PointY="16.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.ADMIN_USER" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.BOARD_BOX" Width="1.5" PointX="7.5" PointY="8.25" IsExpanded="true" />

@@ -30,7 +30,7 @@ namespace MBP_DataAccess.Database.Roles
 
                 ADMIN_USER adminUser = new ADMIN_USER()
                 {
-                    email = pUserData._email,
+                    email = pUserData.getEmail(),
                     name = pUserData.getName(),
                     secondName = pUserData.getSecondName(),
                     regDate = pUserData.getRegDate(),
