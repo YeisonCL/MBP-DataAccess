@@ -15,10 +15,10 @@ namespace MBP_DataAccess.EntityData
     public partial class BOARD_SHIP
     {
         public int boardShipID { get; set; }
-        public Nullable<int> playerID { get; set; }
-        public Nullable<int> posX { get; set; }
-        public Nullable<int> posY { get; set; }
-        public Nullable<int> gameShipID { get; set; }
+        public int playerID { get; set; }
+        public int posX { get; set; }
+        public int posY { get; set; }
+        public int gameShipID { get; set; }
     
         public virtual BOARD_BOX BOARD_BOX { get; set; }
         public virtual GAME_SHIP GAME_SHIP { get; set; }

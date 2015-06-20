@@ -15,8 +15,8 @@ namespace MBP_DataAccess.EntityData
     public partial class VW_BOARD_BOX_EXT
     {
         public int gameShipID { get; set; }
-        public Nullable<int> shipID { get; set; }
-        public Nullable<int> playerID { get; set; }
+        public int shipID { get; set; }
+        public int playerID { get; set; }
         public int integrity { get; set; }
         public int posX { get; set; }
         public int posY { get; set; }

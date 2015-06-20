@@ -24,11 +24,11 @@ namespace MBP_DataAccess.EntityData
         public Nullable<int> adminID { get; set; }
         public string name { get; set; }
         public int versionAbility { get; set; }
-        public Nullable<int> points { get; set; }
-        public Nullable<int> ranking { get; set; }
-        public Nullable<int> experience { get; set; }
-        public Nullable<int> wins { get; set; }
-        public Nullable<int> defeats { get; set; }
+        public int points { get; set; }
+        public int ranking { get; set; }
+        public int experience { get; set; }
+        public int wins { get; set; }
+        public int defeats { get; set; }
     
         public virtual ICollection<GAME_ABILITY> GAME_ABILITY { get; set; }
         public virtual ICollection<GAME_USER_ABILITY> GAME_USER_ABILITY { get; set; }

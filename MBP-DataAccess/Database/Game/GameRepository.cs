@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
+using System.Windows.Forms;
 
 namespace MBP_DataAccess.Database.Game
 {
@@ -25,7 +26,7 @@ namespace MBP_DataAccess.Database.Game
             int gameID_temp;
             using (var db = new MBP_Data_Entities())
             {
-                var newgame = new GAME()
+                GAME newgame = new GAME()
                 {
                     @lock = pGameData.getLock(),
                     boardSize = pGameData.getBoardSize(),
@@ -35,9 +36,9 @@ namespace MBP_DataAccess.Database.Game
                     shotsTurn = pGameData.getShotsTurn(),
                     turnChangeTime = pGameData.getTurnChangeTime()
                 };
-                var gameId = db.GAME.Add(newgame).gameID;
+                db.GAME.Add(newgame);
                 db.SaveChanges();
-                gameID_temp = gameId;
+                gameID_temp = newgame.gameID;
             }
             return gameID_temp;
         }
@@ -172,7 +173,7 @@ namespace MBP_DataAccess.Database.Game
                     ship.setHeight(item.height);
                     ship.setName(item.name);
                     ship.setPoints(item.points);
-                    if (item.shipVersion != null) ship.setVersion(item.shipVersion.Value);
+                    ship.setVersion(item.shipVersion);
                     ship.setWidth(item.width);
                     gameShipCatalog_temp.Add(ship);
                 }
@@ -335,7 +336,7 @@ namespace MBP_DataAccess.Database.Game
                             select b;
                 foreach (var item in query)
                 {
-                    if (item.turnChangeTime != null) datetime = item.turnChangeTime.Value;
+                    if (item.turnChangeTime != null) datetime = item.turnChangeTime;
                 }
             }
             return datetime;

@@ -32,10 +32,7 @@ namespace MBP_DataAccess.Database.Ship
                 };
                 db.GAME_SHIP.Add(gs);
                 db.SaveChanges();
-                var query = from b in db.GAME_SHIP
-                            orderby b.gameShipID
-                            select b.gameShipID;
-                gameShipID_temp = query.Last();
+                gameShipID_temp = gs.gameShipID;
             }
             return gameShipID_temp;
         }

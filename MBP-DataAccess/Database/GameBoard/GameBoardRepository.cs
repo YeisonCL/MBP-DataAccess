@@ -48,6 +48,8 @@ namespace MBP_DataAccess.Database.GameBoard
                     posY = pBoardShip.getPositionY()
 
                 };
+                db.BOARD_SHIP.Add(boardShip);
+                db.SaveChanges();
             }
         }
 

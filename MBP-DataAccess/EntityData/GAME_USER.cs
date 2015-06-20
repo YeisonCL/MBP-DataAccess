@@ -24,6 +24,7 @@ namespace MBP_DataAccess.EntityData
     
         public int userID { get; set; }
         public int nickAndPassID { get; set; }
+        public int userPhotoID { get; set; }
         public string name { get; set; }
         public string secondName { get; set; }
         public string country { get; set; }

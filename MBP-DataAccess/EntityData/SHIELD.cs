@@ -15,9 +15,9 @@ namespace MBP_DataAccess.EntityData
     public partial class SHIELD
     {
         public int shieldID { get; set; }
-        public Nullable<int> playerID { get; set; }
-        public Nullable<int> abilityID { get; set; }
-        public Nullable<int> gameShipID { get; set; }
+        public int playerID { get; set; }
+        public int abilityID { get; set; }
+        public int gameShipID { get; set; }
     
         public virtual GAME_ABILITY GAME_ABILITY { get; set; }
         public virtual GAME_SHIP GAME_SHIP { get; set; }

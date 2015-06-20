@@ -15,8 +15,8 @@ namespace MBP_DataAccess.EntityData
     public partial class GAME_USER_ABILITY
     {
         public int gameUserAbilityID { get; set; }
-        public Nullable<int> gameUserID { get; set; }
-        public Nullable<int> abilityID { get; set; }
+        public int gameUserID { get; set; }
+        public int abilityID { get; set; }
     
         public virtual ABILITY_CATALOG ABILITY_CATALOG { get; set; }
         public virtual GAME_USER GAME_USER { get; set; }

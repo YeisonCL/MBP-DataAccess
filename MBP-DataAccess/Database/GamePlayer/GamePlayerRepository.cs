@@ -25,21 +25,22 @@ namespace MBP_DataAccess.Database.GamePlayer
             {
                 GAME_PLAYER gamePlayer = new GAME_PLAYER()
                 {
-                    availableShots = pGamePlayer._availableShots,
+                    availableShots = pGamePlayer.getAvailableShots(),
                     gameUserID = pGamePlayer.getGameUserID(),
                     hitShots = pGamePlayer.getHitShots(),
                     inTurn = pGamePlayer.getInTurn(),
                     lastFeed = pGamePlayer.getLastFeed(),
                     missShots = pGamePlayer.getMissShots(),
-                    points = pGamePlayer._points,
+                    points = pGamePlayer.getPoints(),
                     @lock = pGamePlayer.getLock(),
                     remainingShips = pGamePlayer.getRemainingShips(),
                     winFeedDelivered = pGamePlayer.getWinFeedDelivered(),
 
                 };
-                gameAndPlayerDto.setGameUserID((int)db.GAME_PLAYER.Add(gamePlayer).gameUserID);
-                gameAndPlayerDto.setPlayerID(pGamePlayer.getPlayerID());
+                db.GAME_PLAYER.Add(gamePlayer);
                 db.SaveChanges();
+                gameAndPlayerDto.setGameUserID(pGamePlayer.getGameUserID());
+                gameAndPlayerDto.setPlayerID(gamePlayer.playerID);
             }
             return gameAndPlayerDto;
         }

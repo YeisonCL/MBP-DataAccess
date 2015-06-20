@@ -17,7 +17,7 @@ namespace MBP_DataAccess.EntityData
         public int gameID { get; set; }
         public int shipCount { get; set; }
         public int shipID { get; set; }
-        public Nullable<int> shipVersion { get; set; }
+        public int shipVersion { get; set; }
         public string name { get; set; }
         public int points { get; set; }
         public int width { get; set; }

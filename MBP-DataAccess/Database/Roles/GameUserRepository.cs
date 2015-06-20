@@ -67,9 +67,9 @@ namespace MBP_DataAccess.Database.Roles
             using (var db = new MBP_Data_Entities())
             {
                 var query = db.GAME_USER.Where(c => c.userID.Equals(pUserID)).Select(c => c).FirstOrDefault();
-                var points = db.GAME_USER.Where(c => c.userID.Equals(pUserID)).Select(c => c.points).FirstOrDefault();
+                var points = db.GAME_USER.Where(c => c.userID.Equals(pUserID)).Select(c => c.totalPoints).FirstOrDefault();
                 totalpoints = points + pPoints;
-                query.points = totalpoints;
+                query.totalPoints = totalpoints;
                 db.SaveChanges();
             }
         }
@@ -339,37 +339,42 @@ namespace MBP_DataAccess.Database.Roles
         /// <param name="pGameUser"Datos a agregar></param>
         public void addGameUser(GameUserDTO pGameUser)
         {
-            int usernickpassId = -1;
             using (var db = new MBP_Data_Entities())
             {
                 USER_NICK_PASS userNickPass = new USER_NICK_PASS()
                 {
-                    nickname = pGameUser._nickname,
-                    password = pGameUser._password,
-                    type = pGameUser._type,
-
-
+                    nickname = pGameUser.getNickname(),
+                    password = pGameUser.getPassword(),
+                    type = pGameUser.getType(),
                 };
-                usernickpassId = db.USER_NICK_PASS.Add(userNickPass).userID;
+                db.USER_NICK_PASS.Add(userNickPass);
+                db.SaveChanges();
+
+                USER_PHOTO userPhoto = new USER_PHOTO()
+                {
+                    photo = pGameUser.getPhoto(),
+                };
+                db.USER_PHOTO.Add(userPhoto);
                 db.SaveChanges();
 
                 GAME_USER gameUser = new GAME_USER()
                 {
-                    birthdate = pGameUser._birthdate,
-                    country = pGameUser._country,
-                    defeats = pGameUser._defeats,
-                    email = pGameUser._email,
-                    genre = pGameUser._genre,
-                    hits = pGameUser._hits,
-                    misses = pGameUser._misess,
-                    name = pGameUser._name,
-                    personalDescription = pGameUser._personalDescription,
-                    points = pGameUser._points,
-                    nickAndPassID = usernickpassId,
-                    regDate = pGameUser._regDate,
-                    secondName = pGameUser._secondName,
-                    totalPoints = pGameUser._totalPoints,
-                    wins = pGameUser._wins
+                    birthdate = pGameUser.getBirthdate(),
+                    country = pGameUser.getCountry(),
+                    defeats = pGameUser.getDefeats(),
+                    email = pGameUser.getEmail(),
+                    genre = pGameUser.getGenre(),
+                    hits = pGameUser.getHits(),
+                    misses = pGameUser.getMisess(),
+                    name = pGameUser.getName(),
+                    personalDescription = pGameUser.getPersonalDescription(),
+                    points = pGameUser.getPoints(),
+                    nickAndPassID = userNickPass.userID,
+                    regDate = pGameUser.getRegDate(),
+                    secondName = pGameUser.getSecondName(),
+                    totalPoints = pGameUser.getTotalPoints(),
+                    userPhotoID = userPhoto.userID,
+                    wins = pGameUser.getWins(),
                 };
                 db.GAME_USER.Add(gameUser);
                 db.SaveChanges();

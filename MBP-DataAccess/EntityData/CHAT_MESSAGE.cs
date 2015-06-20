@@ -15,8 +15,8 @@ namespace MBP_DataAccess.EntityData
     public partial class CHAT_MESSAGE
     {
         public int chatMessageID { get; set; }
-        public Nullable<int> gameID { get; set; }
-        public Nullable<int> playerID { get; set; }
+        public int gameID { get; set; }
+        public int playerID { get; set; }
         public string message { get; set; }
     
         public virtual GAME_PLAYER GAME_PLAYER { get; set; }

@@ -24,7 +24,7 @@ namespace MBP_DataAccess.EntityData
         }
     
         public int gameID { get; set; }
-        public Nullable<System.DateTime> turnChangeTime { get; set; }
+        public System.DateTime turnChangeTime { get; set; }
         public int shotsTurn { get; set; }
         public int boardSize { get; set; }
         public bool profileAccess { get; set; }

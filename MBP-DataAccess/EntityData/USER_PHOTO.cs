@@ -14,10 +14,14 @@ namespace MBP_DataAccess.EntityData
     
     public partial class USER_PHOTO
     {
-        public System.Guid uniqueID { get; set; }
+        public USER_PHOTO()
+        {
+            this.GAME_USER = new HashSet<GAME_USER>();
+        }
+    
         public int userID { get; set; }
         public string photo { get; set; }
     
-        public virtual GAME_USER GAME_USER { get; set; }
+        public virtual ICollection<GAME_USER> GAME_USER { get; set; }
     }
 }

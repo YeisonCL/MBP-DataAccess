@@ -15,7 +15,7 @@ namespace MBP_DataAccess.EntityData
     public partial class VW_GAME_AND_PLAYER_INFO
     {
         public int gameID { get; set; }
-        public Nullable<int> playerID { get; set; }
+        public int playerID { get; set; }
         public string nickname { get; set; }
         public int shotsTurn { get; set; }
         public int boardSize { get; set; }

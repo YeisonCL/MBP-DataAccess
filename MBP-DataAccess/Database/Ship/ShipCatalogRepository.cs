@@ -52,11 +52,11 @@ namespace MBP_DataAccess.Database.Ship
             using (var db = new MBP_Data_Entities())
             {
                 var query = from b in db.SHIP_CATALOG
-                            where b.name.Equals(pName) & b.shipVersion.Equals(pVersion)
-                            select b.shipID;
-                foreach (var item in query)
+                            where b.name.Equals(pName) && b.shipVersion.Equals(pVersion)
+                            select b;
+                if (query.FirstOrDefault() != null)
                 {
-                    shipId_temp = item;
+                    shipId_temp = query.FirstOrDefault().shipID;
                 }
             }
             return shipId_temp;
