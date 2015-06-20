@@ -332,5 +332,14 @@ namespace MBP_DataAccess.Database.Roles
                 }
             }
         }
+
+        /// <summary>
+        /// Agrega una nueva fila a la tabla GAME_USER con los datos dados
+        /// </summary>
+        /// <param name="pGameUser"Datos a agregar></param>
+        public void addGameUser(GameUserDTO pGameUser)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

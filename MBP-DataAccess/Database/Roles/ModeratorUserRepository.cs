@@ -1,4 +1,5 @@
-﻿using MBP_DataAccess.EntityData;
+﻿using MBP_Cross.DTO.DatabaseDTO;
+using MBP_DataAccess.EntityData;
 using MBP_Logic.Interface.RepositoryInterface.Database;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,15 @@ namespace MBP_DataAccess.Database.Roles
                 }
             }
             return userid;
+        }
+
+        /// <summary>
+        /// Agrega una nueva columna a la tabla MOD_USER con los datos dados
+        /// </summary>
+        /// <param name="pUserData">Datos a agregar</param>
+        public void addModeratorUser(ModeratorUserDTO pUserData)
+        {
+            throw new NotImplementedException();
         }
     }
 }

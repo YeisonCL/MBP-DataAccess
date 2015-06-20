@@ -446,7 +446,18 @@ namespace MBP_DataAccess.Database.Game
         /// <returns>Valor de la columna</returns>
         public bool getProfileAccess(int pGameID)
         {
-            return false; 
+            bool profileaccess = false;
+            using (var db = new MBP_Data_Entities())
+            {
+                var query = from b in db.GAME
+                            where b.gameID.Equals(pGameID)
+                            select b;
+                foreach (var item in query)
+                {
+                    profileaccess = item.profileAccess;
+                }
+            }
+            return profileaccess;
         }
     }
 }

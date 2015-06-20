@@ -66,6 +66,7 @@
     <Compile Include="Database\GameBoard\GameBoardRepository.cs" />
     <Compile Include="Database\GamePlayer\GamePlayerRepository.cs" />
     <Compile Include="Database\Game\GameRepository.cs" />
+    <Compile Include="Database\Roles\AdministratorUserRepository.cs" />
     <Compile Include="Database\Roles\GameUserRepository.cs" />
     <Compile Include="Database\Roles\ModeratorUserRepository.cs" />
     <Compile Include="Database\Security\AuthenticationRepository.cs" />
