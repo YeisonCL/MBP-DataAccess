@@ -380,5 +380,38 @@ namespace MBP_DataAccess.Database.Roles
                 db.SaveChanges();
             }
         }
+
+
+        public GameUserDTO getGameUser(string pNickname)
+        {
+            GameUserDTO gameUser = new GameUserDTO();
+            using (var db = new MBP_Data_Entities())
+            {
+                var query = from b in db.VW_GAME_USER_EXT
+                            where b.nickname.Equals(pNickname)
+                            select b;
+
+                foreach (var item in query)
+                {
+                    gameUser.setName(item.name);
+                    gameUser.setNickname(pNickname);
+                    gameUser.setSecondName(item.secondName);
+                    gameUser.setCountry(item.country);
+                    gameUser.setEmail(item.email);
+                    gameUser.setGenre(item.genre);
+                    gameUser.setRegDate(item.regDate);
+                    gameUser.setBirthdate(item.birthdate.Value);
+                    gameUser.setPersonalDescription(item.personalDescription);
+                    var query2 = from b in db.USER_PHOTO
+                                 where b.userID.Equals(item.userPhotoID)
+                                 select b;
+                    foreach(var item2 in query2)
+                    {
+                        gameUser.setPhoto(item2.photo);
+                    }
+                }
+            }
+            return gameUser;
+        }
     }
 }

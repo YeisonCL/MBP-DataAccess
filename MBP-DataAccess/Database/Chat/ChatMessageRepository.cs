@@ -29,7 +29,7 @@ namespace MBP_DataAccess.Database.Chat
                             select b;
                 foreach (var item in query)
                 {
-                    chatList.Add(item.message.ToString());
+                    chatList.Add(item.message);
                 }
             }
             return chatList;

@@ -43,18 +43,21 @@ namespace MBP_DataAccess.Database.Abilities
             IList<GameAbilityFeedDTO> gameAbility_List = new List<GameAbilityFeedDTO>();
             using (var db = new MBP_Data_Entities())
             {
-                var query = from b in db.GAME_ABILITY
-                            where b.GAME_PLAYER.GAME_USER.USER_NICK_PASS.nickname.Equals(pNickname)
+                var query = from b in db.VW_GAME_ABILITY_EXT
+                            where b.nickname.Equals(pNickname)
                             select b;
-                foreach (var item in query)
+                foreach(var item in query)
                 {
-                    var query2 = from c in db.ABILITY_CATALOG
-                                 where item.abilityID.Equals(c.abilityID)
-                                 select c.name;
                     GameAbilityFeedDTO gaf_temp = new GameAbilityFeedDTO();
-                    gaf_temp.setName(query2.ToString());
-                    gaf_temp.setAvailable(item.availableCount);
-                    gameAbility_List.Add(gaf_temp);
+                    var query2 = from b in db.ABILITY_CATALOG
+                            where b.abilityID.Equals(item.abilityID)
+                            select b;
+                    foreach(var item2 in query2)
+                    {
+                        gaf_temp.setName(item2.name);
+                        gaf_temp.setAvailable(item.availableCount);
+                        gameAbility_List.Add(gaf_temp);
+                    }
                 }
             }
             return gameAbility_List;

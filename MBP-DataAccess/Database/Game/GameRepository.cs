@@ -142,7 +142,7 @@ namespace MBP_DataAccess.Database.Game
         /// <returns>Juegos en espera</returns>
         public IList<WaitingGameDTO> getAllWaitingGames()
         {
-            IList<WaitingGameDTO> allWaitingGames = null;
+            IList<WaitingGameDTO> allWaitingGames = new List<WaitingGameDTO>();
             using (var db = new MBP_Data_Entities())
             {
                 var query = from b in db.VW_GAME_AND_PLAYER_INFO
@@ -171,7 +171,7 @@ namespace MBP_DataAccess.Database.Game
         /// <returns>Objeto con las naves</returns>
         public IList<ShipDTO> getGameShipCatalog(int pGameID)
         {
-            IList<ShipDTO> gameShipCatalog_temp = null;
+            IList<ShipDTO> gameShipCatalog_temp = new List<ShipDTO>();
             using (var db = new MBP_Data_Entities())
             {
                 var query = from b in db.VW_GAME_SHIP_CATALOG
@@ -186,6 +186,7 @@ namespace MBP_DataAccess.Database.Game
                     ship.setPoints(item.points);
                     ship.setVersion(item.shipVersion);
                     ship.setWidth(item.width);
+                    ship.setPhoto(item.photo);
                     gameShipCatalog_temp.Add(ship);
                 }
             }
@@ -293,7 +294,7 @@ namespace MBP_DataAccess.Database.Game
                         foreach (var item in query)
                         {
                             item.@lock = true;
-                            if (item.joined.Equals(true))
+                            if (item.joined.Equals(false))
                             {
                                 item.joined = true;
                                 blocked = MBP_Logic.Game.OnlineGame.GAME_SUCCESSFULLY_LOCKED;
@@ -302,8 +303,8 @@ namespace MBP_DataAccess.Database.Game
                             {
                                 blocked = MBP_Logic.Game.OnlineGame.GAME_UNSUCCESSFULLY_LOCKED;
                             }
-
                         }
+                        db.SaveChanges();
                         scope.Complete();
                     }
                     catch (Exception)
@@ -352,7 +353,7 @@ namespace MBP_DataAccess.Database.Game
                             select b;
                 foreach (var item in query)
                 {
-                    if (item.turnChangeTime != null) datetime = item.turnChangeTime;
+                    datetime = item.turnChangeTime;
                 }
             }
             return datetime;
@@ -374,6 +375,7 @@ namespace MBP_DataAccess.Database.Game
                 {
                     item.turnChangeTime = pTime;
                 }
+                db.SaveChanges();
             }
         }
 

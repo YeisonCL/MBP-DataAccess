@@ -74,13 +74,14 @@ namespace MBP_DataAccess.Database.GamePlayer
             using (var db = new MBP_Data_Entities())
             {
                 var query = from b in db.GAME_PLAYER
-                            where b.gameUserID.Equals(pGamePlayerID)
+                            where b.playerID.Equals(pGamePlayerID)
                             select b;
 
                 foreach (var item in query)
                 {
                     item.lastFeed = pDateTimeFeed;
                 }
+                db.SaveChanges();
             }
         }
 
@@ -101,6 +102,7 @@ namespace MBP_DataAccess.Database.GamePlayer
                 {
                     item.inTurn = pValue;
                 }
+                db.SaveChanges();
             }
         }
 
@@ -541,6 +543,33 @@ namespace MBP_DataAccess.Database.GamePlayer
                 }
                 db.SaveChanges();
             }
+        }
+
+        /// <summary>
+        /// Obtiene la foto de un jugador
+        /// </summary>
+        /// <param name="pNickname"></param>
+        /// <returns></returns>
+        public string getPhoto(string pNickname)
+        {
+            string photo = "";
+            using (var db = new MBP_Data_Entities())
+            {
+                var query = from b in db.VW_GAME_USER_EXT
+                            where b.nickname.Equals(pNickname)
+                            select b;
+                foreach (var item in query)
+                {
+                    var query2 = from b in db.USER_PHOTO
+                                where b.userID.Equals(item.userID)
+                                select b;
+                    foreach(var item2 in query2)
+                    {
+                        photo = item2.photo;
+                    }
+                }
+            }
+            return photo;
         }
     }
 }
