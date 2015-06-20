@@ -11,7 +11,7 @@
           </Key>
           <Property Name="abilityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="adminID" Type="int" />
-          <Property Name="name" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="versionAbility" Type="int" Nullable="false" />
           <Property Name="points" Type="int" />
           <Property Name="ranking" Type="int" />
@@ -137,7 +137,7 @@
           <Property Name="secondName" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="country" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="genre" Type="bit" Nullable="false" />
+          <Property Name="genre" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="regDate" Type="datetime" Nullable="false" />
           <Property Name="wins" Type="int" Nullable="false" />
           <Property Name="defeats" Type="int" Nullable="false" />
@@ -192,11 +192,11 @@
           <Property Name="secondName" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="country" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="genre" Type="bit" Nullable="false" />
+          <Property Name="genre" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="business" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="regDate" Type="datetime" Nullable="false" />
           <Property Name="birthdate" Type="date" />
-          <Property Name="photo" Type="int" />
+          <Property Name="photo" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="ONE_PLUS_ABILITY">
           <Key>
@@ -452,7 +452,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_GAME_USER_ABILITY_EXT' n
             <PropertyRef Name="nickname" />
           </Key>
           <Property Name="abilityID" Type="int" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="userID" Type="int" Nullable="false" />
           <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -483,7 +483,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_GAME_USER_EXT' no tiene 
           <Property Name="secondName" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="country" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="genre" Type="bit" Nullable="false" />
+          <Property Name="genre" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="regDate" Type="datetime" Nullable="false" />
           <Property Name="wins" Type="int" Nullable="false" />
           <Property Name="defeats" Type="int" Nullable="false" />
@@ -524,6 +524,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_MOD_USER_EXT' no tiene d
             <PropertyRef Name="genre" />
             <PropertyRef Name="business" />
             <PropertyRef Name="regDate" />
+            <PropertyRef Name="photo" />
             <PropertyRef Name="nickname" />
           </Key>
           <Property Name="userID" Type="int" Nullable="false" />
@@ -532,11 +533,11 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_MOD_USER_EXT' no tiene d
           <Property Name="secondName" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="country" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="genre" Type="bit" Nullable="false" />
+          <Property Name="genre" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="business" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="regDate" Type="datetime" Nullable="false" />
           <Property Name="birthdate" Type="date" />
-          <Property Name="photo" Type="int" />
+          <Property Name="photo" Type="varchar(max)" Nullable="false" />
           <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
@@ -1330,7 +1331,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           </Key>
           <Property Name="abilityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="adminID" Type="Int32" />
-          <Property Name="name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="versionAbility" Type="Int32" Nullable="false" />
           <Property Name="points" Type="Int32" />
           <Property Name="ranking" Type="Int32" />
@@ -1493,7 +1494,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="secondName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="genre" Type="Boolean" Nullable="false" />
+          <Property Name="genre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="wins" Type="Int32" Nullable="false" />
           <Property Name="defeats" Type="Int32" Nullable="false" />
@@ -1562,11 +1563,11 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="secondName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="genre" Type="Boolean" Nullable="false" />
+          <Property Name="genre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="business" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="birthdate" Type="DateTime" Precision="0" />
-          <Property Name="photo" Type="Int32" />
+          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="LIVE_GAME" Relationship="Self.MOD_ID_MOD_USER_FK" FromRole="MOD_USER" ToRole="LIVE_GAME" />
           <NavigationProperty Name="USER_NICK_PASS" Relationship="Self.MOD_USERS_ID_USERS_FK" FromRole="MOD_USER" ToRole="USER_NICK_PASS" />
         </EntityType>
@@ -1819,7 +1820,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             <PropertyRef Name="nickname" />
           </Key>
           <Property Name="abilityID" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="userID" Type="Int32" Nullable="false" />
           <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
@@ -1848,7 +1849,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="secondName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="genre" Type="Boolean" Nullable="false" />
+          <Property Name="genre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="wins" Type="Int32" Nullable="false" />
           <Property Name="defeats" Type="Int32" Nullable="false" />
@@ -1885,6 +1886,7 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
             <PropertyRef Name="genre" />
             <PropertyRef Name="business" />
             <PropertyRef Name="regDate" />
+            <PropertyRef Name="photo" />
             <PropertyRef Name="nickname" />
           </Key>
           <Property Name="userID" Type="Int32" Nullable="false" />
@@ -1893,11 +1895,11 @@ advertencia 6002: La tabla o vista 'MyBattlePong.dbo.VW_SHOT_FEED_EXT' no tiene 
           <Property Name="secondName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="genre" Type="Boolean" Nullable="false" />
+          <Property Name="genre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="business" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="regDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="birthdate" Type="DateTime" Precision="0" />
-          <Property Name="photo" Type="Int32" />
+          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="VW_PLAYED_GAME_EXT">

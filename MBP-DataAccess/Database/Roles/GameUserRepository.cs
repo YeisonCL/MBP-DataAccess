@@ -339,7 +339,41 @@ namespace MBP_DataAccess.Database.Roles
         /// <param name="pGameUser"Datos a agregar></param>
         public void addGameUser(GameUserDTO pGameUser)
         {
-            throw new NotImplementedException();
+            int usernickpassId = -1;
+            using (var db = new MBP_Data_Entities())
+            {
+                USER_NICK_PASS userNickPass = new USER_NICK_PASS()
+                {
+                    nickname = pGameUser._nickname,
+                    password = pGameUser._password,
+                    type = pGameUser._type,
+
+
+                };
+                usernickpassId = db.USER_NICK_PASS.Add(userNickPass).userID;
+                db.SaveChanges();
+
+                GAME_USER gameUser = new GAME_USER()
+                {
+                    birthdate = pGameUser._birthdate,
+                    country = pGameUser._country,
+                    defeats = pGameUser._defeats,
+                    email = pGameUser._email,
+                    genre = pGameUser._genre,
+                    hits = pGameUser._hits,
+                    misses = pGameUser._misess,
+                    name = pGameUser._name,
+                    personalDescription = pGameUser._personalDescription,
+                    points = pGameUser._points,
+                    nickAndPassID = usernickpassId,
+                    regDate = pGameUser._regDate,
+                    secondName = pGameUser._secondName,
+                    totalPoints = pGameUser._totalPoints,
+                    wins = pGameUser._wins
+                };
+                db.GAME_USER.Add(gameUser);
+                db.SaveChanges();
+            }
         }
     }
 }

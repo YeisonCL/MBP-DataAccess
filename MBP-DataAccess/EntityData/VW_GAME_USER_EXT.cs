@@ -20,7 +20,7 @@ namespace MBP_DataAccess.EntityData
         public string secondName { get; set; }
         public string country { get; set; }
         public string email { get; set; }
-        public bool genre { get; set; }
+        public string genre { get; set; }
         public System.DateTime regDate { get; set; }
         public int wins { get; set; }
         public int defeats { get; set; }
